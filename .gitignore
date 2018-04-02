@@ -30,3 +30,11 @@
 *.exe
 *.out
 *.app
+
+#Code Block Quentin
+*.cbp
+*.layout
+*.depend
+
+#Main
+main.cpp
