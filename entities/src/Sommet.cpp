@@ -1,4 +1,4 @@
-#include "..../head/Sommet.h"
+#include "../head/Sommet.h"
 
 Sommet::Sommet(){
     //Default ctor

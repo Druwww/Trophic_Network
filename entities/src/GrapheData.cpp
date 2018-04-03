@@ -1,4 +1,4 @@
-#include "..../head/GrapheData.h"
+#include "../head/GrapheData.h"
 
 GrapheData::GrapheData(){
     //default ctor

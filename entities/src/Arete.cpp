@@ -1,4 +1,4 @@
-#include "..../head/Arete.h"
+#include "../head/Arete.h"
 
 Arete::Arete(){
     //default ctor
