@@ -1,13 +1,22 @@
 #include "../include/Graph.h"
 
-Graph::Graph(){}
+Graph::Graph(){
+    m_destroyNodeListener = nullptr;
+    m_destroyVertexListener = nullptr;
+}
 
 Graph::~Graph(){
     for(int i=0 ; i<m_data.size() ; i++){
+        if(m_destroyNodeListener!=nullptr){
+            (*m_destroyNodeListener)(m_data[i].first->getData());
+        }
         delete m_data[i].first;
     }
 
     for(int i=0 ; i<m_vertices.size() ; i++){
+        if(m_destroyVertexListener!=nullptr){
+            (*m_destroyVertexListener)(m_vertices[i]->getData());
+        }
         delete m_vertices[i];
     }
 }
@@ -76,6 +85,14 @@ std::vector<Vertex*> Graph::getConnections(const std::string& uid) const{
         return m_data[index].second;
     }
     return {};
+}
+
+void Graph::setOnDestroyNodeData(void (*destroyNodeListener)(void*)){
+    m_destroyNodeListener = destroyNodeListener;
+}
+
+void Graph::setOnDestroyVertexData(void (*destroyVertexListener)(void*)){
+    m_destroyVertexListener = destroyVertexListener;
 }
 
 void Graph::write(std::ostream& os) const{
