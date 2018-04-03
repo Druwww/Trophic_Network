@@ -23,8 +23,16 @@ bool Node::isProcessed() const{
     return m_processed;
 }
 
-void Node::setProcessed(bool processed){
+void* Node::getData() const{
+    return m_data;
+}
+
+void Node::setProcessed(const bool& processed){
     m_processed = processed;
+}
+
+void Node::setData(void* data){
+    m_data = data;
 }
 
 void Node::write(std::ostream& os) const{

@@ -1,7 +1,7 @@
 #include "../include/Vertex.h"
 
 Vertex::Vertex(){
-    m_id = -1;
+    m_uid = genUid();
     m_weight = 0;
     m_active = false;
     m_processed = false;
@@ -9,8 +9,8 @@ Vertex::Vertex(){
     m_endNode = nullptr;
 }
 
-int Vertex::getId() const{
-    return m_id;
+std::string Vertex::getUid() const{
+    return m_uid;
 }
 
 float Vertex::getWeight() const{
@@ -33,19 +33,23 @@ Node* Vertex::getEndNode() const{
     return m_endNode;
 }
 
-void Vertex::setId(int id){
-    m_id = id;
+void* Vertex::getData() const{
+    return m_data;
 }
 
-void Vertex::setWeight(float weight){
+void Vertex::setUid(const std::string& uid){
+    m_uid = uid;
+}
+
+void Vertex::setWeight(const float& weight){
     m_weight = weight;
 }
 
-void Vertex::setActive(bool active){
+void Vertex::setActive(const bool& active){
     m_active = active;
 }
 
-void Vertex::setProcessed(bool processed){
+void Vertex::setProcessed(const bool& processed){
     m_processed = processed;
 }
 
@@ -57,15 +61,19 @@ void Vertex::setEndNode(Node* node){
     m_endNode = node;
 }
 
+void Vertex::setData(void* data){
+    m_data = data;
+}
+
 void Vertex::write(std::ostream& os) const{
-    os << m_id << " ";
+    os << m_uid << " ";
     os << m_weight << " ";
     os << m_active << " ";
     os << m_processed;
 }
 
 void Vertex::read(std::istream& is){
-    is >> m_id;
+    is >> m_uid;
     is >> m_weight;
     is >> m_active;
     is >> m_processed;

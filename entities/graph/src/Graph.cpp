@@ -1,17 +1,18 @@
-#include "../include/GraphData.h"
+#include "../include/Graph.h"
 
-GraphData::GraphData(){}
+Graph::Graph(){}
 
-GraphData::~GraphData(){
+Graph::~Graph(){
     for(int i=0 ; i<m_data.size() ; i++){
         delete m_data[i].first;
-        for(int j=0 ; j<m_data[i].second.size() ; j++){
-            delete m_data[i].second[j];
-        }
+    }
+
+    for(int i=0 ; i<m_vertices.size() ; i++){
+        delete m_vertices[i];
     }
 }
 
-Node* GraphData::getNodeByUid(const std::string& uid) const{
+Node* Graph::getNodeByUid(const std::string& uid) const{
     int index = getIndexByUid(uid);
     if(index!=-1){
         return m_data[index].first;
@@ -19,7 +20,7 @@ Node* GraphData::getNodeByUid(const std::string& uid) const{
     return nullptr;
 }
 
-int GraphData::getIndexByUid(const std::string& uid) const{
+int Graph::getIndexByUid(const std::string& uid) const{
     for(int i=0 ; i<m_data.size() ; i++){
         if(m_data[i].first->getUid()==uid){
             return i;
@@ -28,55 +29,57 @@ int GraphData::getIndexByUid(const std::string& uid) const{
     return -1;
 }
 
-void GraphData::connect(const std::string& uid1, const std::string& uid2){
-    Node* node1 = getNodeByUid(uid1);
-    Node* node2 = getNodeByUid(uid2);
-    if(node1==nullptr){
-        node1 = addNode(Node(uid1));
-    }
-    if(node2==nullptr){
-        node2 = addNode(Node(uid2));
-    }
+#include <iostream>
+void Graph::connect(const std::string& uid1, const std::string& uid2, void* data){
+    int index1 = getIndexByUid(uid1);
+    int index2 = getIndexByUid(uid2);
+    Node* node1 = index1==-1?new Node(uid1):m_data[index1].first;
+    Node* node2 = index2==-1?new Node(uid2):m_data[index2].first;
+    connect(node1, node2, data);
+}
+
+void Graph::connect(Node* node1, Node* node2, void* data){
+    int index1 = hasNode(node1)?getIndexByUid(node1->getUid()):addNode(node1);
+    int index2 = hasNode(node2)?getIndexByUid(node2->getUid()):addNode(node2);
 
     Vertex* connection = new Vertex();
     connection->setStartNode(node1);
     connection->setEndNode(node2);
-    int index1 = getIndexByUid(node1->getUid());
-    int index2 = getIndexByUid(node2->getUid());
+    connection->setData(data);
     m_data[index1].second.push_back(connection);
     m_data[index2].second.push_back(connection);
+    m_vertices.push_back(connection);
 }
 
-Node* GraphData::addNode(const Node& node){
-    if(!hasNode(node)){
-        Node* n = new Node(node);
-        std::vector<Vertex*> empty;
-        data d = std::make_pair(n, empty);
-        m_data.push_back(d);
-        return n;
-    }
-    return nullptr;
+int Graph::addNode(Node* node){
+    data d = std::make_pair(node, std::vector<Vertex*>());
+    m_data.push_back(d);
+    return m_data.size()-1;
 }
 
-bool GraphData::hasNode(const Node& node) const{
+bool Graph::hasNode(Node* node) const{
     for(const auto& p : m_data){
-        if(p.first->getUid()==node.getUid()){
+        if(p.first->getUid()==node->getUid()){
             return true;
         }
     }
     return false;
 }
 
-int GraphData::getOrder() const{
+int Graph::getOrder() const{
     return m_data.size();
 }
 
-void GraphData::write(std::ostream& os) const{
+std::vector<Vertex*> Graph::getConnections(const std::string& uid) const{
+    int index = getIndexByUid(uid);
+    if(index!=-1){
+        return m_data[index].second;
+    }
+    return {};
+}
+
+void Graph::write(std::ostream& os) const{
     os << m_data.size() << std::endl;
-    // for(const auto& p : m_data){
-    //     p.first->write(os);
-    //     os << std::endl;
-    // }
 
     for(auto const& p : m_data){
         os << p.second.size() << std::endl;
@@ -91,17 +94,11 @@ void GraphData::write(std::ostream& os) const{
     }
 }
 
-void GraphData::read(std::istream& is){
+void Graph::read(std::istream& is){
     std::string line;
     getline(is, line);
     int order = std::stoi(line);
     m_data = std::vector<data>(order);
-
-    // for(int i=0 ; i<order ; i++){
-    //     Node *node = new Node();
-    //     node->read(is);
-    //     m_data[i].first = node;
-    // }
 
     for(int i=0 ; i<order ; i++){
         getline(is, line);
