@@ -7,6 +7,7 @@ Vertex::Vertex(){
     m_processed = false;
     m_startNode = nullptr;
     m_endNode = nullptr;
+    m_data = nullptr;
 }
 
 std::string Vertex::getUid() const{

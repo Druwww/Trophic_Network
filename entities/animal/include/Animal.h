@@ -11,6 +11,19 @@ struct Animal {
         m_quantity = 100;
         m_birthRate = 0;
     }
+
+    void write(std::ostream& os) const{
+        os << m_quantity << " ";
+        os << m_birthRate;
+    }
+
+    void read(std::istream& is){
+        std::string word;
+        is >> word;
+        m_quantity = std::stof(word);
+        is >> word;
+        m_birthRate = std::stof(word);
+    }
 };
 
 #endif
