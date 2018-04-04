@@ -8,33 +8,33 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     initGraph();
     initVar();
 
-//    std::string path = "/home/omar/Desktop/Trophic_Network/gui/App/image.png";
+    std::string path = "/home/omar/Desktop/Trophic_Network/gui/App/image.png";
 
-//    Node* n1 = new Node("Omar");
-//    Node* n2 = new Node("Fred");
-//    Node* n3 = new Node("Quentin");
+    Node* n1 = new Node("Omar");
+    Node* n2 = new Node("Fred");
+    Node* n3 = new Node("Quentin");
 
-//    Animal* an1 = new Animal();
-//    an1->m_gui = new NodeGuiAttr(path);
-//    an1->m_gui->m_x = 0;
-//    an1->m_gui->m_y = 0;
-//    n1->setData(an1);
+    Animal* an1 = new Animal();
+    an1->m_gui = new NodeGuiAttr(path);
+    an1->m_gui->m_x = 0;
+    an1->m_gui->m_y = 0;
+    n1->setData(an1);
 
-//    Animal* an2 = new Animal();
-//    an2->m_gui = new NodeGuiAttr(path);
-//    an2->m_gui->m_x = 400;
-//    an2->m_gui->m_y = 300;
-//    n2->setData(an2);
+    Animal* an2 = new Animal();
+    an2->m_gui = new NodeGuiAttr(path);
+    an2->m_gui->m_x = 400;
+    an2->m_gui->m_y = 300;
+    n2->setData(an2);
 
-//    Animal* an3 = new Animal();
-//    an3->m_gui = new NodeGuiAttr(path);
-//    an3->m_gui->m_x = 800;
-//    an3->m_gui->m_y = 200;
-//    n3->setData(an3);
+    Animal* an3 = new Animal();
+    an3->m_gui = new NodeGuiAttr(path);
+    an3->m_gui->m_x = 800;
+    an3->m_gui->m_y = 200;
+    n3->setData(an3);
 
-//    m_graph->connect(n1, n2);
-//    m_graph->connect(n3, n2);
-//    m_graph->connect(n2, n1);
+    m_graph->connect(n1, n2);
+    m_graph->connect(n3, n2);
+    m_graph->connect(n2, n1);
 }
 
 MainWindow::~MainWindow()
@@ -107,8 +107,15 @@ void MainWindow::removeNode(){
     QAction *action = qobject_cast<QAction *>(sender());
     QVariant variant = action->data();
     GNode *gnode = (GNode*) variant.value<void *>();
-
-    std::cout << gnode->m_node->getUid() << std::endl;
+    Node* node = gnode->m_node;
+    for(int i=0 ; i<m_gnodes.size() ; i++){
+        if(m_gnodes[i]->m_node->getUid()==node->getUid()){
+            delete m_gnodes[i];
+            m_gnodes.erase(m_gnodes.begin() + i);
+        }
+    }
+    m_graph->removeNode(node);
+    update();
     // rm gnode
 }
 
