@@ -93,6 +93,10 @@ int Graph::getOrder() const{
     return m_data.size();
 }
 
+std::vector<Vertex*> Graph::getVertices() const{
+    return m_vertices;
+}
+
 std::vector<Vertex*> Graph::getConnections(const std::string& uid) const{
     int index = getIndexByUid(uid);
     if(index!=-1){
@@ -217,6 +221,18 @@ void Graph::read(std::istream& is){
 
             m_data[i].first = (start->getUid()==uid?start:end);
             m_data[i].second.push_back(vertex);
+
+            bool exist = false;
+            for(const auto& v : m_vertices){
+                if(v->getUid()==vertex->getUid()){
+                    exist = true;
+                    break;
+                }
+            }
+            
+            if(!exist){
+                m_vertices.push_back(vertex);
+            }
         }
     }
 }
