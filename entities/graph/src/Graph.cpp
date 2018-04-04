@@ -171,12 +171,12 @@ void Graph::read(std::istream& is){
 
     std::string line, uid;
     getline(is, line);
-    int order = std::stoi(line);
+    int order = string_to_int(line);
     m_data = std::vector<data>(order);
 
     for(int i=0 ; i<order ; i++){
         getline(is, line);
-        int length = std::stoi(line);
+        int length = string_to_int(line);
         getline(is, uid);
 
         for(int j=0 ; j<length ; j++){

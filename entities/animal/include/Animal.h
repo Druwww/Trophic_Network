@@ -20,9 +20,9 @@ struct Animal {
     void read(std::istream& is){
         std::string word;
         is >> word;
-        m_quantity = std::stof(word);
+        m_quantity = string_to_float(word);
         is >> word;
-        m_birthRate = std::stof(word);
+        m_birthRate = string_to_float(word);
     }
 };
 

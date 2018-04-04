@@ -17,3 +17,17 @@ std::string genUid(int length){
     }
     return uid;
 }
+
+int string_to_int(const std::string& str){
+    std::stringstream ss(str);
+    int n;
+    ss >> n;
+    return n;
+}
+
+float string_to_float(const std::string& str){
+    std::stringstream ss(str);
+    float n;
+    ss >> n;
+    return n;
+}
