@@ -12,14 +12,14 @@ Graph::Graph(){
 Graph::~Graph(){
     assert(m_destroyNodeListener!=nullptr && m_destroyVertexListener!=nullptr);
 
-    for(int i=0 ; i<m_data.size() ; i++){
+    for(unsigned int i=0 ; i<m_data.size() ; i++){
         if(m_data[i].first->getData()!=nullptr){
             (*m_destroyNodeListener)(m_data[i].first->getData());
         }
         delete m_data[i].first;
     }
 
-    for(int i=0 ; i<m_vertices.size() ; i++){
+    for(unsigned int i=0 ; i<m_vertices.size() ; i++){
         if(m_vertices[i]->getData()!=nullptr){
             (*m_destroyVertexListener)(m_vertices[i]->getData());
         }
@@ -45,7 +45,7 @@ Node* Graph::getNodeByUid(const std::string& uid) const{
 }
 
 int Graph::getIndexByUid(const std::string& uid) const{
-    for(int i=0 ; i<m_data.size() ; i++){
+    for(unsigned int i=0 ; i<m_data.size() ; i++){
         if(m_data[i].first->getUid()==uid){
             return i;
         }
@@ -174,12 +174,12 @@ void Graph::read(std::istream& is){
     int order = string_to_int(line);
     m_data = std::vector<data>(order);
 
-    for(int i=0 ; i<order ; i++){
+    for(unsigned int i=0 ; i<order ; i++){
         getline(is, line);
         int length = string_to_int(line);
         getline(is, uid);
 
-        for(int j=0 ; j<length ; j++){
+        for(unsigned int j=0 ; j<length ; j++){
             getline(is, line);
             std::stringstream ss(line);
 
