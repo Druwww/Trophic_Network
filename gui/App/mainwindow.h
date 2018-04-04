@@ -5,6 +5,8 @@
 #include <QPainter>
 #include <QMouseEvent>
 #include <QPoint>
+#include <QTreeWidget>
+#include <QAction>
 
 #include "gnode.h"
 #include "nodeguiattr.h"
@@ -19,26 +21,37 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
-protected:
-    void paintEvent(QPaintEvent *event);
-    void mousePressEvent(QMouseEvent *event);
-    void mouseReleaseEvent(QMouseEvent *event);
-    void mouseMoveEvent(QMouseEvent *event);
+    protected:
+        void paintEvent(QPaintEvent *event);
+        void mousePressEvent(QMouseEvent *event);
+        void mouseReleaseEvent(QMouseEvent *event);
+        void mouseMoveEvent(QMouseEvent *event);
 
-public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+    public:
+        explicit MainWindow(QWidget *parent = 0);
+        ~MainWindow();
 
-private:
-    Ui::MainWindow *ui;
-    Graph* m_graph;
-    std::vector<GNode*> m_gnodes;
+    private:
+        Ui::MainWindow *ui;
+        Graph* m_graph;
+        std::vector<GNode*> m_gnodes;
+        std::vector<Node*> m_nodes;
 
-    GNode* getGNode(Node* node);
-    GNode* m_selectedNode;
-    QPoint m_nodePos;
-    QPoint m_mousePos;
-    bool m_drag;
+        QAction* m_addNodeAction;
+
+        GNode* getGNode(Node* node);
+        GNode* m_selectedNode;
+        QPoint m_nodePos;
+        QPoint m_mousePos;
+        bool m_drag;
+
+        void createMenu();
+        void initGraph();
+        void initVar();
+
+    private slots:
+        void addNode();
+
 };
 
 #endif // MAINWINDOW_H

@@ -4,7 +4,53 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    createMenu();
+    initGraph();
+    initVar();
 
+//    std::string path = "/home/omar/Desktop/Trophic_Network/gui/App/image.png";
+
+//    Node* n1 = new Node("Omar");
+//    Node* n2 = new Node("Fred");
+//    Node* n3 = new Node("Quentin");
+
+//    Animal* an1 = new Animal();
+//    an1->m_gui = new NodeGuiAttr(path);
+//    an1->m_gui->m_x = 0;
+//    an1->m_gui->m_y = 0;
+//    n1->setData(an1);
+
+//    Animal* an2 = new Animal();
+//    an2->m_gui = new NodeGuiAttr(path);
+//    an2->m_gui->m_x = 400;
+//    an2->m_gui->m_y = 300;
+//    n2->setData(an2);
+
+//    Animal* an3 = new Animal();
+//    an3->m_gui = new NodeGuiAttr(path);
+//    an3->m_gui->m_x = 800;
+//    an3->m_gui->m_y = 200;
+//    n3->setData(an3);
+
+//    m_graph->connect(n1, n2);
+//    m_graph->connect(n3, n2);
+//    m_graph->connect(n2, n1);
+}
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+    delete m_graph;
+}
+
+void MainWindow::createMenu(){
+    m_addNodeAction = new QAction("Add Node", this);
+    addAction(m_addNodeAction);
+    setContextMenuPolicy(Qt::ActionsContextMenu);
+    connect(m_addNodeAction, SIGNAL(triggered(bool)), this, SLOT(addNode()));
+}
+
+void MainWindow::initGraph(){
     m_graph = new Graph();
     m_graph->setOnDestroyNodeData(onDeleteNode);
     m_graph->setOnDestroyEdgeData(onDeleteEdge);
@@ -12,43 +58,22 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     m_graph->setOnSerializeEdgeData(onSerializeEdge);
     m_graph->setOnDeserializeNodeData(onDeserializeNode);
     m_graph->setOnDeserializeEdgeData(onDeserializeEdge);
-
-    m_selectedNode = nullptr;
-    m_drag = false;
-
-    std::string path = "/home/omar/Desktop/Trophic_Network/gui/App/image.png";
-
-    Node* n1 = new Node("Omar");
-    Node* n2 = new Node("Fred");
-    Node* n3 = new Node("Quentin");
-
-    Animal* an1 = new Animal();
-    an1->m_gui = new NodeGuiAttr(path);
-    an1->m_gui->m_x = 0;
-    an1->m_gui->m_y = 0;
-    n1->setData(an1);
-
-    Animal* an2 = new Animal();
-    an2->m_gui = new NodeGuiAttr(path);
-    an2->m_gui->m_x = 400;
-    an2->m_gui->m_y = 300;
-    n2->setData(an2);
-
-    Animal* an3 = new Animal();
-    an3->m_gui = new NodeGuiAttr(path);
-    an3->m_gui->m_x = 800;
-    an3->m_gui->m_y = 200;
-    n3->setData(an3);
-
-    m_graph->connect(n1, n2);
-    m_graph->connect(n3, n2);
-    m_graph->connect(n2, n1);
 }
 
-MainWindow::~MainWindow()
-{
-    delete ui;
-    delete m_graph;
+void MainWindow::initVar(){
+    m_selectedNode = nullptr;
+    m_drag = false;
+}
+
+void MainWindow::addNode(){
+//    QPoint pos = mapFromGlobal(QCursor::pos());
+//    std::string path = "/home/omar/Desktop/Trophic_Network/gui/App/image.png";
+//    Node* node = new Node();
+//    Animal* animal = new Animal();
+//    animal->m_gui = new NodeGuiAttr(path);
+//    animal->m_gui->m_x = pos.x()+animal->m_gui->m_width/2;
+//    animal->m_gui->m_y = pos.y()+animal->m_gui->m_height/2;
+//    node->setData(animal);
 }
 
 void MainWindow::paintEvent(QPaintEvent *event){
