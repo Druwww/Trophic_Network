@@ -108,6 +108,7 @@ void MainWindow::removeNode(){
     QVariant variant = action->data();
     GNode *gnode = (GNode*) variant.value<void *>();
 
+    std::cout << gnode->m_node->getUid() << std::endl;
     // rm gnode
 }
 
@@ -115,35 +116,30 @@ void MainWindow::paintEvent(QPaintEvent *event){
     QPainter painter(this);
     painter.setPen(QPen(Qt::black, 3, Qt::DashLine, Qt::RoundCap));
 
-
-    // show nodes
     for(int i=0 ; i<m_graph->size() ; i++){
-        std::pair<Node*, std::vector<Edge*> > p = m_graph->get(i);
-        Node* node = p.first;
-        Animal* dat = (Animal*) node->getData();
-        NodeGuiAttr* gui = dat->m_gui;
-        GNode *gnode = getGNode(node);
-        if(gnode==nullptr){
-            gnode = new GNode(node, gui, this);
-            m_gnodes.push_back(gnode);
-        }
-        gnode->show();
-    }
+        std::pair<Node*, std::pair<std::vector<Edge*>, std::vector<Edge*> > > p = m_graph->get(i);
 
-    // show edges
-    std::vector<Edge*> edges = m_graph->getEdges();
-    for(const auto& e : edges){
-        Node* start = e->getStartNode();
-        Animal* sa = (Animal*) start->getData();
-        NodeGuiAttr* sgui = sa->m_gui;
-
-        Node* end = e->getEndNode();
+        Node* end = p.first;
         Animal* ea = (Animal*) end->getData();
         NodeGuiAttr* egui = ea->m_gui;
+        GNode *egnode = getGNode(end);
+        if(egnode==nullptr){
+            egnode = new GNode(end, egui, this);
+            m_gnodes.push_back(egnode);
+        }
+        egnode->show();
 
-        painter.drawLine(sgui->m_x+sgui->m_width/2, sgui->m_y+sgui->m_height/2,
-            egui->m_x+egui->m_width/2, egui->m_y+egui->m_height/2);
+        std::vector<Edge*> in = p.second.first;
+        for(auto const& e : in){
+            Node* start = e->getStartNode();
+            Animal* sa = (Animal*) start->getData();
+            NodeGuiAttr* sgui = sa->m_gui;
+
+            painter.drawLine(sgui->m_x+sgui->m_width/2, sgui->m_y+sgui->m_height/2,
+                egui->m_x+egui->m_width/2, egui->m_y+egui->m_height/2);
+        }
     }
+
 }
 
 void MainWindow::mousePressEvent(QMouseEvent *event){
