@@ -47,7 +47,7 @@ void MainWindow::createMenu(){
     m_addNodeAction = new QAction("Add Node", this);
     addAction(m_addNodeAction);
     setContextMenuPolicy(Qt::ActionsContextMenu);
-    connect(m_addNodeAction, SIGNAL(triggered(bool)), this, SLOT(addNode()));
+    connect(m_addNodeAction, SIGNAL(triggered()), this, SLOT(addNode()));
 }
 
 void MainWindow::initGraph(){
@@ -66,44 +66,48 @@ void MainWindow::initVar(){
 }
 
 void MainWindow::addNode(){
-//    QPoint pos = mapFromGlobal(QCursor::pos());
-//    std::string path = "/home/omar/Desktop/Trophic_Network/gui/App/image.png";
-//    Node* node = new Node();
-//    Animal* animal = new Animal();
-//    animal->m_gui = new NodeGuiAttr(path);
-//    animal->m_gui->m_x = pos.x()+animal->m_gui->m_width/2;
-//    animal->m_gui->m_y = pos.y()+animal->m_gui->m_height/2;
-//    node->setData(animal);
+    QPoint pos = mapFromGlobal(QCursor::pos());
+    std::string path = "/home/omar/Desktop/Trophic_Network/gui/App/image.png";
+    Node* node = new Node();
+    Animal* animal = new Animal();
+    animal->m_gui = new NodeGuiAttr(path);
+    animal->m_gui->m_x = pos.x()-animal->m_gui->m_width/2;
+    animal->m_gui->m_y = pos.y()-animal->m_gui->m_height/2;
+    node->setData(animal);
+    m_graph->addNode(node);
+    update();
 }
 
 void MainWindow::paintEvent(QPaintEvent *event){
     QPainter painter(this);
     painter.setPen(QPen(Qt::black, 3, Qt::DashLine, Qt::RoundCap));
 
+
+    // show nodes
+    for(int i=0 ; i<m_graph->size() ; i++){
+        std::pair<Node*, std::vector<Edge*> > p = m_graph->get(i);
+        Node* node = p.first;
+        Animal* dat = (Animal*) node->getData();
+        NodeGuiAttr* gui = dat->m_gui;
+        GNode *gnode = getGNode(node);
+        if(gnode==nullptr){
+            gnode = new GNode(node, gui, this);
+            m_gnodes.push_back(gnode);
+        }
+        gnode->show();
+    }
+
+    // show edges
     std::vector<Edge*> edges = m_graph->getEdges();
-    for(const auto& v : edges){
-        Node* start = v->getStartNode();
+    for(const auto& e : edges){
+        Node* start = e->getStartNode();
         Animal* sa = (Animal*) start->getData();
         NodeGuiAttr* sgui = sa->m_gui;
 
-        Node* end = v->getEndNode();
+        Node* end = e->getEndNode();
         Animal* ea = (Animal*) end->getData();
         NodeGuiAttr* egui = ea->m_gui;
 
-        GNode *sgnode = getGNode(start);
-        if(sgnode==nullptr){
-            sgnode = new GNode(start, sgui, this);
-            m_gnodes.push_back(sgnode);
-        }
-
-        GNode *egnode = getGNode(end);
-        if(egnode==nullptr){
-            egnode = new GNode(end, egui, this);
-            m_gnodes.push_back(egnode);
-        }
-
-        sgnode->show();
-        egnode->show();
         painter.drawLine(sgui->m_x+sgui->m_width/2, sgui->m_y+sgui->m_height/2,
             egui->m_x+egui->m_width/2, egui->m_y+egui->m_height/2);
     }

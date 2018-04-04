@@ -35,15 +35,14 @@ class MainWindow : public QMainWindow
         Ui::MainWindow *ui;
         Graph* m_graph;
         std::vector<GNode*> m_gnodes;
-        std::vector<Node*> m_nodes;
-
-        QAction* m_addNodeAction;
 
         GNode* getGNode(Node* node);
         GNode* m_selectedNode;
         QPoint m_nodePos;
         QPoint m_mousePos;
         bool m_drag;
+
+        QAction* m_addNodeAction;
 
         void createMenu();
         void initGraph();
