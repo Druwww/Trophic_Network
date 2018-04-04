@@ -26,9 +26,9 @@ struct NaturalLaw {
     void read(std::istream& is){
         std::string word;
         is >> word;
-        m_survivalRate = std::stof(word);
+        m_survivalRate = string_to_float(word);
         is >> word;
-        m_importance = std::stof(word);
+        m_importance = string_to_float(word);
     }
 };
 
