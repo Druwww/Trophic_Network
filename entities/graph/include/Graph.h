@@ -16,14 +16,15 @@ typedef std::pair<Node*, IO> data;
 class Graph{
     private:
         std::vector<data> m_data;
-        void (*m_destroyNodeListener)(void*);
-        void (*m_destroyEdgeListener)(void*);
+        void (*m_destroyNodeData)(void*);
+        void (*m_destroyEdgeData)(void*);
         void (*m_serializeNodeData)(std::ostream&, void*);
         void (*m_serializeEdgeData)(std::ostream&, void*);
         void (*m_deserializeNodeData)(std::istream&, void**);
         void (*m_deserializeEdgeData)(std::istream&, void**);
 
         int getIndexByUid(const std::string& uid) const;
+        void subtract(std::vector<Edge*>& v1, const std::vector<Edge*>& v2);
 
     public:
         Graph();
@@ -43,8 +44,8 @@ class Graph{
         bool removeNode(Node* node);
         bool removeNode(const std::string& uid);
 
-        void setOnDestroyNodeData(void (*destroyNodeListener)(void*));
-        void setOnDestroyEdgeData(void (*destroyEdgeListener)(void*));
+        void setOnDestroyNodeData(void (*destroyNodeData)(void*));
+        void setOnDestroyEdgeData(void (*destroyEdgeData)(void*));
         void setOnSerializeNodeData(void (*serializeNodeData)(std::ostream&, void*));
         void setOnSerializeEdgeData(void (*serializeEdgeData)(std::ostream&, void*));
         void setOnDeserializeNodeData(void (*deserializeNodeData)(std::istream&, void**));
