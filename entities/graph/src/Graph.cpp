@@ -17,13 +17,14 @@ Graph::~Graph(){
             (*m_destroyNodeListener)(m_data[i].first->getData());
         }
         delete m_data[i].first;
-    }
 
-    for(unsigned int i=0 ; i<m_edges.size() ; i++){
-        if(m_edges[i]->getData()!=nullptr){
-            (*m_destroyEdgeListener)(m_edges[i]->getData());
+        std::vector<Edge*> in = m_data[i].second.first;
+        for(unsigned int j=0 ; j<in.size() ; j++){
+            if(in[j]->getData()!=nullptr){
+                (*m_destroyEdgeListener)(in[j]->getData());
+            }
+            delete in[j];
         }
-        delete m_edges[i];
     }
 }
 
@@ -69,15 +70,27 @@ void Graph::connect(Node* node1, Node* node2, void* data){
     connection->setStartNode(node1);
     connection->setEndNode(node2);
     connection->setData(data);
-    m_data[index1].second.push_back(connection);
-    m_data[index2].second.push_back(connection);
-    m_edges.push_back(connection);
+    m_data[index1].second.second.push_back(connection);
+    m_data[index2].second.first.push_back(connection);
 }
 
 int Graph::addNode(Node* node){
-    data d = std::make_pair(node, std::vector<Edge*>());
+    data d = std::make_pair(node, std::make_pair(std::vector<Edge*>(), std::vector<Edge*>()));
     m_data.push_back(d);
     return m_data.size()-1;
+}
+
+bool Graph::removeNode(Node* node){
+    return removeNode(node->getUid());
+}
+
+bool Graph::removeNode(const std::string& uid){
+    int index = getIndexByUid(uid);
+    if(index==-1){
+        return false;
+    }
+
+
 }
 
 bool Graph::hasNode(Node* node) const{
@@ -93,11 +106,7 @@ int Graph::getOrder() const{
     return m_data.size();
 }
 
-std::vector<Edge*> Graph::getEdges() const{
-    return m_edges;
-}
-
-std::vector<Edge*> Graph::getConnections(const std::string& uid) const{
+IO Graph::getConnections(const std::string& uid) const{
     int index = getIndexByUid(uid);
     if(index!=-1){
         return m_data[index].second;
@@ -105,7 +114,7 @@ std::vector<Edge*> Graph::getConnections(const std::string& uid) const{
     return {};
 }
 
-std::vector<Edge*> Graph::getConnections(Node* node) const{
+IO Graph::getConnections(Node* node) const{
     return getConnections(node->getUid());
 }
 
@@ -137,33 +146,30 @@ void Graph::write(std::ostream& os) const{
     assert(m_serializeNodeData!=nullptr && m_serializeEdgeData!=nullptr);
 
     os << m_data.size() << std::endl;
+    for(auto const& p : m_data){
+        Node* node = p.first;
+        void* data = node->getData();
+        node->write(os);
+        os << " " << (data!=nullptr);
+        if(data!=nullptr){
+            os << " ";
+            (*m_serializeNodeData)(os, data);
+        }
+        os << std::endl;
+    }
 
     for(auto const& p : m_data){
-        os << p.second.size() << std::endl;
+        os << p.second.first.size() << std::endl;
         os << p.first->getUid() << std::endl;
 
-        for(const auto& v : p.second){
-            v->write(os);
-            void* v_data = v->getData();
-            os << " " << (v_data!=nullptr) << " ";
-            if(v_data!=nullptr){
-                (*m_serializeEdgeData)(os, v_data);
+        for(const auto& edge : p.second.first){
+            void* data = edge->getData();
+            os << edge->getStartNode()->getUid() << " ";
+            edge->write(os);
+            os << " " << (data!=nullptr);
+            if(data!=nullptr){
                 os << " ";
-            }
-
-            v->getStartNode()->write(os);
-            void* sn_data = v->getStartNode()->getData();
-            os << " " << (sn_data!=nullptr) << " ";
-            if(sn_data!=nullptr){
-                (*m_serializeNodeData)(os, sn_data);
-                os << " ";
-            }
-
-            v->getEndNode()->write(os);
-            void* en_data = v->getEndNode()->getData();
-            os << " " << (en_data!=nullptr) << " ";
-            if(en_data!=nullptr){
-                (*m_serializeNodeData)(os, en_data);
+                (*m_serializeEdgeData)(os, data);
             }
             os << std::endl;
         }
@@ -173,66 +179,56 @@ void Graph::write(std::ostream& os) const{
 void Graph::read(std::istream& is){
     assert(m_deserializeNodeData!=nullptr && m_deserializeEdgeData!=nullptr);
 
-    std::string line, uid;
+    std::string line, uid, uid2;
     getline(is, line);
     int order = string_to_int(line);
     m_data = std::vector<data>(order);
 
     for(unsigned int i=0 ; i<order ; i++){
         getline(is, line);
+        std::stringstream ss(line);
+        Node* node = new Node();
+        bool hasData;
+
+        node->read(ss);
+        ss >> hasData;
+        if(hasData){
+            void *d;
+            (*m_deserializeNodeData)(ss, &d);
+            node->setData(d);
+        }
+
+        m_data[i].first = node;
+    }
+
+    for(unsigned int i=0 ; i<order ; i++){
+        getline(is, line);
         int length = string_to_int(line);
         getline(is, uid);
+
+        Node* endNode = getNodeByUid(uid);
 
         for(unsigned int j=0 ; j<length ; j++){
             getline(is, line);
             std::stringstream ss(line);
-
             Edge* edge = new Edge();
-            Node* start = new Node();
-            Node* end = new Node();
-            bool has_v_data;
-            bool has_sn_data;
-            bool has_en_data;
-            void *d;
+            bool hasData;
 
+            ss >> uid2;
             edge->read(ss);
-            ss >> has_v_data;
-            if(has_v_data){
+            ss >> hasData;
+            if(hasData){
+                void* d;
                 (*m_deserializeEdgeData)(ss, &d);
                 edge->setData(d);
             }
 
-            start->read(ss);
-            ss >> has_sn_data;
-            if(has_sn_data){
-                (*m_deserializeNodeData)(ss, &d);
-                start->setData(d);
-            }
+            Node* startNode = getNodeByUid(uid2);
+            edge->setStartNode(startNode);
+            edge->setEndNode(endNode);
 
-            end->read(ss);
-            ss >> has_en_data;
-            if(has_en_data){
-                (*m_deserializeNodeData)(ss, &d);
-                end->setData(d);
-            }
-
-            edge->setStartNode(start);
-            edge->setEndNode(end);
-
-            m_data[i].first = (start->getUid()==uid?start:end);
-            m_data[i].second.push_back(edge);
-
-            bool exist = false;
-            for(const auto& v : m_edges){
-                if(v->getUid()==edge->getUid()){
-                    exist = true;
-                    break;
-                }
-            }
-            
-            if(!exist){
-                m_edges.push_back(edge);
-            }
+            m_data[i].second.first.push_back(edge);
+            m_data[getIndexByUid(uid2)].second.second.push_back(edge);
         }
     }
 }

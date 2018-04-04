@@ -10,12 +10,12 @@
 #include "Node.h"
 #include "Edge.h"
 
-typedef std::pair<Node*, std::vector<Edge*> > data;
+typedef std::pair<std::vector<Edge*>, std::vector<Edge*> > IO;
+typedef std::pair<Node*, IO> data;
 
 class Graph{
     private:
         std::vector<data> m_data;
-        std::vector<Edge*> m_edges;
         void (*m_destroyNodeListener)(void*);
         void (*m_destroyEdgeListener)(void*);
         void (*m_serializeNodeData)(std::ostream&, void*);
@@ -34,13 +34,14 @@ class Graph{
         int getOrder() const;
         bool hasNode(Node* node) const;
         Node* getNodeByUid(const std::string& uid) const;
-        std::vector<Edge*> getEdges() const;
-        std::vector<Edge*> getConnections(const std::string& uid) const;
-        std::vector<Edge*> getConnections(Node* node) const;
+        IO getConnections(const std::string& uid) const;
+        IO getConnections(Node* node) const;
 
         void connect(const std::string& uid1, const std::string& uid2, void* data=nullptr);
         void connect(Node* node1, Node* node2, void* data=nullptr);
         int addNode(Node* node);
+        bool removeNode(Node* node);
+        bool removeNode(const std::string& uid);
 
         void setOnDestroyNodeData(void (*destroyNodeListener)(void*));
         void setOnDestroyEdgeData(void (*destroyEdgeListener)(void*));
