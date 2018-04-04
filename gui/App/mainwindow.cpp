@@ -7,11 +7,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     m_graph = new Graph();
     m_graph->setOnDestroyNodeData(onDeleteNode);
-    m_graph->setOnDestroyVertexData(onDeleteVertex);
+    m_graph->setOnDestroyEdgeData(onDeleteEdge);
     m_graph->setOnSerializeNodeData(onSerializeNode);
-    m_graph->setOnSerializeVertexData(onSerializeVertex);
+    m_graph->setOnSerializeEdgeData(onSerializeEdge);
     m_graph->setOnDeserializeNodeData(onDeserializeNode);
-    m_graph->setOnDeserializeVertexData(onDeserializeVertex);
+    m_graph->setOnDeserializeEdgeData(onDeserializeEdge);
 
     m_selectedNode = nullptr;
     m_drag = false;
@@ -55,8 +55,8 @@ void MainWindow::paintEvent(QPaintEvent *event){
     QPainter painter(this);
     painter.setPen(QPen(Qt::black, 3, Qt::DashLine, Qt::RoundCap));
 
-    std::vector<Vertex*> vertices = m_graph->getVertices();
-    for(const auto& v : vertices){
+    std::vector<Edge*> edges = m_graph->getEdges();
+    for(const auto& v : edges){
         Node* start = v->getStartNode();
         Animal* sa = (Animal*) start->getData();
         NodeGuiAttr* sgui = sa->m_gui;

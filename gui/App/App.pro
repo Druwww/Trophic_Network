@@ -17,7 +17,7 @@ SOURCES += main.cpp\
         mainwindow.cpp \
     ../../entities/graph/src/Graph.cpp \
     ../../entities/graph/src/Node.cpp \
-    ../../entities/graph/src/Vertex.cpp \
+    ../../entities/graph/src/Edge.cpp \
     ../../utils/src/utils.cpp \
     graphhelper.cpp
 
@@ -27,7 +27,7 @@ HEADERS  += mainwindow.h \
     ../../entities/animal/include/NaturalLaw.h \
     ../../entities/graph/include/Graph.h \
     ../../entities/graph/include/Node.h \
-    ../../entities/graph/include/Vertex.h \
+    ../../entities/graph/include/Edge.h \
     ../../utils/include/utils.h \
     nodeguiattr.h \
     graphhelper.h

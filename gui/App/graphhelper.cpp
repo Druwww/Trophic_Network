@@ -5,7 +5,7 @@ void onDeleteNode(void* data){
     delete animal;
 }
 
-void onDeleteVertex(void* data){
+void onDeleteEdge(void* data){
     NaturalLaw* law = (NaturalLaw*) data;
     delete law;
 }
@@ -15,7 +15,7 @@ void onSerializeNode(std::ostream& os, void* data){
     animal->write(os);
 }
 
-void onSerializeVertex(std::ostream& os, void* data){
+void onSerializeEdge(std::ostream& os, void* data){
     NaturalLaw* law = (NaturalLaw*) data;
     law->write(os);
 }
@@ -26,7 +26,7 @@ void onDeserializeNode(std::istream& is, void** data){
     *data = animal;
 }
 
-void onDeserializeVertex(std::istream& is, void** data){
+void onDeserializeEdge(std::istream& is, void** data){
     NaturalLaw* law = new NaturalLaw();
     law->read(is);
     *data = law;
