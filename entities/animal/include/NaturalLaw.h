@@ -1,7 +1,7 @@
 #ifndef NATURELAW_H_INCLUDED
 #define NATURELAW_H_INCLUDED
 
-#include "../../graph/include/Vertex.h"
+#include "../../graph/include/Edge.h"
 #include <string>
 
 struct NaturalLaw {

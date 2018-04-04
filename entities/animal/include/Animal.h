@@ -2,7 +2,7 @@
 #define ANIMAL_H_INCLUDED
 
 #include "../../graph/include/Node.h"
-#include "../../../gui/App/nodeguiattr.h"
+// #include "../../../gui/App/nodeguiattr.h"
 
 struct Animal {
     NodeGuiAttr* m_gui;
