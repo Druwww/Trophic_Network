@@ -4,7 +4,7 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    createMenu();
+    initMenu();
     initGraph();
     initVar();
 
@@ -43,11 +43,33 @@ MainWindow::~MainWindow()
     delete m_graph;
 }
 
-void MainWindow::createMenu(){
-    m_addNodeAction = new QAction("Add Node", this);
-    addAction(m_addNodeAction);
-    setContextMenuPolicy(Qt::ActionsContextMenu);
-    connect(m_addNodeAction, SIGNAL(triggered()), this, SLOT(addNode()));
+void MainWindow::initMenu(){
+    setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(this, SIGNAL(customContextMenuRequested(const QPoint &)),
+            this, SLOT(showContextMenu(const QPoint &)));
+}
+
+void MainWindow::showContextMenu(const QPoint& pos){
+    QMenu contextMenu(this);
+    GNode* gnode = gnodeAt(pos);
+
+    QAction *action;
+    if(gnode==nullptr){
+        action = new QAction("Add Node", this);
+        action->setData(QVariant(pos));
+        connect(action, SIGNAL(triggered()), this, SLOT(addNode()));
+        contextMenu.addAction(action);
+    }
+    else{
+        QVariant var = qVariantFromValue((void *) gnode);
+        action = new QAction("Remove Node", this);
+        action->setData(var);
+        connect(action, SIGNAL(triggered()), this, SLOT(removeNode()));
+        contextMenu.addAction(action);
+    }
+
+    contextMenu.exec(mapToGlobal(pos));
+    delete action;
 }
 
 void MainWindow::initGraph(){
@@ -66,7 +88,10 @@ void MainWindow::initVar(){
 }
 
 void MainWindow::addNode(){
-    QPoint pos = mapFromGlobal(QCursor::pos());
+    QAction *action = qobject_cast<QAction *>(sender());
+    QVariant variant = action->data();
+    QPoint pos = variant.toPoint();
+
     std::string path = "/home/omar/Desktop/Trophic_Network/gui/App/image.png";
     Node* node = new Node();
     Animal* animal = new Animal();
@@ -76,6 +101,14 @@ void MainWindow::addNode(){
     node->setData(animal);
     m_graph->addNode(node);
     update();
+}
+
+void MainWindow::removeNode(){
+    QAction *action = qobject_cast<QAction *>(sender());
+    QVariant variant = action->data();
+    GNode *gnode = (GNode*) variant.value<void *>();
+
+    // rm gnode
 }
 
 void MainWindow::paintEvent(QPaintEvent *event){
@@ -155,6 +188,15 @@ GNode* MainWindow::getGNode(Node* node){
     for(const auto& gn : m_gnodes){
         if(gn->m_node->getUid()==node->getUid()){
             return gn;
+        }
+    }
+    return nullptr;
+}
+
+GNode* MainWindow::gnodeAt(const QPoint& pos){
+    for(const auto& gnode : m_gnodes){
+        if(gnode->geometry().contains(pos)){
+            return gnode;
         }
     }
     return nullptr;

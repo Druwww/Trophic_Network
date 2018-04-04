@@ -42,14 +42,15 @@ class MainWindow : public QMainWindow
         QPoint m_mousePos;
         bool m_drag;
 
-        QAction* m_addNodeAction;
-
-        void createMenu();
+        void initMenu();
         void initGraph();
         void initVar();
+        GNode* gnodeAt(const QPoint& pos);
 
     private slots:
         void addNode();
+        void removeNode();
+        void showContextMenu(const QPoint& pos);
 
 };
 
