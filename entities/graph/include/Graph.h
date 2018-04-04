@@ -6,7 +6,6 @@
 #include <iostream>
 #include <cassert>
 #include <sstream>
-#include <algorithm>
 
 #include "Node.h"
 #include "Vertex.h"
@@ -35,6 +34,7 @@ class Graph{
         int getOrder() const;
         bool hasNode(Node* node) const;
         Node* getNodeByUid(const std::string& uid) const;
+        std::vector<Vertex*> getVertices() const;
         std::vector<Vertex*> getConnections(const std::string& uid) const;
         std::vector<Vertex*> getConnections(Node* node) const;
 
