@@ -1,0 +1,17 @@
+#ifndef GRAPHHELPER
+#define GRAPHHELPER
+
+#include <iostream>
+
+#include "../../entities/animal/include/Animal.h"
+#include "../../entities/animal/include/NaturalLaw.h"
+
+void onDeleteNode(void* data);
+void onDeleteVertex(void* data);
+void onSerializeNode(std::ostream& os, void* data);
+void onSerializeVertex(std::ostream& os, void* data);
+void onDeserializeNode(std::istream& is, void** data);
+void onDeserializeVertex(std::istream& is, void** data);
+
+#endif // GRAPHHELPER
+

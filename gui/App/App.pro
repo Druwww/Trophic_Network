@@ -18,7 +18,8 @@ SOURCES += main.cpp\
     ../../entities/graph/src/Graph.cpp \
     ../../entities/graph/src/Node.cpp \
     ../../entities/graph/src/Vertex.cpp \
-    ../../utils/src/utils.cpp
+    ../../utils/src/utils.cpp \
+    graphhelper.cpp
 
 HEADERS  += mainwindow.h \
     gnode.h \
@@ -28,7 +29,8 @@ HEADERS  += mainwindow.h \
     ../../entities/graph/include/Node.h \
     ../../entities/graph/include/Vertex.h \
     ../../utils/include/utils.h \
-    nodeguiattr.h
+    nodeguiattr.h \
+    graphhelper.h
 
 FORMS    += mainwindow.ui
 

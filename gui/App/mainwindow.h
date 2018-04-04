@@ -3,12 +3,13 @@
 
 #include <QMainWindow>
 #include <QPainter>
+#include <QMouseEvent>
+#include <QPoint>
 
-#include "../../entities/animal/include/Animal.h"
-#include "../../entities/animal/include/NaturalLaw.h"
-#include "../../entities/graph/include/Graph.h"
 #include "gnode.h"
 #include "nodeguiattr.h"
+#include "graphhelper.h"
+#include "../../entities/graph/include/Graph.h"
 
 namespace Ui {
 class MainWindow;
@@ -21,6 +22,8 @@ class MainWindow : public QMainWindow
 protected:
     void paintEvent(QPaintEvent *event);
     void mousePressEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
 
 public:
     explicit MainWindow(QWidget *parent = 0);
@@ -32,13 +35,10 @@ private:
     std::vector<GNode*> m_gnodes;
 
     GNode* getGNode(Node* node);
+    GNode* m_selectedNode;
+    QPoint m_nodePos;
+    QPoint m_mousePos;
+    bool m_drag;
 };
-
-void onDeleteNode(void* data);
-void onDeleteVertex(void* data);
-void onSerializeNode(std::ostream& os, void* data);
-void onSerializeVertex(std::ostream& os, void* data);
-void onDeserializeNode(std::istream& is, void** data);
-void onDeserializeVertex(std::istream& is, void** data);
 
 #endif // MAINWINDOW_H

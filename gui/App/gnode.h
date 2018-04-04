@@ -34,7 +34,10 @@ struct GNode : public QWidget{
     virtual ~GNode(){
         delete m_label;
         delete m_layout;
-        std::cout << "destroyed" << std::endl;
+    }
+
+    void update(){
+        move(m_attr->m_x, m_attr->m_y);
     }
 };
 

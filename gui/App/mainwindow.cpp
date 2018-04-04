@@ -13,6 +13,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     m_graph->setOnDeserializeNodeData(onDeserializeNode);
     m_graph->setOnDeserializeVertexData(onDeserializeVertex);
 
+    m_selectedNode = nullptr;
+    m_drag = false;
+
     std::string path = "/home/omar/Desktop/Trophic_Network/gui/App/image.png";
 
     Node* n1 = new Node("Omar");
@@ -55,10 +58,11 @@ void MainWindow::paintEvent(QPaintEvent *event){
     std::vector<Vertex*> vertices = m_graph->getVertices();
     for(const auto& v : vertices){
         Node* start = v->getStartNode();
-        Node* end = v->getEndNode();
         Animal* sa = (Animal*) start->getData();
-        Animal* ea = (Animal*) end->getData();
         NodeGuiAttr* sgui = sa->m_gui;
+
+        Node* end = v->getEndNode();
+        Animal* ea = (Animal*) end->getData();
         NodeGuiAttr* egui = ea->m_gui;
 
         GNode *sgnode = getGNode(start);
@@ -73,7 +77,6 @@ void MainWindow::paintEvent(QPaintEvent *event){
             m_gnodes.push_back(egnode);
         }
 
-
         sgnode->show();
         egnode->show();
         painter.drawLine(sgui->m_x+sgui->m_width/2, sgui->m_y+sgui->m_height/2,
@@ -82,24 +85,41 @@ void MainWindow::paintEvent(QPaintEvent *event){
 }
 
 void MainWindow::mousePressEvent(QMouseEvent *event){
-//    if (event->button() == Qt::LeftButton){
-//        for(unsigned int i=0 ; i<m_graph->size() ; i++){
-//            data d = m_graph->get(i);
+    if (event->button() == Qt::LeftButton){
+        for(const auto& gnode : m_gnodes){
+            if(gnode->geometry().contains(event->pos())) {
+                m_selectedNode = gnode;
+                m_nodePos = QPoint(gnode->pos().x(), gnode->pos().y());
+                m_mousePos = QPoint(event->pos().x(), event->pos().y());
+                m_drag = true;
+                break;
+            }
+        }
 
-//            if(iconLabel->geometry().contains(event->pos())) {
+    }
+}
 
-//                QDrag *drag = new QDrag(this);
-//                QMimeData *mimeData = new QMimeData;
+void MainWindow::mouseReleaseEvent(QMouseEvent *event){
+    if (event->button() == Qt::LeftButton){
+        for(const auto& gnode : m_gnodes){
+            if(gnode->geometry().contains(event->pos())) {
+                m_selectedNode = nullptr;
+                m_drag = false;
+            }
+        }
 
-//                mimeData->setText(commentEdit->toPlainText());
-//                drag->setMimeData(mimeData);
-//                drag->setPixmap(iconPixmap);
+    }
+}
 
-//                Qt::DropAction dropAction = drag->exec();
-//            }
-//        }
-
-//    }
+void MainWindow::mouseMoveEvent(QMouseEvent *event){
+    if (event->type() == QEvent::MouseMove && m_drag && m_selectedNode!=nullptr){
+        QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+        m_selectedNode->m_attr->m_x += mouseEvent->pos().x()-m_mousePos.x();
+        m_selectedNode->m_attr->m_y += mouseEvent->pos().y()-m_mousePos.y();
+        m_mousePos = QPoint(mouseEvent->pos().x(), mouseEvent->pos().y());
+        m_selectedNode->update();
+        update();
+    }
 }
 
 GNode* MainWindow::getGNode(Node* node){
@@ -109,36 +129,4 @@ GNode* MainWindow::getGNode(Node* node){
         }
     }
     return nullptr;
-}
-
-void onDeleteNode(void* data){
-    Animal* animal = (Animal*) data;
-    delete animal;
-}
-
-void onDeleteVertex(void* data){
-    NaturalLaw* law = (NaturalLaw*) data;
-    delete law;
-}
-
-void onSerializeNode(std::ostream& os, void* data){
-    Animal* animal = (Animal*) data;
-    animal->write(os);
-}
-
-void onSerializeVertex(std::ostream& os, void* data){
-    NaturalLaw* law = (NaturalLaw*) data;
-    law->write(os);
-}
-
-void onDeserializeNode(std::istream& is, void** data){
-    Animal* animal = new Animal();
-    animal->read(is);
-    *data = animal;
-}
-
-void onDeserializeVertex(std::istream& is, void** data){
-    NaturalLaw* law = new NaturalLaw();
-    law->read(is);
-    *data = law;
 }
