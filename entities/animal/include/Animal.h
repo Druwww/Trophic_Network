@@ -12,6 +12,11 @@ struct Animal {
         m_birthRate = 0;
     }
 
+    Animal(int quantity, float birthRate){
+        m_quantity = quantity;
+        m_birthRate = birthRate;
+    }
+
     void write(std::ostream& os) const{
         os << m_quantity << " ";
         os << m_birthRate;

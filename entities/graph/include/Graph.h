@@ -24,7 +24,7 @@ class Graph{
         void (*m_deserializeNodeData)(std::istream&, void**);
         void (*m_deserializeVertexData)(std::istream&, void**);
 
-        int getIndexByUid(const std::string& uid) const;
+
 
     public:
         Graph();
@@ -34,9 +34,12 @@ class Graph{
         data get(int i) const;
         int getOrder() const;
         bool hasNode(Node* node) const;
+        int getIndexByUid(const std::string& uid) const;
         Node* getNodeByUid(const std::string& uid) const;
         std::vector<Vertex*> getConnections(const std::string& uid) const;
         std::vector<Vertex*> getConnections(Node* node) const;
+        int getDegreByUid(const std::string& uid) const;
+        int getDegreByNode(Node* node) const;
 
         void connect(const std::string& uid1, const std::string& uid2, void* data=nullptr);
         void connect(Node* node1, Node* node2, void* data=nullptr);

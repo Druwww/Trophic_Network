@@ -105,6 +105,18 @@ std::vector<Vertex*> Graph::getConnections(Node* node) const{
     return getConnections(node->getUid());
 }
 
+int Graph::getDegreByUid(const std::string& uid) const{
+    int index = getIndexByUid(uid);
+    if(index!=-1){
+        return m_data[index].second.size();
+    }
+    return {};
+}
+
+int Graph::getDegreByNode(Node* node) const{
+    return getDegreByUid(node->getUid());
+}
+
 void Graph::setOnDestroyNodeData(void (*destroyNodeListener)(void*)){
     m_destroyNodeListener = destroyNodeListener;
 }
