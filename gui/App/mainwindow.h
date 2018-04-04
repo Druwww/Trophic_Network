@@ -20,6 +20,7 @@ class MainWindow : public QMainWindow
 
 protected:
     void paintEvent(QPaintEvent *event);
+    void mousePressEvent(QMouseEvent *event);
 
 public:
     explicit MainWindow(QWidget *parent = 0);
@@ -28,6 +29,9 @@ public:
 private:
     Ui::MainWindow *ui;
     Graph* m_graph;
+    std::vector<GNode*> m_gnodes;
+
+    GNode* getGNode(Node* node);
 };
 
 void onDeleteNode(void* data);

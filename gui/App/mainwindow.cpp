@@ -61,14 +61,54 @@ void MainWindow::paintEvent(QPaintEvent *event){
         NodeGuiAttr* sgui = sa->m_gui;
         NodeGuiAttr* egui = ea->m_gui;
 
-        GNode *sgnode = new GNode(sgui, this);
-        GNode *egnode = new GNode(egui, this);
+        GNode *sgnode = getGNode(start);
+        if(sgnode==nullptr){
+            sgnode = new GNode(start, sgui, this);
+            m_gnodes.push_back(sgnode);
+        }
+
+        GNode *egnode = getGNode(end);
+        if(egnode==nullptr){
+            egnode = new GNode(end, egui, this);
+            m_gnodes.push_back(egnode);
+        }
+
 
         sgnode->show();
         egnode->show();
         painter.drawLine(sgui->m_x+sgui->m_width/2, sgui->m_y+sgui->m_height/2,
             egui->m_x+egui->m_width/2, egui->m_y+egui->m_height/2);
     }
+}
+
+void MainWindow::mousePressEvent(QMouseEvent *event){
+//    if (event->button() == Qt::LeftButton){
+//        for(unsigned int i=0 ; i<m_graph->size() ; i++){
+//            data d = m_graph->get(i);
+
+//            if(iconLabel->geometry().contains(event->pos())) {
+
+//                QDrag *drag = new QDrag(this);
+//                QMimeData *mimeData = new QMimeData;
+
+//                mimeData->setText(commentEdit->toPlainText());
+//                drag->setMimeData(mimeData);
+//                drag->setPixmap(iconPixmap);
+
+//                Qt::DropAction dropAction = drag->exec();
+//            }
+//        }
+
+//    }
+}
+
+GNode* MainWindow::getGNode(Node* node){
+    for(const auto& gn : m_gnodes){
+        if(gn->m_node->getUid()==node->getUid()){
+            return gn;
+        }
+    }
+    return nullptr;
 }
 
 void onDeleteNode(void* data){

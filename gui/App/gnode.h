@@ -10,11 +10,13 @@
 #include "nodeguiattr.h"
 
 struct GNode : public QWidget{
+    Node *m_node;
     QLabel *m_label;
     QVBoxLayout *m_layout;
     NodeGuiAttr* m_attr;
 
-    GNode(NodeGuiAttr* attr, QWidget* parent=0) : QWidget(parent){
+    GNode(Node* node, NodeGuiAttr* attr, QWidget* parent=0) : QWidget(parent){
+        m_node = node;
         m_attr = attr;
         m_layout = new QVBoxLayout();
         m_label = new QLabel(this);
