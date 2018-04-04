@@ -30,10 +30,13 @@ class Graph{
         Graph();
         ~Graph();
 
+        int size() const;
+        data get(int i) const;
         int getOrder() const;
         bool hasNode(Node* node) const;
         Node* getNodeByUid(const std::string& uid) const;
         std::vector<Vertex*> getConnections(const std::string& uid) const;
+        std::vector<Vertex*> getConnections(Node* node) const;
 
         void connect(const std::string& uid1, const std::string& uid2, void* data=nullptr);
         void connect(Node* node1, Node* node2, void* data=nullptr);

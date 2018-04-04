@@ -27,6 +27,15 @@ Graph::~Graph(){
     }
 }
 
+int Graph::size() const{
+    return m_data.size();
+}
+
+data Graph::get(int i) const{
+    assert(i>=0 && i<m_data.size());
+    return m_data[i];
+}
+
 Node* Graph::getNodeByUid(const std::string& uid) const{
     int index = getIndexByUid(uid);
     if(index!=-1){
@@ -92,6 +101,10 @@ std::vector<Vertex*> Graph::getConnections(const std::string& uid) const{
     return {};
 }
 
+std::vector<Vertex*> Graph::getConnections(Node* node) const{
+    return getConnections(node->getUid());
+}
+
 void Graph::setOnDestroyNodeData(void (*destroyNodeListener)(void*)){
     m_destroyNodeListener = destroyNodeListener;
 }
@@ -123,6 +136,8 @@ void Graph::write(std::ostream& os) const{
 
     for(auto const& p : m_data){
         os << p.second.size() << std::endl;
+        os << p.first->getUid() << std::endl;
+
         for(const auto& v : p.second){
             v->write(os);
             void* v_data = v->getData();
@@ -154,7 +169,7 @@ void Graph::write(std::ostream& os) const{
 void Graph::read(std::istream& is){
     assert(m_deserializeNodeData!=nullptr && m_deserializeVertexData!=nullptr);
 
-    std::string line;
+    std::string line, uid;
     getline(is, line);
     int order = std::stoi(line);
     m_data = std::vector<data>(order);
@@ -162,6 +177,7 @@ void Graph::read(std::istream& is){
     for(int i=0 ; i<order ; i++){
         getline(is, line);
         int length = std::stoi(line);
+        getline(is, uid);
 
         for(int j=0 ; j<length ; j++){
             getline(is, line);
@@ -199,7 +215,7 @@ void Graph::read(std::istream& is){
             vertex->setStartNode(start);
             vertex->setEndNode(end);
 
-            m_data[i].first = start;
+            m_data[i].first = (start->getUid()==uid?start:end);
             m_data[i].second.push_back(vertex);
         }
     }
