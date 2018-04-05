@@ -36,9 +36,6 @@
 *.layout
 *.depend
 
-#Main
-main.cpp
-
 gui/build-App-Desktop-Debug
 gui/build-App-Desktop-Release
 

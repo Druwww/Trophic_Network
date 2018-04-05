@@ -23,14 +23,10 @@ struct GNode : public QWidget{
         m_layout = new QVBoxLayout();
         m_label = new QLabel(this);
         m_label->setScaledContents(true);
-
-        QImage tmp(QString::fromStdString(attr->m_imageFilepath));
-        QImage img = tmp.scaled(attr->m_width, attr->m_width, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-        m_label->setPixmap(QPixmap::fromImage(img));
         m_layout->addWidget(m_label);
         setLayout(m_layout);
-        move(attr->m_x, attr->m_y);
-        resize(attr->m_width, attr->m_height);
+
+        update();
     }
 
     virtual ~GNode(){
@@ -39,7 +35,11 @@ struct GNode : public QWidget{
     }
 
     void update(){
+        QImage tmp(QString::fromStdString(m_attr->m_imageFilepath));
+        QImage img = tmp.scaled(m_attr->m_width, m_attr->m_width, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        m_label->setPixmap(QPixmap::fromImage(img));
         move(m_attr->m_x, m_attr->m_y);
+        resize(m_attr->m_width, m_attr->m_height);
     }
 };
 

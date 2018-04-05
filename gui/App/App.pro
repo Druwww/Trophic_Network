@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-04-04T11:51:25
+# Project created by QtCreator 2018-04-05T23:10:21
 #
 #-------------------------------------------------
 
@@ -10,29 +10,28 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = App
 TEMPLATE = app
-
 QMAKE_CXXFLAGS += -std=c++11
 
 SOURCES += main.cpp\
         mainwindow.cpp \
+    graphhelper.cpp \
+    ../../entities/graph/src/Edge.cpp \
     ../../entities/graph/src/Graph.cpp \
     ../../entities/graph/src/Node.cpp \
-    ../../entities/graph/src/Edge.cpp \
-    ../../utils/src/utils.cpp \
-    graphhelper.cpp
+    ../../utils/src/utils.cpp
 
 HEADERS  += mainwindow.h \
     gnode.h \
-    ../../entities/data/include/NodeAttr.h \
+    graphhelper.h \
+    nodeguiattr.h \
     ../../entities/data/include/EdgeAttr.h \
+    ../../entities/data/include/NodeAttr.h \
+    ../../entities/graph/include/Edge.h \
     ../../entities/graph/include/Graph.h \
     ../../entities/graph/include/Node.h \
-    ../../entities/graph/include/Edge.h \
-    ../../utils/include/utils.h \
-    nodeguiattr.h \
-    graphhelper.h
+    ../../utils/include/utils.h
 
 FORMS    += mainwindow.ui
 
 DISTFILES += \
-    image.jpg
+    App.pro.user

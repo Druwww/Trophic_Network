@@ -107,7 +107,7 @@ void MainWindow::removeNode(){
     update();
 }
 
-void MainWindow::paintEvent(QPaintEvent *event){    
+void MainWindow::paintEvent(QPaintEvent *event){
     QPainter painter(this);
 
     for(int i=0 ; i<m_graph->size() ; i++){
