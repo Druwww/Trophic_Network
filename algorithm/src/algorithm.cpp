@@ -1,9 +1,21 @@
 #include "../include/algorithm.h"
 
-void clearAllMarck(Graph& graph){
+Algorithm::Algorithm(){
+    m_graph = nullptr;
+}
 
-    for(int i = 0; i < graph.size(); i++){
-        data d = graph.get(i);
+Algorithm::~Algorithm(){
+    //dtor
+}
+
+Algorithm::Algorithm(Graph* graph): m_graph(graph){
+    //ctor
+}
+
+void Algorithm::clearAllMarck(){
+
+    for(int i = 0; i < m_graph->size(); i++){
+        data d = m_graph->get(i);
         d.first->setProcessed(false);
         for(auto & v : d.second.first){
             v->setProcessed(false);
@@ -16,9 +28,9 @@ void clearAllMarck(Graph& graph){
     std::cout<< "\n\nDone\n\n";
 }
 
-bool checkAllNodeMarck(Graph& graph){
-    for(int i = 0; i < graph.size(); i++){
-        data d = graph.get(i);
+bool Algorithm::checkAllNodeMarck(){
+    for(int i = 0; i < m_graph->size(); i++){
+        data d = m_graph->get(i);
         if(!d.first->isProcessed()){
             return false;
         }
@@ -27,7 +39,7 @@ bool checkAllNodeMarck(Graph& graph){
     return true;
 }
 
-void processedThreeRecursive(Graph& graph, data d, bool down){
+void Algorithm::processedThreeRecursive(data d, bool down){
 
     //marque le sommet
     d.first->setProcessed(true);
@@ -42,7 +54,7 @@ void processedThreeRecursive(Graph& graph, data d, bool down){
                 l->setProcessed(true);
                 //si le sommmet d arriver n est pas marque
                 if(!l->getEndNode()->isProcessed()){
-                    processedThreeRecursive(graph, graph.get(graph.getIndexByUid(l->getEndNode()->getUid())), true);
+                    processedThreeRecursive(m_graph->get(m_graph->getIndexByUid(l->getEndNode()->getUid())), true);
                 }
             }
         }
@@ -56,43 +68,43 @@ void processedThreeRecursive(Graph& graph, data d, bool down){
                 l->setProcessed(true);
                 //si le sommmet d arriver n est pas marque
                 if(!l->getStartNode()->isProcessed()){
-                    processedThreeRecursive(graph, graph.get(graph.getIndexByUid(l->getStartNode()->getUid())), false);
+                    processedThreeRecursive(m_graph->get(m_graph->getIndexByUid(l->getStartNode()->getUid())), false);
                 }
             }
         }
     }
 }
 
-void processedThreeOfNodeByNode(Graph& graph, Node* nodeWork){
+void Algorithm::processedThreeOfNodeByNode(Node* nodeWork){
 
-    clearAllMarck(graph);
+    clearAllMarck();
 
     nodeWork->setProcessed(true);
 
-    data d =graph.get(graph.getIndexByUid(nodeWork->getUid()));
+    data d =m_graph->get(m_graph->getIndexByUid(nodeWork->getUid()));
 
     //pour toutes les aretes qui descende
     for(auto & l : d.second.second){
         l->setProcessed(true);
-        processedThreeRecursive(graph ,graph.get(graph.getIndexByUid(l->getEndNode()->getUid())), true);
+        processedThreeRecursive(m_graph->get(m_graph->getIndexByUid(l->getEndNode()->getUid())), true);
     }
     for(auto & l : d.second.first){
         l->setProcessed(true);
-        processedThreeRecursive(graph ,graph.get(graph.getIndexByUid(l->getStartNode()->getUid())), false);
+        processedThreeRecursive(m_graph->get(m_graph->getIndexByUid(l->getStartNode()->getUid())), false);
     }
 
     //Affichage du resultat
-    displayNodeProssed(graph);
+    displayNodeProssed();
 
-    clearAllMarck(graph);
+    clearAllMarck();
 }
 
-void displayNodeProssed(Graph& graph){
+void Algorithm::displayNodeProssed(){
 
     std::cout << "Les marquee : \n";
 
-    for(int i = 0; i < graph.size(); i++){
-        data d = graph.get(i);
+    for(int i = 0; i < m_graph->size(); i++){
+        data d = m_graph->get(i);
         if(d.first->isProcessed()){
             std::cout << "\t" << d.first->getUid() << "\n";
         }
@@ -100,4 +112,39 @@ void displayNodeProssed(Graph& graph){
 
     std::cout << "\n\n";
 
+}
+
+
+bool Algorithm::testStrongConnexeGraph(){
+
+    clearAllMarck();
+
+    //demare au premier sommmet
+    processedGraphRecursive(m_graph->get(0));
+
+    bool anwser =  checkAllNodeMarck();
+
+    clearAllMarck();
+
+    return anwser;
+
+}
+
+void Algorithm::processedGraphRecursive(data d){
+
+    d.first->setProcessed(true);
+
+    //pour toute les aretes sortante
+    for(auto & l : d.second.second){
+        //si arete active et que le sommet d arrivee n est pas marquee
+        if(l->isActive() && !l->getEndNode()->isProcessed()){
+            processedGraphRecursive(m_graph->get(m_graph->getIndexByUid(l->getEndNode()->getUid())));
+        }
+    }
+    for(auto & l : d.second.first){
+        //si arete active et que le sommet d arrivee n est pas marquee
+        if(l->isActive() && !l->getStartNode()->isProcessed()){
+            processedGraphRecursive(m_graph->get(m_graph->getIndexByUid(l->getStartNode()->getUid())));
+        }
+    }
 }

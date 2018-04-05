@@ -5,15 +5,49 @@
 #include "../../entities/animal/include/Animal.h"
 #include "../../entities/animal/include/NaturalLaw.h"
 
-void clearAllMarck(Graph& graph);
 
-bool checkAllNodeMarck(Graph& graph);
+struct Algorithm{
 
-void processedThreeOfNodeByNode(Graph& graph, Node* nodeWork);
+    private:
+        Graph* m_graph;
 
-void processedThreeRecursive(Graph& graph, data& d, bool down);
 
-///Fonction temporaire
-void displayNodeProssed(Graph& graph);
+    public:
+        Algorithm();
+        Algorithm(Graph* graph);
+        virtual ~Algorithm();
+
+        //getter setter
+        Graph* getGraph() const {return m_graph;}
+        void setGraph(Graph* val){m_graph = val;}
+
+
+        ///Algorithm fonctions
+        void clearAllMarck();
+
+        bool checkAllNodeMarck();
+
+        void processedThreeOfNodeByNode(Node* nodeWork);
+
+        void processedThreeRecursive(data d, bool down);
+
+        bool testStrongConnexeGraph();
+
+        void processedGraphRecursive(data d);
+
+        ///Fonction temporaire
+        void displayNodeProssed();
+
+};
+
+
+
+
+
+
+
+
+
+
 
 #endif
