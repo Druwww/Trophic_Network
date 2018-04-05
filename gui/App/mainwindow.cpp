@@ -41,23 +41,28 @@ void MainWindow::showContextMenu(const QPoint& pos){
     QMenu contextMenu(this);
     GNode* gnode = gnodeAt(pos);
 
-    QAction *action;
     if(gnode==nullptr){
-        action = new QAction("Add Node", this);
+        QAction* action = new QAction("Add Node", this);
         action->setData(QVariant(pos));
         connect(action, SIGNAL(triggered()), this, SLOT(addNode()));
         contextMenu.addAction(action);
     }
     else{
         QVariant var = qVariantFromValue((void *) gnode);
-        action = new QAction("Remove Node", this);
-        action->setData(var);
-        connect(action, SIGNAL(triggered()), this, SLOT(removeNode()));
-        contextMenu.addAction(action);
+
+        QAction* rmAction = new QAction("Remove Node", this);
+        rmAction->setData(var);
+        connect(rmAction, SIGNAL(triggered()), this, SLOT(removeNode()));
+
+        QAction* editAction = new QAction("Edit Node", this);
+        editAction->setData(var);
+        connect(editAction, SIGNAL(triggered()), this, SLOT(editNode()));
+
+        contextMenu.addAction(rmAction);
+        contextMenu.addAction(editAction);
     }
 
     contextMenu.exec(mapToGlobal(pos));
-    delete action;
 }
 
 void MainWindow::initGraph(){
@@ -105,6 +110,20 @@ void MainWindow::removeNode(){
     }
     m_graph->removeNode(node);
     update();
+}
+
+void MainWindow::editNode(){
+    QString filePath = QInputDialog::getText(this, "Change node image", "filepath :", QLineEdit::Normal,
+                QDir::home().dirName(), nullptr);
+
+    if(!filePath.isEmpty()){
+        QAction *action = qobject_cast<QAction *>(sender());
+        QVariant variant = action->data();
+        GNode *gnode = (GNode*) variant.value<void *>();
+        gnode->m_attr->m_imageFilepath = filePath.toStdString();
+        gnode->update();
+        update();
+    }
 }
 
 void MainWindow::paintEvent(QPaintEvent *event){
