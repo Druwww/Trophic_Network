@@ -2,8 +2,8 @@
 #define ALGORITHM_H_INCLUDED
 
 #include "../../entities/graph/include/Graph.h"
-#include "../../entities/animal/include/Animal.h"
-#include "../../entities/animal/include/NaturalLaw.h"
+#include "../../entities/animal/include/NodeAttr.h"
+#include "../../entities/animal/include/NodeAttr.h"
 #include <math.h>
 
 
@@ -43,9 +43,9 @@ struct Algorithm{
 
         bool updateEdgeActive(Edge* l);
 
-        void killAnimalsByIndex(std::vector<int> vecIndex);
+        void killNodeAttrsByIndex(std::vector<int> vecIndex);
 
-        void ReviveAnimalsByIndex(std::vector<int> vecIndex);
+        void ReviveNodeAttrsByIndex(std::vector<int> vecIndex);
 
         bool go(int offset, int k, std::vector<int> vecIndex, std::vector<int>& combination);
 

@@ -3,7 +3,7 @@
 Edge::Edge(){
     m_uid = genUid();
     m_weight = 0;
-    m_active = true;
+    m_active = false;
     m_processed = false;
     m_startNode = nullptr;
     m_endNode = nullptr;

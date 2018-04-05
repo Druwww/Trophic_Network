@@ -22,19 +22,19 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     Node* n2 = new Node("Fred");
     Node* n3 = new Node("Quentin");
 
-    Animal* an1 = new Animal();
+    NodeAttr* an1 = new NodeAttr();
     an1->m_gui = new NodeGuiAttr(path);
     an1->m_gui->m_x = 0;
     an1->m_gui->m_y = 0;
     n1->setData(an1);
 
-    Animal* an2 = new Animal();
+    NodeAttr* an2 = new NodeAttr();
     an2->m_gui = new NodeGuiAttr(path);
     an2->m_gui->m_x = 400;
     an2->m_gui->m_y = 300;
     n2->setData(an2);
 
-    Animal* an3 = new Animal();
+    NodeAttr* an3 = new NodeAttr();
     an3->m_gui = new NodeGuiAttr(path);
     an3->m_gui->m_x = 800;
     an3->m_gui->m_y = 200;
@@ -58,11 +58,11 @@ void MainWindow::paintEvent(QPaintEvent *event){
     std::vector<Vertex*> vertices = m_graph->getVertices();
     for(const auto& v : vertices){
         Node* start = v->getStartNode();
-        Animal* sa = (Animal*) start->getData();
+        NodeAttr* sa = (NodeAttr*) start->getData();
         NodeGuiAttr* sgui = sa->m_gui;
 
         Node* end = v->getEndNode();
-        Animal* ea = (Animal*) end->getData();
+        NodeAttr* ea = (NodeAttr*) end->getData();
         NodeGuiAttr* egui = ea->m_gui;
 
         GNode *sgnode = getGNode(start);

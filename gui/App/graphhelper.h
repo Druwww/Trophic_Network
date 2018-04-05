@@ -3,8 +3,8 @@
 
 #include <iostream>
 
-#include "../../entities/animal/include/Animal.h"
-#include "../../entities/animal/include/NaturalLaw.h"
+#include "../../entities/animal/include/NodeAttr.h"
+#include "../../entities/animal/include/NodeAttr.h"
 
 void onDeleteNode(void* data);
 void onDeleteVertex(void* data);

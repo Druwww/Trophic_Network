@@ -15,13 +15,13 @@ $(ODIR)/Graph.o : ./entities/graph/src/Graph.cpp ./entities/graph/include/Graph.
 $(ODIR)/Edge.o : ./entities/graph/src/Edge.cpp ./entities/graph/include/Edge.h ./entities/graph/include/Node.h ./utils/include/utils.h ./utils/include/utils.h
 	$(CC) -c $< -o $@ $(CXXFLAG)
 
-$(ODIR)/main.o : ./src/main.cpp ./entities/graph/include/Graph.h ./utils/include/utils.h ./entities/animal/include/Animal.h ./entities/animal/include/NaturalLaw.h
+$(ODIR)/main.o : ./src/main.cpp ./entities/graph/include/Graph.h ./utils/include/utils.h ./entities/animal/include/NodeAttr.h ./entities/animal/include/NodeAttr.h
 	$(CC) -c $< -o $@ $(CXXFLAG)
 
 $(ODIR)/utils.o : ./utils/src/utils.cpp ./utils/include/utils.h
 	$(CC) -c $< -o $@ $(CXXFLAG)
 
-$(ODIR)/algorithm.o : ./algorithm/src/algorithm.cpp ./algorithm/include/algorithm.h ./entities/graph/include/Graph.h ./entities/animal/include/Animal.h ./entities/animal/include/NaturalLaw.h
+$(ODIR)/algorithm.o : ./algorithm/src/algorithm.cpp ./algorithm/include/algorithm.h ./entities/graph/include/Graph.h ./entities/animal/include/NodeAttr.h ./entities/animal/include/NodeAttr.h
 	$(CC) -c $< -o $@ $(CXXFLAG)
 
 $(ODIR) :

@@ -148,8 +148,8 @@ void Algorithm::processedGraphRecursive(data d){
 
 bool Algorithm::updateEdgeActive(Edge* l){
 
-    Animal* animalD = (Animal*) l->getStartNode()->getData();
-    Animal* animalA = (Animal*) l->getEndNode()->getData();
+    NodeAttr* animalD = (NodeAttr*) l->getStartNode()->getData();
+    NodeAttr* animalA = (NodeAttr*) l->getEndNode()->getData();
 
     //si un des deux sommet n est pas mort
     if(animalD->m_quantity != 0 || animalA->m_quantity != 0){
@@ -199,19 +199,19 @@ int Algorithm::updateEdgesActive(){
     return nb_changement;
 }
 
-void Algorithm::killAnimalsByIndex(std::vector<int> vecIndex){
+void Algorithm::killNodeAttrsByIndex(std::vector<int> vecIndex){
 
     for(auto index : vecIndex){
-        Animal* pAnimal = (Animal*) m_graph->get(index).first->getData();
-        pAnimal->m_quantity = 0;
+        NodeAttr* pNodeAttr = (NodeAttr*) m_graph->get(index).first->getData();
+        pNodeAttr->m_quantity = 0;
     }
 }
 
-void Algorithm::ReviveAnimalsByIndex(std::vector<int> vecIndex){
+void Algorithm::ReviveNodeAttrsByIndex(std::vector<int> vecIndex){
 
     for(auto index : vecIndex){
-        Animal* pAnimal = (Animal*) m_graph->get(index).first->getData();
-        pAnimal->m_quantity = 100;
+        NodeAttr* pNodeAttr = (NodeAttr*) m_graph->get(index).first->getData();
+        pNodeAttr->m_quantity = 100;
     }
 }
 
@@ -226,7 +226,7 @@ bool Algorithm::go(int offset, int k, std::vector<int> vecIndex, std::vector<int
 
     if(go(i+1, k-1, vecIndex, combination)){
         m_vecIndexCombinaison = combination;
-        ReviveAnimalsByIndex(combination);
+        ReviveNodeAttrsByIndex(combination);
         return true;
     }
     combination.pop_back();
@@ -236,10 +236,10 @@ bool Algorithm::go(int offset, int k, std::vector<int> vecIndex, std::vector<int
 }
 
 bool Algorithm::testCombinaison(std::vector<int> vectest){
-    killAnimalsByIndex(vectest);
+    killNodeAttrsByIndex(vectest);
     updateEdgesActive();
     bool resul = !testStrongConnexeGraph();
-    ReviveAnimalsByIndex(vectest);
+    ReviveNodeAttrsByIndex(vectest);
 
     return resul;
 }
