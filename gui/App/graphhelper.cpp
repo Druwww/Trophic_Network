@@ -1,33 +1,33 @@
 #include "graphhelper.h"
 
 void onDeleteNode(void* data){
-    Animal* animal = (Animal*) data;
+    NodeAttr* animal = (NodeAttr*) data;
     delete animal;
 }
 
-void onDeleteVertex(void* data){
-    NaturalLaw* law = (NaturalLaw*) data;
+void onDeleteEdge(void* data){
+    EdgeAttr* law = (EdgeAttr*) data;
     delete law;
 }
 
 void onSerializeNode(std::ostream& os, void* data){
-    Animal* animal = (Animal*) data;
+    NodeAttr* animal = (NodeAttr*) data;
     animal->write(os);
 }
 
-void onSerializeVertex(std::ostream& os, void* data){
-    NaturalLaw* law = (NaturalLaw*) data;
+void onSerializeEdge(std::ostream& os, void* data){
+    EdgeAttr* law = (EdgeAttr*) data;
     law->write(os);
 }
 
 void onDeserializeNode(std::istream& is, void** data){
-    Animal* animal = new Animal();
+    NodeAttr* animal = new NodeAttr();
     animal->read(is);
     *data = animal;
 }
 
-void onDeserializeVertex(std::istream& is, void** data){
-    NaturalLaw* law = new NaturalLaw();
+void onDeserializeEdge(std::istream& is, void** data){
+    EdgeAttr* law = new EdgeAttr();
     law->read(is);
     *data = law;
 }
