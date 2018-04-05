@@ -1,15 +1,15 @@
-#ifndef ANIMAL_H_INCLUDED
-#define ANIMAL_H_INCLUDED
+#ifndef NODEATTR_H_INCLUDED
+#define NODEATTR_H_INCLUDED
 
 #include "../../graph/include/Node.h"
 #include "../../../gui/App/nodeguiattr.h"
 
-struct Animal {
+struct NodeAttr {
     NodeGuiAttr* m_gui;
     int m_quantity;
     float m_birthRate;
 
-    Animal(int quantity=100, float birthRate=0){
+    NodeAttr(int quantity=100, float birthRate=0){
         m_quantity = quantity;
         m_birthRate = birthRate;
         m_gui = nullptr;
