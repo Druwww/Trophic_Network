@@ -241,12 +241,6 @@ bool Algorithm::testCombinaison(std::vector<int> vectest){
     bool resul = !testStrongConnexeGraph();
     ReviveAnimalsByIndex(vectest);
 
-    std::cout << "\tTEST : [ ";
-    for(const auto l : vectest){
-        std::cout << l << " ,";
-    }
-    std::cout << "]\n";
-    std::cout << "\t\tResultat : " << resul << "\n";
     return resul;
 }
 /// Fin inspiration
