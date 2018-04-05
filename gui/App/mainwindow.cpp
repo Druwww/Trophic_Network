@@ -113,6 +113,7 @@ void MainWindow::paintEvent(QPaintEvent *event){
     for(int i=0 ; i<m_graph->size() ; i++){
         std::pair<Node*, std::pair<std::vector<Edge*>, std::vector<Edge*> > > p = m_graph->get(i);
 
+        // node
         Node* end = p.first;
         NodeAttr* ea = (NodeAttr*) end->getData();
         NodeGuiAttr* egui = ea->m_gui;
@@ -257,6 +258,9 @@ void MainWindow::openGraph(){
     if(!fileName.isEmpty()){
         std::ifstream file(fileName.toStdString().c_str());
         if(file){
+            for(unsigned int i=0 ; i<m_gnodes.size() ; i++){
+                delete m_gnodes[i];
+            }
             m_gnodes.clear();
             m_graph->read(file);
             file.close();
@@ -274,6 +278,9 @@ void MainWindow::saveGraph(){
             tr("Graph (*.graph);;All Files (*)"));
 
     if(!fileName.isEmpty()){
+        if(!fileName.endsWith(".graph")){
+            fileName.append(".graph");
+        }
         std::ofstream file(fileName.toStdString().c_str());
         if(file){
             m_graph->write(file);
