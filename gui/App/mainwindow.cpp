@@ -176,10 +176,12 @@ void MainWindow::paintEvent(QPaintEvent *event){
         painter.drawLine(gui->m_x+gui->m_width/2, gui->m_y+gui->m_height/2, pos.x(), pos.y());
     }
     else if(!m_linking && m_endNode!=nullptr){
-        m_graph->connect(m_startNode->m_node, m_endNode->m_node);
+        if(!m_graph->areConnected(m_startNode->m_node, m_endNode->m_node)){
+            m_graph->connect(m_startNode->m_node, m_endNode->m_node);
+            update();
+        }
         m_startNode = nullptr;
         m_endNode = nullptr;
-        update();
     }
 }
 
