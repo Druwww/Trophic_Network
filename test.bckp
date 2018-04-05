@@ -1,0 +1,29 @@
+7
+A 0 1 50 1.1 1 path/to/file 100 100 0 0
+B 0 1 50 1.1 1 path/to/file 100 100 0 0
+C 0 1 50 1.1 1 path/to/file 100 100 0 0
+D 0 1 50 1.1 1 path/to/file 100 100 0 0
+E 0 1 50 1.1 1 path/to/file 100 100 0 0
+F 0 1 50 1.1 1 path/to/file 100 100 0 0
+G 0 1 50 1.1 1 path/to/file 100 100 0 0
+0
+A
+1
+B
+A tpkSDTt8lnzIMSy 0 1 0 1 1 1
+1
+C
+A jWPaX6y4CsdY0sw 0 1 0 1 1 1
+1
+D
+B UI2cSYVrARA8sxA 0 1 0 1 1 1
+1
+E
+C rD6EU4I0ikW3xuL 0 1 0 1 1 1
+1
+F
+C cYiI764zHUpR4XI 0 1 0 1 1 0.5
+2
+G
+E cFeYNWOBWCFc1Wx 0 1 0 1 1 1
+F ArAh52FUJmx7wrr 0 1 0 1 1 1
