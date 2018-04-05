@@ -20,12 +20,6 @@ MainWindow::~MainWindow()
     delete m_graph;
 }
 
-void MainWindow::initVar(){
-    m_selectedNode = nullptr;
-    m_drag = false;
-    m_linking = false;
-}
-
 void MainWindow::initMenuBar(){
     QAction* openGraph = new QAction("Open Graph", this);
     QAction* saveGraph = new QAction("Save Graph", this);
@@ -47,28 +41,23 @@ void MainWindow::showContextMenu(const QPoint& pos){
     QMenu contextMenu(this);
     GNode* gnode = gnodeAt(pos);
 
+    QAction *action;
     if(gnode==nullptr){
-        QAction* action = new QAction("Add Node", this);
+        action = new QAction("Add Node", this);
         action->setData(QVariant(pos));
         connect(action, SIGNAL(triggered()), this, SLOT(addNode()));
         contextMenu.addAction(action);
     }
-    else {
+    else{
         QVariant var = qVariantFromValue((void *) gnode);
-
-        QAction* rmAction = new QAction("Remove Node", this);
-        rmAction->setData(var);
-        connect(rmAction, SIGNAL(triggered()), this, SLOT(removeNode()));
-
-        QAction* editAction = new QAction("Edit Node", this);
-        editAction->setData(var);
-        connect(editAction, SIGNAL(triggered()), this, SLOT(editNode()));
-
-        contextMenu.addAction(rmAction);
-        contextMenu.addAction(editAction);
+        action = new QAction("Remove Node", this);
+        action->setData(var);
+        connect(action, SIGNAL(triggered()), this, SLOT(removeNode()));
+        contextMenu.addAction(action);
     }
 
     contextMenu.exec(mapToGlobal(pos));
+    delete action;
 }
 
 void MainWindow::initGraph(){
@@ -79,6 +68,12 @@ void MainWindow::initGraph(){
     m_graph->setOnSerializeEdgeData(onSerializeEdge);
     m_graph->setOnDeserializeNodeData(onDeserializeNode);
     m_graph->setOnDeserializeEdgeData(onDeserializeEdge);
+}
+
+void MainWindow::initVar(){
+    m_selectedNode = nullptr;
+    m_drag = false;
+    m_linking = false;
 }
 
 void MainWindow::addNode(){
@@ -110,21 +105,6 @@ void MainWindow::removeNode(){
     }
     m_graph->removeNode(node);
     update();
-}
-
-void MainWindow::editNode(){
-    QAction *action = qobject_cast<QAction *>(sender());
-    QVariant variant = action->data();
-    GNode *gnode = (GNode*) variant.value<void *>();
-
-    QString text = QInputDialog::getText(this, tr("Change image file"),
-                                             tr("filepath :"), QLineEdit::Normal,
-                                             QDir::home().dirName(), nullptr);
-    if(!text.isEmpty()){
-        gnode->m_attr->m_imageFilepath = text.toStdString();
-        gnode->update();
-        update();
-    }
 }
 
 void MainWindow::paintEvent(QPaintEvent *event){    
@@ -177,12 +157,10 @@ void MainWindow::paintEvent(QPaintEvent *event){
         painter.drawLine(gui->m_x+gui->m_width/2, gui->m_y+gui->m_height/2, pos.x(), pos.y());
     }
     else if(!m_linking && m_endNode!=nullptr){
-        if(!m_graph->areConnected(m_startNode->m_node, m_endNode->m_node)){
-            m_graph->connect(m_startNode->m_node, m_endNode->m_node);
-            update();
-        }
+        m_graph->connect(m_startNode->m_node, m_endNode->m_node);
         m_startNode = nullptr;
         m_endNode = nullptr;
+        update();
     }
 }
 

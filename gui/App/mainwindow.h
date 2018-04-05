@@ -9,7 +9,6 @@
 #include <QAction>
 #include <QFileDialog>
 #include <QMessageBox>
-#include <QInputDialog>
 
 #include <fstream>
 
@@ -62,7 +61,6 @@ class MainWindow : public QMainWindow
     private slots:
         void addNode();
         void removeNode();
-        void editNode();
         void openGraph();
         void saveGraph();
         void showContextMenu(const QPoint& pos);
