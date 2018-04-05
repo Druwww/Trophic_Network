@@ -4,11 +4,11 @@
 #include "../../graph/include/Edge.h"
 #include <string>
 
-struct NaturalLaw {
+struct EdgeAttr {
     float m_survivalRate;
     float m_importance;
 
-    NaturalLaw(float survivalRate=1.0f, float importance=1.0f){
+    EdgeAttr(float survivalRate=1.0f, float importance=1.0f){
         m_survivalRate = survivalRate;
         m_importance = importance;
     }

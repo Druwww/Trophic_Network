@@ -40,3 +40,5 @@
 main.cpp
 
 gui/build-App-Desktop-Debug
+
+./Makefile

@@ -23,8 +23,8 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     gnode.h \
-    ../../entities/animal/include/Animal.h \
-    ../../entities/animal/include/NaturalLaw.h \
+    ../../entities/data/include/NodeAttr.h \
+    ../../entities/data/include/EdgeAttr.h \
     ../../entities/graph/include/Graph.h \
     ../../entities/graph/include/Node.h \
     ../../entities/graph/include/Edge.h \

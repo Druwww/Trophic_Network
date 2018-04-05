@@ -8,9 +8,22 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     installEventFilter(this);
     setMouseTracking(true);
 
+<<<<<<< HEAD
     initMenu();
     initGraph();
     initVar();
+=======
+    m_graph = new Graph();
+    m_graph->setOnDestroyNodeData(onDeleteNode);
+    m_graph->setOnDestroyEdgeData(onDeleteEdge);
+    m_graph->setOnSerializeNodeData(onSerializeNode);
+    m_graph->setOnSerializeEdgeData(onSerializeEdge);
+    m_graph->setOnDeserializeNodeData(onDeserializeNode);
+    m_graph->setOnDeserializeEdgeData(onDeserializeEdge);
+
+    m_selectedNode = nullptr;
+    m_drag = false;
+>>>>>>> 5c0b17156589dce552c5467fae2617bc230c5bd9
 
     std::string path = "/home/omar/Desktop/Trophic_Network/gui/App/image.png";
 
@@ -18,19 +31,19 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     Node* n2 = new Node("Fred");
     Node* n3 = new Node("Quentin");
 
-    Animal* an1 = new Animal();
+    NodeAttr* an1 = new NodeAttr();
     an1->m_gui = new NodeGuiAttr(path);
     an1->m_gui->m_x = 0;
     an1->m_gui->m_y = 0;
     n1->setData(an1);
 
-    Animal* an2 = new Animal();
+    NodeAttr* an2 = new NodeAttr();
     an2->m_gui = new NodeGuiAttr(path);
     an2->m_gui->m_x = 400;
     an2->m_gui->m_y = 300;
     n2->setData(an2);
 
-    Animal* an3 = new Animal();
+    NodeAttr* an3 = new NodeAttr();
     an3->m_gui = new NodeGuiAttr(path);
     an3->m_gui->m_x = 800;
     an3->m_gui->m_y = 200;
@@ -53,6 +66,7 @@ void MainWindow::initMenu(){
             this, SLOT(showContextMenu(const QPoint &)));
 }
 
+<<<<<<< HEAD
 void MainWindow::showContextMenu(const QPoint& pos){
     QMenu contextMenu(this);
     GNode* gnode = gnodeAt(pos);
@@ -75,6 +89,17 @@ void MainWindow::showContextMenu(const QPoint& pos){
     contextMenu.exec(mapToGlobal(pos));
     delete action;
 }
+=======
+    std::vector<Edge*> edges = m_graph->getEdges();
+    for(const auto& v : edges){
+        Node* start = v->getStartNode();
+        NodeAttr* sa = (NodeAttr*) start->getData();
+        NodeGuiAttr* sgui = sa->m_gui;
+
+        Node* end = v->getEndNode();
+        NodeAttr* ea = (NodeAttr*) end->getData();
+        NodeGuiAttr* egui = ea->m_gui;
+>>>>>>> 5c0b17156589dce552c5467fae2617bc230c5bd9
 
 void MainWindow::initGraph(){
     m_graph = new Graph();

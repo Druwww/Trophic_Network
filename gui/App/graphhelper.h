@@ -3,8 +3,8 @@
 
 #include <iostream>
 
-#include "../../entities/animal/include/Animal.h"
-#include "../../entities/animal/include/NaturalLaw.h"
+#include "../../entities/data/include/NodeAttr.h"
+#include "../../entities/data/include/EdgeAttr.h"
 
 void onDeleteNode(void* data);
 void onDeleteEdge(void* data);
