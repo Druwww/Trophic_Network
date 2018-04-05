@@ -8,22 +8,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     installEventFilter(this);
     setMouseTracking(true);
 
-<<<<<<< HEAD
     initMenu();
     initGraph();
     initVar();
-=======
-    m_graph = new Graph();
-    m_graph->setOnDestroyNodeData(onDeleteNode);
-    m_graph->setOnDestroyEdgeData(onDeleteEdge);
-    m_graph->setOnSerializeNodeData(onSerializeNode);
-    m_graph->setOnSerializeEdgeData(onSerializeEdge);
-    m_graph->setOnDeserializeNodeData(onDeserializeNode);
-    m_graph->setOnDeserializeEdgeData(onDeserializeEdge);
 
-    m_selectedNode = nullptr;
-    m_drag = false;
->>>>>>> 5c0b17156589dce552c5467fae2617bc230c5bd9
 
     std::string path = "/home/omar/Desktop/Trophic_Network/gui/App/image.png";
 
@@ -66,7 +54,6 @@ void MainWindow::initMenu(){
             this, SLOT(showContextMenu(const QPoint &)));
 }
 
-<<<<<<< HEAD
 void MainWindow::showContextMenu(const QPoint& pos){
     QMenu contextMenu(this);
     GNode* gnode = gnodeAt(pos);
@@ -89,17 +76,6 @@ void MainWindow::showContextMenu(const QPoint& pos){
     contextMenu.exec(mapToGlobal(pos));
     delete action;
 }
-=======
-    std::vector<Edge*> edges = m_graph->getEdges();
-    for(const auto& v : edges){
-        Node* start = v->getStartNode();
-        NodeAttr* sa = (NodeAttr*) start->getData();
-        NodeGuiAttr* sgui = sa->m_gui;
-
-        Node* end = v->getEndNode();
-        NodeAttr* ea = (NodeAttr*) end->getData();
-        NodeGuiAttr* egui = ea->m_gui;
->>>>>>> 5c0b17156589dce552c5467fae2617bc230c5bd9
 
 void MainWindow::initGraph(){
     m_graph = new Graph();
@@ -124,11 +100,11 @@ void MainWindow::addNode(){
 
     std::string path = "/home/omar/Desktop/Trophic_Network/gui/App/image.png";
     Node* node = new Node();
-    Animal* animal = new Animal();
-    animal->m_gui = new NodeGuiAttr(path);
-    animal->m_gui->m_x = pos.x()-animal->m_gui->m_width/2;
-    animal->m_gui->m_y = pos.y()-animal->m_gui->m_height/2;
-    node->setData(animal);
+    NodeAttr* attr = new NodeAttr();
+    attr->m_gui = new NodeGuiAttr(path);
+    attr->m_gui->m_x = pos.x()-attr->m_gui->m_width/2;
+    attr->m_gui->m_y = pos.y()-attr->m_gui->m_height/2;
+    node->setData(attr);
     m_graph->addNode(node);
     update();
 }
@@ -155,7 +131,7 @@ void MainWindow::paintEvent(QPaintEvent *event){
         std::pair<Node*, std::pair<std::vector<Edge*>, std::vector<Edge*> > > p = m_graph->get(i);
 
         Node* end = p.first;
-        Animal* ea = (Animal*) end->getData();
+        NodeAttr* ea = (NodeAttr*) end->getData();
         NodeGuiAttr* egui = ea->m_gui;
         GNode *egnode = getGNode(end);
         if(egnode==nullptr){
@@ -167,7 +143,7 @@ void MainWindow::paintEvent(QPaintEvent *event){
         std::vector<Edge*> in = p.second.first;
         for(auto const& e : in){
             Node* start = e->getStartNode();
-            Animal* sa = (Animal*) start->getData();
+            NodeAttr* sa = (NodeAttr*) start->getData();
             NodeGuiAttr* sgui = sa->m_gui;
 
             // line
@@ -192,7 +168,7 @@ void MainWindow::paintEvent(QPaintEvent *event){
     if(m_linking){
         QPoint pos = mapFromGlobal(QCursor::pos());
         painter.setPen(QPen(Qt::blue, 3, Qt::DashLine, Qt::RoundCap));
-        Animal* attr = (Animal*) m_startNode->m_node->getData();
+        NodeAttr* attr = (NodeAttr*) m_startNode->m_node->getData();
         NodeGuiAttr* gui = attr->m_gui;
         painter.drawLine(gui->m_x+gui->m_width/2, gui->m_y+gui->m_height/2, pos.x(), pos.y());
     }
