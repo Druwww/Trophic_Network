@@ -4,6 +4,7 @@
 #include "../../entities/graph/include/Graph.h"
 #include "../../entities/animal/include/Animal.h"
 #include "../../entities/animal/include/NaturalLaw.h"
+#include <math.h>
 
 
 struct Algorithm{
@@ -11,15 +12,18 @@ struct Algorithm{
     private:
         Graph* m_graph;
 
+        std::vector<int> m_vecIndexCombinaison;
 
     public:
         Algorithm();
         Algorithm(Graph* graph);
         virtual ~Algorithm();
 
-        //getter setter
+        //getter setter init
         Graph* getGraph() const {return m_graph;}
         void setGraph(Graph* val){m_graph = val;}
+
+        void reinitialisationVecCombinaison();
 
 
         ///Algorithm fonctions
@@ -35,6 +39,19 @@ struct Algorithm{
 
         void processedGraphRecursive(data d);
 
+        int updateEdgesActive();
+
+        bool updateEdgeActive(Edge* l);
+
+        void killAnimalsByIndex(std::vector<int> vecIndex);
+
+        void ReviveAnimalsByIndex(std::vector<int> vecIndex);
+
+        bool go(int offset, int k, std::vector<int> vecIndex, std::vector<int>& combination);
+
+        bool testCombinaison(std::vector<int> vectest);
+
+        void findKmin();
         ///Fonction temporaire
         void displayNodeProssed();
 
