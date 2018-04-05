@@ -7,6 +7,10 @@
 #include <QPoint>
 #include <QTreeWidget>
 #include <QAction>
+#include <QFileDialog>
+#include <QMessageBox>
+
+#include <fstream>
 
 #include "gnode.h"
 #include "nodeguiattr.h"
@@ -48,7 +52,8 @@ class MainWindow : public QMainWindow
         GNode* m_endNode;
         bool m_linking;
 
-        void initMenu();
+        void initMenuBar();
+        void initContextMenu();
         void initGraph();
         void initVar();
         GNode* gnodeAt(const QPoint& pos);
@@ -56,6 +61,8 @@ class MainWindow : public QMainWindow
     private slots:
         void addNode();
         void removeNode();
+        void openGraph();
+        void saveGraph();
         void showContextMenu(const QPoint& pos);
 
 };

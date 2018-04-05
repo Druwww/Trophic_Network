@@ -8,38 +8,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     installEventFilter(this);
     setMouseTracking(true);
 
-    initMenu();
+    initContextMenu();
+    initMenuBar();
     initGraph();
     initVar();
-
-
-    std::string path = "/home/omar/Desktop/Trophic_Network/gui/App/image.png";
-
-    Node* n1 = new Node("Omar");
-    Node* n2 = new Node("Fred");
-    Node* n3 = new Node("Quentin");
-
-    NodeAttr* an1 = new NodeAttr();
-    an1->m_gui = new NodeGuiAttr(path);
-    an1->m_gui->m_x = 0;
-    an1->m_gui->m_y = 0;
-    n1->setData(an1);
-
-    NodeAttr* an2 = new NodeAttr();
-    an2->m_gui = new NodeGuiAttr(path);
-    an2->m_gui->m_x = 400;
-    an2->m_gui->m_y = 300;
-    n2->setData(an2);
-
-    NodeAttr* an3 = new NodeAttr();
-    an3->m_gui = new NodeGuiAttr(path);
-    an3->m_gui->m_x = 800;
-    an3->m_gui->m_y = 200;
-    n3->setData(an3);
-
-    m_graph->connect(n1, n2);
-    m_graph->connect(n3, n2);
-    m_graph->connect(n2, n1);
 }
 
 MainWindow::~MainWindow()
@@ -48,7 +20,18 @@ MainWindow::~MainWindow()
     delete m_graph;
 }
 
-void MainWindow::initMenu(){
+void MainWindow::initMenuBar(){
+    QAction* openGraph = new QAction("Open Graph", this);
+    QAction* saveGraph = new QAction("Save Graph", this);
+    connect(openGraph, SIGNAL(triggered(bool)), this, SLOT(openGraph()));
+    connect(saveGraph, SIGNAL(triggered(bool)), this, SLOT(saveGraph()));
+
+    QMenu* fileMenu = menuBar()->addMenu(tr("File"));
+    QList<QAction*> actions({openGraph, saveGraph});
+    fileMenu->addActions(actions);
+}
+
+void MainWindow::initContextMenu(){
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, SIGNAL(customContextMenuRequested(const QPoint &)),
             this, SLOT(showContextMenu(const QPoint &)));
@@ -264,4 +247,41 @@ GNode* MainWindow::gnodeAt(const QPoint& pos){
         }
     }
     return nullptr;
+}
+
+void MainWindow::openGraph(){
+    QString fileName = QFileDialog::getOpenFileName(this,
+            tr("Open Graph"), "",
+            tr("Graph (*.graph);;All Files (*)"));
+
+    if(!fileName.isEmpty()){
+        std::ifstream file(fileName.toStdString().c_str());
+        if(file){
+            m_gnodes.clear();
+            m_graph->read(file);
+            file.close();
+            update();
+        }
+        else{
+            QMessageBox::critical(this, "Error !", "Could not open file : "+fileName);
+        }
+    }
+}
+
+void MainWindow::saveGraph(){
+    QString fileName = QFileDialog::getSaveFileName(this,
+            tr("Save Graph"), "",
+            tr("Graph (*.graph);;All Files (*)"));
+
+    if(!fileName.isEmpty()){
+        std::ofstream file(fileName.toStdString().c_str());
+        if(file){
+            m_graph->write(file);
+            file.close();
+            statusBar()->showMessage("File saved !", 3000);
+        }
+        else{
+            QMessageBox::critical(this, "Error !", "Could not save file to : "+fileName);
+        }
+    }
 }
