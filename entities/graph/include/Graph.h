@@ -22,7 +22,7 @@ class Graph{
         void (*m_serializeEdgeData)(std::ostream&, void*);
         void (*m_deserializeNodeData)(std::istream&, void**);
         void (*m_deserializeEdgeData)(std::istream&, void**);
-
+  
         int getIndexByUid(const std::string& uid) const;
         void subtract(std::vector<Edge*>& v1, const std::vector<Edge*>& v2);
 
@@ -34,7 +34,9 @@ class Graph{
         data get(int i) const;
         int getOrder() const;
         bool hasNode(Node* node) const;
+        int getIndexByUid(const std::string& uid) const;
         Node* getNodeByUid(const std::string& uid) const;
+  
         IO getConnections(const std::string& uid) const;
         IO getConnections(Node* node) const;
 
