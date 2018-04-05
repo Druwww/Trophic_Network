@@ -3,8 +3,8 @@ ODIR = obj
 PROG = main
 CXXFLAG = -std=c++11
 
-$(PROG) : $(ODIR) $(ODIR)/Node.o $(ODIR)/Graph.o $(ODIR)/Vertex.o $(ODIR)/main.o $(ODIR)/utils.o $(ODIR)/algorithm.o
-	$(CC) -o $@ $(ODIR)/Node.o $(ODIR)/Graph.o $(ODIR)/Vertex.o $(ODIR)/main.o $(ODIR)/utils.o $(ODIR)/algorithm.o $(CXXFLAG)
+$(PROG) : $(ODIR) $(ODIR)/Node.o $(ODIR)/Graph.o $(ODIR)/Edge.o $(ODIR)/main.o $(ODIR)/utils.o $(ODIR)/algorithm.o
+	$(CC) -o $@ $(ODIR)/Node.o $(ODIR)/Graph.o $(ODIR)/Edge.o $(ODIR)/main.o $(ODIR)/utils.o $(ODIR)/algorithm.o $(CXXFLAG)
 
 $(ODIR)/Node.o : ./entities/graph/src/Node.cpp ./entities/graph/include/Node.h ./utils/include/utils.h
 	$(CC) -c $< -o $@ $(CXXFLAG)

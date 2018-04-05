@@ -10,6 +10,7 @@
 #include "Node.h"
 #include "Edge.h"
 
+//1er : arete entrant , 2eme : arete sortant
 typedef std::pair<std::vector<Edge*>, std::vector<Edge*> > IO;
 typedef std::pair<Node*, IO> data;
 
@@ -22,8 +23,8 @@ class Graph{
         void (*m_serializeEdgeData)(std::ostream&, void*);
         void (*m_deserializeNodeData)(std::istream&, void**);
         void (*m_deserializeEdgeData)(std::istream&, void**);
-  
-        int getIndexByUid(const std::string& uid) const;
+
+
         void subtract(std::vector<Edge*>& v1, const std::vector<Edge*>& v2);
 
     public:
@@ -36,7 +37,7 @@ class Graph{
         bool hasNode(Node* node) const;
         int getIndexByUid(const std::string& uid) const;
         Node* getNodeByUid(const std::string& uid) const;
-  
+
         IO getConnections(const std::string& uid) const;
         IO getConnections(Node* node) const;
 
