@@ -144,6 +144,21 @@ bool Graph::hasNode(Node* node) const{
     return false;
 }
 
+bool Graph::areConnected(Node* node1, Node* node2) const{
+    int index = getIndexByUid(node1->getUid());
+    if(index==-1){
+        return false;
+    }
+
+    std::vector<Edge*> out = m_data[index].second.second;
+    for(const auto& e : out){
+        if(e->getEndNode()->getUid()==node2->getUid()){
+            return true;
+        }
+    }
+    return false;
+}
+
 int Graph::getOrder() const{
     return m_data.size();
 }

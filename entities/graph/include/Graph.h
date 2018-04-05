@@ -34,6 +34,7 @@ class Graph{
         data get(int i) const;
         int getOrder() const;
         bool hasNode(Node* node) const;
+        bool areConnected(Node* node1, Node* node2) const;
         Node* getNodeByUid(const std::string& uid) const;
         IO getConnections(const std::string& uid) const;
         IO getConnections(Node* node) const;
