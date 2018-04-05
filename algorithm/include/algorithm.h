@@ -9,12 +9,6 @@ void clearAllMarck(Graph& graph);
 
 bool checkAllNodeMarck(Graph& graph);
 
-void unprossedAllNodeLinkToTheNode(data& d);
-
-void updateNodeByVertex(data& d);
-
-void updateAllVertex(Graph& graph);
-
 void processedThreeOfNodeByNode(Graph& graph, Node* nodeWork);
 
 void processedThreeRecursive(Graph& graph, data& d, bool down);
