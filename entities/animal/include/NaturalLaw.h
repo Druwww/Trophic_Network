@@ -1,19 +1,14 @@
 #ifndef NATURELAW_H_INCLUDED
 #define NATURELAW_H_INCLUDED
 
-#include "../../graph/include/Vertex.h"
+#include "../../graph/include/Edge.h"
 #include <string>
 
 struct NaturalLaw {
     float m_survivalRate;
     float m_importance;
 
-    NaturalLaw(){
-        m_survivalRate = 1.0f;
-        m_importance = 1.0f;
-    }
-
-    NaturalLaw(float survivalRate, float importance){
+    NaturalLaw(float survivalRate=1.0f, float importance=1.0f){
         m_survivalRate = survivalRate;
         m_importance = importance;
     }

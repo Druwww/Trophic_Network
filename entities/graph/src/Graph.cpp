@@ -1,29 +1,30 @@
 #include "../include/Graph.h"
 
 Graph::Graph(){
-    m_destroyNodeListener = nullptr;
-    m_destroyVertexListener = nullptr;
+    m_destroyNodeData = nullptr;
+    m_destroyEdgeData = nullptr;
     m_serializeNodeData = nullptr;
-    m_serializeVertexData = nullptr;
+    m_serializeEdgeData = nullptr;
     m_deserializeNodeData = nullptr;
-    m_deserializeVertexData = nullptr;
+    m_deserializeEdgeData = nullptr;
 }
 
 Graph::~Graph(){
-    assert(m_destroyNodeListener!=nullptr && m_destroyVertexListener!=nullptr);
+    assert(m_destroyNodeData!=nullptr && m_destroyEdgeData!=nullptr);
 
-    for(int i=0 ; i<m_data.size() ; i++){
+    for(unsigned int i=0 ; i<m_data.size() ; i++){
         if(m_data[i].first->getData()!=nullptr){
-            (*m_destroyNodeListener)(m_data[i].first->getData());
+            (*m_destroyNodeData)(m_data[i].first->getData());
         }
         delete m_data[i].first;
-    }
 
-    for(int i=0 ; i<m_vertices.size() ; i++){
-        if(m_vertices[i]->getData()!=nullptr){
-            (*m_destroyVertexListener)(m_vertices[i]->getData());
+        std::vector<Edge*> in = m_data[i].second.first;
+        for(unsigned int j=0 ; j<in.size() ; j++){
+            if(in[j]->getData()!=nullptr){
+                (*m_destroyEdgeData)(in[j]->getData());
+            }
+            delete in[j];
         }
-        delete m_vertices[i];
     }
 }
 
@@ -45,12 +46,28 @@ Node* Graph::getNodeByUid(const std::string& uid) const{
 }
 
 int Graph::getIndexByUid(const std::string& uid) const{
-    for(int i=0 ; i<m_data.size() ; i++){
+    for(unsigned int i=0 ; i<m_data.size() ; i++){
         if(m_data[i].first->getUid()==uid){
             return i;
         }
     }
     return -1;
+}
+
+void Graph::subtract(std::vector<Edge*>& v1, const std::vector<Edge*>& v2){
+    std::vector<int> index;
+    for(unsigned int i=0 ; i<v1.size() ; i++){
+        for(unsigned int j=0 ; j<v2.size() ; j++){
+            if(v1[i]->getUid()==v2[j]->getUid()){
+                index.push_back(i);
+            }
+        }
+    }
+
+    int j=index.size()-1;
+    for(unsigned int i=0 ; i<index.size() ; i++){
+        v1.erase(v1.begin() + index[j--]);
+    }
 }
 
 void Graph::connect(const std::string& uid1, const std::string& uid2, void* data){
@@ -65,19 +82,57 @@ void Graph::connect(Node* node1, Node* node2, void* data){
     int index1 = hasNode(node1)?getIndexByUid(node1->getUid()):addNode(node1);
     int index2 = hasNode(node2)?getIndexByUid(node2->getUid()):addNode(node2);
 
-    Vertex* connection = new Vertex();
+    Edge* connection = new Edge();
     connection->setStartNode(node1);
     connection->setEndNode(node2);
     connection->setData(data);
-    m_data[index1].second.push_back(connection);
-    m_data[index2].second.push_back(connection);
-    m_vertices.push_back(connection);
+    m_data[index1].second.second.push_back(connection);
+    m_data[index2].second.first.push_back(connection);
 }
 
 int Graph::addNode(Node* node){
-    data d = std::make_pair(node, std::vector<Vertex*>());
+    data d = std::make_pair(node, std::make_pair(std::vector<Edge*>(), std::vector<Edge*>()));
     m_data.push_back(d);
     return m_data.size()-1;
+}
+
+bool Graph::removeNode(Node* node){
+    return removeNode(node->getUid());
+}
+
+bool Graph::removeNode(const std::string& uid){
+    assert(m_destroyNodeData!=nullptr && m_destroyEdgeData!=nullptr);
+
+    int index = getIndexByUid(uid);
+    if(index==-1){
+        return false;
+    }
+
+    Node* node = m_data[index].first;
+    IO io = m_data[index].second;
+    m_data.erase(m_data.begin() + index);
+
+    for(unsigned int i=0 ; i<m_data.size() ; i++){
+        subtract(m_data[i].second.first, io.first);
+        subtract(m_data[i].second.first, io.second);
+        subtract(m_data[i].second.second, io.first);
+        subtract(m_data[i].second.second, io.second);
+    }
+
+    for(unsigned int i=0 ; i<io.first.size() ; i++){
+        (*m_destroyEdgeData)(io.first[i]->getData());
+        delete io.first[i];
+    }
+
+    for(unsigned int i=0 ; i<io.second.size() ; i++){
+        (*m_destroyEdgeData)(io.second[i]->getData());
+        delete io.second[i];
+    }
+
+    (*m_destroyNodeData)(node->getData());
+    delete node;
+
+    return true;
 }
 
 bool Graph::hasNode(Node* node) const{
@@ -93,7 +148,7 @@ int Graph::getOrder() const{
     return m_data.size();
 }
 
-std::vector<Vertex*> Graph::getConnections(const std::string& uid) const{
+IO Graph::getConnections(const std::string& uid) const{
     int index = getIndexByUid(uid);
     if(index!=-1){
         return m_data[index].second;
@@ -101,77 +156,62 @@ std::vector<Vertex*> Graph::getConnections(const std::string& uid) const{
     return {};
 }
 
-std::vector<Vertex*> Graph::getConnections(Node* node) const{
+IO Graph::getConnections(Node* node) const{
     return getConnections(node->getUid());
 }
 
-int Graph::getDegreByUid(const std::string& uid) const{
-    int index = getIndexByUid(uid);
-    if(index!=-1){
-        return m_data[index].second.size();
-    }
-    return {};
+void Graph::setOnDestroyNodeData(void (*destroyNodeData)(void*)){
+    m_destroyNodeData = destroyNodeData;
 }
 
-int Graph::getDegreByNode(Node* node) const{
-    return getDegreByUid(node->getUid());
-}
-
-void Graph::setOnDestroyNodeData(void (*destroyNodeListener)(void*)){
-    m_destroyNodeListener = destroyNodeListener;
-}
-
-void Graph::setOnDestroyVertexData(void (*destroyVertexListener)(void*)){
-    m_destroyVertexListener = destroyVertexListener;
+void Graph::setOnDestroyEdgeData(void (*destroyEdgeData)(void*)){
+    m_destroyEdgeData = destroyEdgeData;
 }
 
 void Graph::setOnSerializeNodeData(void (*serializeNodeData)(std::ostream&, void*)){
     m_serializeNodeData = serializeNodeData;
 }
 
-void Graph::setOnSerializeVertexData(void (*serializeVertexData)(std::ostream&, void*)){
-    m_serializeVertexData = serializeVertexData;
+void Graph::setOnSerializeEdgeData(void (*serializeEdgeData)(std::ostream&, void*)){
+    m_serializeEdgeData = serializeEdgeData;
 }
 
 void Graph::setOnDeserializeNodeData(void (*deserializeNodeData)(std::istream&, void**)){
     m_deserializeNodeData = deserializeNodeData;
 }
 
-void Graph::setOnDeserializeVertexData(void (*deserializeVertexData)(std::istream&, void**)){
-    m_deserializeVertexData = deserializeVertexData;
+void Graph::setOnDeserializeEdgeData(void (*deserializeEdgeData)(std::istream&, void**)){
+    m_deserializeEdgeData = deserializeEdgeData;
 }
 
 void Graph::write(std::ostream& os) const{
-    assert(m_serializeNodeData!=nullptr && m_serializeVertexData!=nullptr);
+    assert(m_serializeNodeData!=nullptr && m_serializeEdgeData!=nullptr);
 
     os << m_data.size() << std::endl;
+    for(auto const& p : m_data){
+        Node* node = p.first;
+        void* data = node->getData();
+        node->write(os);
+        os << " " << (data!=nullptr);
+        if(data!=nullptr){
+            os << " ";
+            (*m_serializeNodeData)(os, data);
+        }
+        os << std::endl;
+    }
 
     for(auto const& p : m_data){
-        os << p.second.size() << std::endl;
+        os << p.second.first.size() << std::endl;
         os << p.first->getUid() << std::endl;
 
-        for(const auto& v : p.second){
-            v->write(os);
-            void* v_data = v->getData();
-            os << " " << (v_data!=nullptr) << " ";
-            if(v_data!=nullptr){
-                (*m_serializeVertexData)(os, v_data);
+        for(const auto& edge : p.second.first){
+            void* data = edge->getData();
+            os << edge->getStartNode()->getUid() << " ";
+            edge->write(os);
+            os << " " << (data!=nullptr);
+            if(data!=nullptr){
                 os << " ";
-            }
-
-            v->getStartNode()->write(os);
-            void* sn_data = v->getStartNode()->getData();
-            os << " " << (sn_data!=nullptr) << " ";
-            if(sn_data!=nullptr){
-                (*m_serializeNodeData)(os, sn_data);
-                os << " ";
-            }
-
-            v->getEndNode()->write(os);
-            void* en_data = v->getEndNode()->getData();
-            os << " " << (en_data!=nullptr) << " ";
-            if(en_data!=nullptr){
-                (*m_serializeNodeData)(os, en_data);
+                (*m_serializeEdgeData)(os, data);
             }
             os << std::endl;
         }
@@ -179,56 +219,58 @@ void Graph::write(std::ostream& os) const{
 }
 
 void Graph::read(std::istream& is){
-    assert(m_deserializeNodeData!=nullptr && m_deserializeVertexData!=nullptr);
+    assert(m_deserializeNodeData!=nullptr && m_deserializeEdgeData!=nullptr);
 
-    std::string line, uid;
+    std::string line, uid, uid2;
     getline(is, line);
     int order = string_to_int(line);
     m_data = std::vector<data>(order);
 
-    for(int i=0 ; i<order ; i++){
+    for(unsigned int i=0 ; i<order ; i++){
+        getline(is, line);
+        std::stringstream ss(line);
+        Node* node = new Node();
+        bool hasData;
+
+        node->read(ss);
+        ss >> hasData;
+        if(hasData){
+            void *d;
+            (*m_deserializeNodeData)(ss, &d);
+            node->setData(d);
+        }
+
+        m_data[i].first = node;
+    }
+
+    for(unsigned int i=0 ; i<order ; i++){
         getline(is, line);
         int length = string_to_int(line);
         getline(is, uid);
 
-        for(int j=0 ; j<length ; j++){
+        Node* endNode = getNodeByUid(uid);
+
+        for(unsigned int j=0 ; j<length ; j++){
             getline(is, line);
             std::stringstream ss(line);
+            Edge* edge = new Edge();
+            bool hasData;
 
-            Vertex* vertex = new Vertex();
-            Node* start = new Node();
-            Node* end = new Node();
-            bool has_v_data;
-            bool has_sn_data;
-            bool has_en_data;
-            void *d;
-
-            vertex->read(ss);
-            ss >> has_v_data;
-            if(has_v_data){
-                (*m_deserializeVertexData)(ss, &d);
-                vertex->setData(d);
+            ss >> uid2;
+            edge->read(ss);
+            ss >> hasData;
+            if(hasData){
+                void* d;
+                (*m_deserializeEdgeData)(ss, &d);
+                edge->setData(d);
             }
 
-            start->read(ss);
-            ss >> has_sn_data;
-            if(has_sn_data){
-                (*m_deserializeNodeData)(ss, &d);
-                start->setData(d);
-            }
+            Node* startNode = getNodeByUid(uid2);
+            edge->setStartNode(startNode);
+            edge->setEndNode(endNode);
 
-            end->read(ss);
-            ss >> has_en_data;
-            if(has_en_data){
-                (*m_deserializeNodeData)(ss, &d);
-                end->setData(d);
-            }
-
-            vertex->setStartNode(start);
-            vertex->setEndNode(end);
-
-            m_data[i].first = (start->getUid()==uid?start:end);
-            m_data[i].second.push_back(vertex);
+            m_data[i].second.first.push_back(edge);
+            m_data[getIndexByUid(uid2)].second.second.push_back(edge);
         }
     }
 }

@@ -4,7 +4,7 @@
 #include "Node.h"
 #include "../../../utils/include/utils.h"
 
-class Vertex{
+class Edge{
     private:
         std::string m_uid;
         float m_weight;
@@ -17,7 +17,7 @@ class Vertex{
         void* m_data;
 
     public:
-        Vertex();
+        Edge();
 
         std::string getUid() const;
         float getWeight() const;

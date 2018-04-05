@@ -9,13 +9,13 @@ $(PROG) : $(ODIR) $(ODIR)/Node.o $(ODIR)/Graph.o $(ODIR)/Vertex.o $(ODIR)/main.o
 $(ODIR)/Node.o : ./entities/graph/src/Node.cpp ./entities/graph/include/Node.h ./utils/include/utils.h
 	$(CC) -c $< -o $@ $(CXXFLAG)
 
-$(ODIR)/Graph.o : ./entities/graph/src/Graph.cpp ./entities/graph/include/Graph.h ./entities/graph/include/Node.h ./utils/include/utils.h ./entities/graph/include/Vertex.h ./entities/graph/include/Node.h ./utils/include/utils.h ./utils/include/utils.h
+$(ODIR)/Graph.o : ./entities/graph/src/Graph.cpp ./entities/graph/include/Graph.h ./entities/graph/include/Node.h ./utils/include/utils.h ./entities/graph/include/Edge.h ./entities/graph/include/Node.h ./utils/include/utils.h ./utils/include/utils.h
 	$(CC) -c $< -o $@ $(CXXFLAG)
 
-$(ODIR)/Vertex.o : ./entities/graph/src/Vertex.cpp ./entities/graph/include/Vertex.h ./entities/graph/include/Node.h ./utils/include/utils.h ./utils/include/utils.h
+$(ODIR)/Edge.o : ./entities/graph/src/Edge.cpp ./entities/graph/include/Edge.h ./entities/graph/include/Node.h ./utils/include/utils.h ./utils/include/utils.h
 	$(CC) -c $< -o $@ $(CXXFLAG)
 
-$(ODIR)/main.o : ./src/main.cpp ./entities/graph/include/Graph.h ./utils/include/utils.h ./entities/animal/include/Animal.h
+$(ODIR)/main.o : ./src/main.cpp ./entities/graph/include/Graph.h ./utils/include/utils.h ./entities/animal/include/Animal.h ./entities/animal/include/NaturalLaw.h
 	$(CC) -c $< -o $@ $(CXXFLAG)
 
 $(ODIR)/utils.o : ./utils/src/utils.cpp ./utils/include/utils.h
