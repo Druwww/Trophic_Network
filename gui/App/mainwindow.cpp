@@ -4,6 +4,10 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    ui->centralWidget->setMouseTracking(true);
+    installEventFilter(this);
+    setMouseTracking(true);
+
     initMenu();
     initGraph();
     initVar();
@@ -85,6 +89,7 @@ void MainWindow::initGraph(){
 void MainWindow::initVar(){
     m_selectedNode = nullptr;
     m_drag = false;
+    m_linking = false;
 }
 
 void MainWindow::addNode(){
@@ -108,7 +113,7 @@ void MainWindow::removeNode(){
     QVariant variant = action->data();
     GNode *gnode = (GNode*) variant.value<void *>();
     Node* node = gnode->m_node;
-    for(int i=0 ; i<m_gnodes.size() ; i++){
+    for(unsigned int i=0 ; i<m_gnodes.size() ; i++){
         if(m_gnodes[i]->m_node->getUid()==node->getUid()){
             delete m_gnodes[i];
             m_gnodes.erase(m_gnodes.begin() + i);
@@ -116,12 +121,10 @@ void MainWindow::removeNode(){
     }
     m_graph->removeNode(node);
     update();
-    // rm gnode
 }
 
-void MainWindow::paintEvent(QPaintEvent *event){
+void MainWindow::paintEvent(QPaintEvent *event){    
     QPainter painter(this);
-    painter.setPen(QPen(Qt::black, 3, Qt::DashLine, Qt::RoundCap));
 
     for(int i=0 ; i<m_graph->size() ; i++){
         std::pair<Node*, std::pair<std::vector<Edge*>, std::vector<Edge*> > > p = m_graph->get(i);
@@ -142,11 +145,38 @@ void MainWindow::paintEvent(QPaintEvent *event){
             Animal* sa = (Animal*) start->getData();
             NodeGuiAttr* sgui = sa->m_gui;
 
-            painter.drawLine(sgui->m_x+sgui->m_width/2, sgui->m_y+sgui->m_height/2,
-                egui->m_x+egui->m_width/2, egui->m_y+egui->m_height/2);
+            // line
+            QPointF pStart(sgui->m_x+sgui->m_width/2, sgui->m_y+sgui->m_height/2);
+            QPointF pEnd(egui->m_x+egui->m_width/2, egui->m_y+egui->m_height/2);
+            painter.setPen(QPen(Qt::black, 3, Qt::DashLine, Qt::RoundCap));
+            painter.drawLine(pStart, pEnd);
+
+            // arrow
+            float h = 20, w = 10;
+            QPointF pMiddle = (pStart+pEnd)/2;
+            QPointF U = (pEnd-pStart)/(pEnd-pStart).manhattanLength();
+            QPointF V = QPointF(-U.y(), U.x());
+            QPointF P1 = pMiddle - h*U + w*V;
+            QPointF P2 = pMiddle - h*U - w*V;
+            painter.setPen(QPen(Qt::red, 3, Qt::SolidLine, Qt::RoundCap));
+            painter.drawLine(pMiddle, P1);
+            painter.drawLine(pMiddle, P2);
         }
     }
 
+    if(m_linking){
+        QPoint pos = mapFromGlobal(QCursor::pos());
+        painter.setPen(QPen(Qt::blue, 3, Qt::DashLine, Qt::RoundCap));
+        Animal* attr = (Animal*) m_startNode->m_node->getData();
+        NodeGuiAttr* gui = attr->m_gui;
+        painter.drawLine(gui->m_x+gui->m_width/2, gui->m_y+gui->m_height/2, pos.x(), pos.y());
+    }
+    else if(!m_linking && m_endNode!=nullptr){
+        m_graph->connect(m_startNode->m_node, m_endNode->m_node);
+        m_startNode = nullptr;
+        m_endNode = nullptr;
+        update();
+    }
 }
 
 void MainWindow::mousePressEvent(QMouseEvent *event){
@@ -177,14 +207,44 @@ void MainWindow::mouseReleaseEvent(QMouseEvent *event){
 }
 
 void MainWindow::mouseMoveEvent(QMouseEvent *event){
-    if (event->type() == QEvent::MouseMove && m_drag && m_selectedNode!=nullptr){
+    if (event->type() == QEvent::MouseMove){
         QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
-        m_selectedNode->m_attr->m_x += mouseEvent->pos().x()-m_mousePos.x();
-        m_selectedNode->m_attr->m_y += mouseEvent->pos().y()-m_mousePos.y();
-        m_mousePos = QPoint(mouseEvent->pos().x(), mouseEvent->pos().y());
-        m_selectedNode->update();
-        update();
+
+        if(m_drag && m_selectedNode!=nullptr){
+            m_selectedNode->m_attr->m_x += mouseEvent->pos().x()-m_mousePos.x();
+            m_selectedNode->m_attr->m_y += mouseEvent->pos().y()-m_mousePos.y();
+            m_mousePos = QPoint(mouseEvent->pos().x(), mouseEvent->pos().y());
+            m_selectedNode->update();
+            update();
+        }
+
+        if(m_linking){
+            update();
+        }
     }
+}
+
+bool MainWindow::eventFilter(QObject* obj, QEvent* event){
+    if (event->type()==QEvent::KeyPress) {
+        QKeyEvent* key = static_cast<QKeyEvent*>(event);
+        if (key->key()==Qt::Key_Control) {
+            QPoint pos = mapFromGlobal(QCursor::pos());
+            m_startNode = gnodeAt(pos);
+            m_linking = (m_startNode!=nullptr);
+            return true;
+        }
+    }
+    else if(event->type()==QEvent::KeyRelease){
+        QKeyEvent* key = static_cast<QKeyEvent*>(event);
+        if (key->key()==Qt::Key_Control) {
+            QPoint pos = mapFromGlobal(QCursor::pos());
+            m_endNode = gnodeAt(pos);
+            m_linking = false;
+            update();
+            return true;
+        }
+    }
+    return QObject::eventFilter(obj, event);
 }
 
 GNode* MainWindow::getGNode(Node* node){

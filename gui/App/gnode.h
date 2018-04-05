@@ -16,6 +16,8 @@ struct GNode : public QWidget{
     NodeGuiAttr* m_attr;
 
     GNode(Node* node, NodeGuiAttr* attr, QWidget* parent=0) : QWidget(parent){
+        setMouseTracking(true);
+
         m_node = node;
         m_attr = attr;
         m_layout = new QVBoxLayout();

@@ -26,13 +26,15 @@ class MainWindow : public QMainWindow
         void mousePressEvent(QMouseEvent *event);
         void mouseReleaseEvent(QMouseEvent *event);
         void mouseMoveEvent(QMouseEvent *event);
+        bool eventFilter(QObject* obj, QEvent* event);
 
     public:
         explicit MainWindow(QWidget *parent = 0);
         ~MainWindow();
 
     private:
-        Ui::MainWindow *ui;
+        Ui::MainWindow* ui;
+
         Graph* m_graph;
         std::vector<GNode*> m_gnodes;
 
@@ -41,6 +43,10 @@ class MainWindow : public QMainWindow
         QPoint m_nodePos;
         QPoint m_mousePos;
         bool m_drag;
+
+        GNode* m_startNode;
+        GNode* m_endNode;
+        bool m_linking;
 
         void initMenu();
         void initGraph();
