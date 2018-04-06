@@ -49,10 +49,20 @@ void MainWindow::showContextMenu(const QPoint& pos){
     GNode* gnode = gnodeAt(pos);
 
     if(gnode==nullptr){
-        QAction* action = new QAction("Add Node", this);
-        action->setData(QVariant(pos));
-        connect(action, SIGNAL(triggered()), this, SLOT(addNode()));
-        contextMenu.addAction(action);
+        QAction* addAction = new QAction("Add Node", this);
+        addAction->setData(QVariant(pos));
+        connect(addAction, SIGNAL(triggered()), this, SLOT(addNode()));
+        contextMenu.addAction(addAction);
+
+        Edge* edge = edgeAt(pos);
+        if(edge!=nullptr){
+            QVariant var = qVariantFromValue((void *) edge);
+
+            QAction* editEdgeAction = new QAction("Edit Edge", this);
+            editEdgeAction->setData(var);
+            connect(editEdgeAction, SIGNAL(triggered()), this, SLOT(editEdge()));
+            contextMenu.addAction(editEdgeAction);
+        }
     }
     else{
         QVariant var = qVariantFromValue((void *) gnode);
@@ -60,12 +70,11 @@ void MainWindow::showContextMenu(const QPoint& pos){
         QAction* rmAction = new QAction("Remove Node", this);
         rmAction->setData(var);
         connect(rmAction, SIGNAL(triggered()), this, SLOT(removeNode()));
+        contextMenu.addAction(rmAction);
 
         QAction* editAction = new QAction("Edit Node", this);
         editAction->setData(var);
         connect(editAction, SIGNAL(triggered()), this, SLOT(editNode()));
-
-        contextMenu.addAction(rmAction);
         contextMenu.addAction(editAction);
     }
 
@@ -141,6 +150,14 @@ void MainWindow::editNode(){
 
         update();
     }
+}
+
+void MainWindow::editEdge(){
+    QAction* action = qobject_cast<QAction *>(sender());
+    QVariant variant = action->data();
+    Edge* edge = (Edge*) variant.value<void *>();
+
+    // edit edge
 }
 
 void MainWindow::paintEvent(QPaintEvent *event){
@@ -307,6 +324,24 @@ GNode* MainWindow::gnodeAt(const QPoint& pos){
 }
 
 Edge* MainWindow::edgeAt(const QPoint& pos){
+    for(int i=0 ; i<m_graph->size() ; i++){
+        Node* start = m_graph->get(i).first;
+        IO io = m_graph->get(i).second;
+
+        NodeAttr* sattr = (NodeAttr*) start->getData();
+        NodeGuiAttr* sgui = sattr->m_gui;
+        QPointF pStart(sgui->m_x+sgui->m_width/2, sgui->m_y+sgui->m_height/2);
+
+        for(const auto& e : io.second){
+            Node* end = e->getEndNode();
+            NodeAttr* eattr = (NodeAttr*) end->getData();
+            NodeGuiAttr* egui = eattr->m_gui;
+            QPointF pEnd(egui->m_x+egui->m_width/2, egui->m_y+egui->m_height/2);
+
+            // check if pos lies between pStart and pEnd
+        }
+
+    }
     return nullptr;
 }
 
