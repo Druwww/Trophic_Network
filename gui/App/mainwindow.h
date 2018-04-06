@@ -52,13 +52,14 @@ class MainWindow : public QMainWindow
 
         GNode* m_startNode;
         GNode* m_endNode;
-        bool m_linking;
 
         void initMenuBar();
         void initContextMenu();
         void initGraph();
         void initVar();
+
         GNode* gnodeAt(const QPoint& pos);
+        Edge* edgeAt(const QPoint& pos);
 
     private slots:
         void addNode();

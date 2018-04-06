@@ -78,7 +78,6 @@ void MainWindow::initGraph(){
 void MainWindow::initVar(){
     m_selectedNode = nullptr;
     m_drag = false;
-    m_linking = false;
 }
 
 void MainWindow::addNode(){
@@ -165,10 +164,10 @@ void MainWindow::paintEvent(QPaintEvent *event){
             painter.drawLine(pStart, pEnd);
 
             // arrow
-            float h = 20, w = 10;
-            QPointF pMiddle = (pStart+pEnd)/2;
+            float h = 20, w = 10, k = 50;
             QPointF U = (pEnd-pStart)/(pEnd-pStart).manhattanLength();
             QPointF V = QPointF(-U.y(), U.x());
+            QPointF pMiddle = (pStart+pEnd)/2 + k*U;
             QPointF P1 = pMiddle - h*U + w*V;
             QPointF P2 = pMiddle - h*U - w*V;
             painter.setPen(QPen(Qt::red, 3, Qt::SolidLine, Qt::RoundCap));
@@ -177,20 +176,12 @@ void MainWindow::paintEvent(QPaintEvent *event){
         }
     }
 
-    if(m_linking){
+    if(m_startNode!=nullptr){
         QPoint pos = mapFromGlobal(QCursor::pos());
         painter.setPen(QPen(Qt::blue, 3, Qt::DashLine, Qt::RoundCap));
         NodeAttr* attr = (NodeAttr*) m_startNode->m_node->getData();
         NodeGuiAttr* gui = attr->m_gui;
         painter.drawLine(gui->m_x+gui->m_width/2, gui->m_y+gui->m_height/2, pos.x(), pos.y());
-    }
-    else if(!m_linking && m_endNode!=nullptr){
-        if(!m_graph->areConnected(m_startNode->m_node, m_endNode->m_node)){
-            m_graph->connect(m_startNode->m_node, m_endNode->m_node);
-            update();
-        }
-        m_startNode = nullptr;
-        m_endNode = nullptr;
     }
 }
 
@@ -233,7 +224,7 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event){
             update();
         }
 
-        if(m_linking){
+        if(m_startNode!=nullptr){
             update();
         }
     }
@@ -245,7 +236,6 @@ bool MainWindow::eventFilter(QObject* obj, QEvent* event){
         if (key->key()==Qt::Key_Control) {
             QPoint pos = mapFromGlobal(QCursor::pos());
             m_startNode = gnodeAt(pos);
-            m_linking = (m_startNode!=nullptr);
             return true;
         }
     }
@@ -254,7 +244,18 @@ bool MainWindow::eventFilter(QObject* obj, QEvent* event){
         if (key->key()==Qt::Key_Control) {
             QPoint pos = mapFromGlobal(QCursor::pos());
             m_endNode = gnodeAt(pos);
-            m_linking = false;
+
+            if(m_startNode!=nullptr && m_endNode!=nullptr){
+                if(!m_graph->areConnected(m_startNode->m_node, m_endNode->m_node)){
+                    m_graph->connect(m_startNode->m_node, m_endNode->m_node);
+                }
+                else{
+                    statusBar()->showMessage("Nodes already connected !", 3000);
+                }
+                m_startNode = nullptr;
+                m_endNode = nullptr;
+            }
+
             update();
             return true;
         }
@@ -277,6 +278,10 @@ GNode* MainWindow::gnodeAt(const QPoint& pos){
             return gnode;
         }
     }
+    return nullptr;
+}
+
+Edge* MainWindow::edgeAt(const QPoint& pos){
     return nullptr;
 }
 
