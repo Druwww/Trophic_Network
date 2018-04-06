@@ -13,12 +13,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     initMenuBar();
     initContextMenu();
 
-//    std::ifstream file("/home/omar/Desktop/v2.graph");
-//    if(file){
-//        m_graph->read(file);
-//        file.close();
-//        update();
-//    }
+    std::ifstream file("../raws/v1.graph");
+    if(file){
+        m_graph->read(file);
+        file.close();
+        update();
+    }
 }
 
 MainWindow::~MainWindow()
