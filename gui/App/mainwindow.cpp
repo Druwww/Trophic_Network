@@ -181,7 +181,8 @@ void MainWindow::paintEvent(QPaintEvent *event){
             if(e_attr!=nullptr){
                 QString str = "I = " + QString::number(e_attr->m_importance)
                         + " | SR = " + QString::number(e_attr->m_survivalRate);
-                painter.drawText(pMiddle+k*V, str);
+                painter.setPen(QPen(Qt::magenta, 3, Qt::SolidLine, Qt::RoundCap));
+                painter.drawText(pMiddle+20*V, str);
             }
         }
     }
