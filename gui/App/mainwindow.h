@@ -16,6 +16,7 @@
 #include "gnode.h"
 #include "nodeguiattr.h"
 #include "graphhelper.h"
+#include "editnodedialog.h"
 #include "../../entities/graph/include/Graph.h"
 
 namespace Ui {

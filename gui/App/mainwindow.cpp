@@ -113,15 +113,17 @@ void MainWindow::removeNode(){
 }
 
 void MainWindow::editNode(){
-    QString filePath = QInputDialog::getText(this, "Change node image", "filepath :", QLineEdit::Normal,
-                QDir::home().dirName(), nullptr);
+    QAction *action = qobject_cast<QAction *>(sender());
+    QVariant variant = action->data();
+    GNode *gnode = (GNode*) variant.value<void *>();
 
-    if(!filePath.isEmpty()){
-        QAction *action = qobject_cast<QAction *>(sender());
-        QVariant variant = action->data();
-        GNode *gnode = (GNode*) variant.value<void *>();
-        gnode->m_attr->m_imageFilepath = filePath.toStdString();
-        gnode->updateImage();
+    EditNodeDialog dialog(gnode);
+    if (dialog.exec() == QDialog::Accepted) {
+        QString filePath = dialog.getNodeImageFilepath();
+        if(!filePath.isEmpty()){
+            gnode->m_attr->m_imageFilepath = filePath.toStdString();
+            gnode->updateImage();
+        }
         update();
     }
 }
