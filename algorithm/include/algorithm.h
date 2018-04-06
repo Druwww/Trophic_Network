@@ -50,7 +50,7 @@ struct Algorithm{
         template <typename T>
         void clearVecteur(std::vector<T>& vec);
 
-        //Marquage composante fortement connexe
+        //Marquage composante connexe
         void processedThreeOfNodeByNode(Node* nodeWork);
 
         //Function of recurisive in BFS for see the strong connexity of two nodes
@@ -131,7 +131,7 @@ struct Algorithm{
         void findKEdgeMin();
 
         //whill prossed all edges with the indes in the vector of kmin nodes
-        void processedKEdgemin();
+        void processedEdgeByPointeur(const std::vector<Edge*>& vecEdge, const std::vector<int>& vecIndex);
 
         ///Functopn not permanente for display resulte in consol
         void displayNodeProssed();
@@ -142,9 +142,42 @@ struct Algorithm{
         */
         void BFSConnexity(data d, Graph& graphProssed, bool normal);
 
-        void emptyConnexity(int numero, Graph& graph1, Graph& graph2);
+        void emptyConnexity(int numero, Graph& graph1, Graph& graph2, Graph& graphData);
 
-        void algoForteConnexity();
+        void algoForteConnexity(Graph& graphData);
+
+        /*
+        Algo find the real kmin for edge .... en gros il va dire combien d arrete qu il faut enlever pour briser n'importe quelle composante fortement connexe
+        */
+        bool testIdenticForteConnexity(Graph& graph1, Graph& graph2);
+
+        ///Algo/code retake from : https://stackoverflow.com/questions/12991758/creating-all-possible-k-combinations-of-n-items-in-c
+        //whill create all combinaison possible of k number take in vecIndex and after test them (call function)
+        //return true if the combination works and need to stop all recursive
+        bool goKminConnexity(int offset, int k, std::vector<int> vecIndex, std::vector<int>& combination);
+
+        ///Algo/code retake from : https://stackoverflow.com/questions/12991758/creating-all-possible-k-combinations-of-n-items-in-c
+        //whill check if the combination success to disconnect our graph
+        //return true if he success
+        bool testCombinaisonKminConnexity(std::vector<int> vectest);
+
+        void findKminConnexity();
+
+        /*
+        Algo find the real kmin for node .... en gros il va dire combien de sommets qu il faut enlever pour briser n'importe quelle composante fortement connexe
+        */
+        ///Algo/code retake from : https://stackoverflow.com/questions/12991758/creating-all-possible-k-combinations-of-n-items-in-c
+        //whill create all combinaison possible of k number take in vecIndex and after test them (call function)
+        //return true if the combination works and need to stop all recursive
+        bool goKEdgeminConnexity(int offset, int k, std::vector<int> vecIndex, std::vector<int>& combination);
+
+        ///Algo/code retake from : https://stackoverflow.com/questions/12991758/creating-all-possible-k-combinations-of-n-items-in-c
+        //whill check if the combination success to disconnect our graph
+        //return true if he success
+        bool testCombinaisonKEdgeminConnexity(std::vector<int> vectest);
+
+        void findKEdgeminConnexity();
+
 
 };
 

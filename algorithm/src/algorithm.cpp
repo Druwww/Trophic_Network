@@ -17,6 +17,7 @@ void Algorithm::clearAllMarck(){
     for(int i = 0; i < m_graph->size(); i++){
         data d = m_graph->get(i);
         d.first->setProcessed(false);
+        d.first->setGroup(0);
         for(auto & v : d.second.first){
             v->setProcessed(false);
         }
@@ -31,6 +32,7 @@ void Algorithm::clearAllMarck(Graph& graph){
     for(int i = 0; i < graph.size(); i++){
         data d = graph.get(i);
         d.first->setProcessed(false);
+        d.first->setGroup(0);
         for(auto & v : d.second.first){
             v->setProcessed(false);
         }
@@ -39,7 +41,6 @@ void Algorithm::clearAllMarck(Graph& graph){
         }
     }
 }
-
 
 bool Algorithm::checkAllNodeMarck(){
     for(int i = 0; i < m_graph->size(); i++){
@@ -115,8 +116,6 @@ void Algorithm::processedThreeOfNodeByNode(Node* nodeWork){
 
     //Affichage du resultat
     displayNodeProssed();
-
-    clearAllMarck();
 }
 
 void Algorithm::displayNodeProssed(){
@@ -405,13 +404,14 @@ void Algorithm::findKEdgeMin(){
 
     std::cout << "\n\n";
 
-    processedKEdgemin();
+    processedEdgeByPointeur(m_vecLiaisonGraph, m_vecIndexCombinaison);
 }
 
-void Algorithm::processedKEdgemin(){
-    if(!m_vecKEdgeMin.empty()){
-        for(auto l : m_vecKEdgeMin){
-            l->setProcessed(true);
+void Algorithm::processedEdgeByPointeur(const std::vector<Edge*>& vecEdge, const std::vector<int>& vecIndex){
+    if(!vecIndex.empty()){
+        for(auto l : vecIndex){
+            Edge* edge = vecEdge[l];
+            edge->setProcessed(true);
         }
     }
 }
@@ -421,24 +421,24 @@ void Algorithm::BFSConnexity(data d, Graph& graphProssed, bool normal){
 
     if(normal){
         for(auto& l : d.second.second){
-            if(!l->getEndNode()->isProcessed()){
+            if(!l->getEndNode()->isProcessed() && l->isActive()){
                 BFSConnexity(graphProssed.get(graphProssed.getIndexByUid(l->getEndNode()->getUid())), graphProssed, normal);
             }
         }
     }
     else{
         for(auto& l : d.second.first){
-            if(!l->getStartNode()->isProcessed()){
+            if(!l->getStartNode()->isProcessed() && l->isActive()){
                 BFSConnexity(graphProssed.get(graphProssed.getIndexByUid(l->getStartNode()->getUid())), graphProssed, normal);
             }
         }
     }
 }
 
-void Algorithm::emptyConnexity(int numero, Graph& graph1, Graph& graph2){
+void Algorithm::emptyConnexity(int numero, Graph& graph1, Graph& graph2, Graph& graphData){
 
-    for(int i = 0; i < m_graph->size(); i++){
-        data dEtude = m_graph->get(i);
+    for(int i = 0; i < graphData.size(); i++){
+        data dEtude = graphData.get(i);
 
         if(graph1.get(i).first->isProcessed() && graph2.get(i).first->isProcessed()){
             dEtude.first->setGroup(numero);
@@ -449,28 +449,174 @@ void Algorithm::emptyConnexity(int numero, Graph& graph1, Graph& graph2){
     clearAllMarck(graph2);
 }
 
-void Algorithm::algoForteConnexity(){
+void Algorithm::algoForteConnexity(Graph& graphData){
 
-    for(int i = 0; i < m_graph->size(); i++){
-        m_graph->get(i).first->setGroup(0);
+    for(int i = 0; i < graphData.size(); i++){
+        graphData.get(i).first->setGroup(0);
     }
 
 
     ////////////////////Changer le constructeur
     Graph graph1;
     Graph graph2;
+    /////////////////////
 
     int numeroGroupe = 0;
 
-    for(int i = 0; i < m_graph->size(); i++){
-        if(m_graph->get(i).first->getGroup() == 0){
+    for(int i = 0; i < graphData.size(); i++){
+        if(graphData.get(i).first->getGroup() == 0){
 
             numeroGroupe++;
 
             BFSConnexity(graph1.get(i), graph1, true);
             BFSConnexity(graph2.get(i), graph2, false);
 
-            emptyConnexity(numeroGroupe, graph1, graph2);
+            emptyConnexity(numeroGroupe, graph1, graph2, graphData);
         }
     }
+}
+
+bool Algorithm::testIdenticForteConnexity(Graph& graph1, Graph& graph2){
+
+    for(int i = 0; i < graph1.size(); i++){
+        if(graph1.get(i).first->getGroup() != graph2.get(i).first->getGroup()){
+            return false;
+        }
+    }
+    return true;
+}
+
+//Code inspiré puis repris de : https://stackoverflow.com/questions/12991758/creating-all-possible-k-combinations-of-n-items-in-c
+bool Algorithm::goKminConnexity(int offset, int k, std::vector<int> vecIndex, std::vector<int>& combination) {
+    if (k == 0) {
+      return testCombinaisonKminConnexity(combination);
+    }
+    for (int i = offset; i <= vecIndex.size() - k; ++i) {
+      combination.push_back(vecIndex[i]);
+
+      if(goKminConnexity(i+1, k-1, vecIndex, combination)){
+          reviveEdgeByIndex(combination);
+          return true;
+      }
+      combination.pop_back();
+    }
+
+    return false;
+
+}
+
+bool Algorithm::testCombinaisonKminConnexity(std::vector<int> vectest){
+    killEdgeByIndex(vectest);
+
+    //////////////////Changer constr
+    Graph graphTest;
+
+    algoForteConnexity(graphTest);
+
+    bool resul = testIdenticForteConnexity(*m_graph, graphTest);
+    reviveEdgeByIndex(vectest);
+
+    return resul;
+}
+
+void Algorithm::findKminConnexity(){
+
+    std::vector<int> vecIndex;
+    std::vector<int> combination;
+
+    clearVecteur<Edge*>(m_vecLiaisonGraph);
+    clearVecteur<Edge*>(m_vecKEdgeMin);
+
+    clearAllMarck(*m_graph);
+
+    algoForteConnexity(*m_graph);
+
+    makeVecEdgeGraph();
+
+
+    for(int i = 0; i < m_vecLiaisonGraph.size(); i++){
+        vecIndex.push_back(i);
+    }
+
+    int KminConnexity = 1;
+
+    while(!goKminConnexity(0,KminConnexity , vecIndex, combination)){
+        KminConnexity ++;
+    }
+
+    std::cout<< "Done : KminConnexity = " << KminConnexity  << "\n Combinaison :";
+
+    for(const auto l : combination){
+        std::cout << "\n\t[ " << m_vecLiaisonGraph[l]->getStartNode()->getUid() << " , " <<  m_vecLiaisonGraph[l]->getEndNode()->getUid() << " ]";
+    }
+
+    std::cout << "\n\n";
+
+    processedEdgeByPointeur(m_vecLiaisonGraph,combination);
+}
+
+//Code inspiré puis repris de : https://stackoverflow.com/questions/12991758/creating-all-possible-k-combinations-of-n-items-in-c
+bool Algorithm::goKEdgeminConnexity(int offset, int k, std::vector<int> vecIndex, std::vector<int>& combination) {
+    if (k == 0) {
+      return testCombinaisonKEdgeminConnexity(combination);
+    }
+    for (int i = offset; i <= vecIndex.size() - k; ++i) {
+      combination.push_back(vecIndex[i]);
+
+      if(goKEdgeminConnexity(i+1, k-1, vecIndex, combination)){
+          m_vecIndexCombinaison = combination;
+          ReviveNodeAttrsByIndex(combination);
+          return true;
+      }
+      combination.pop_back();
+    }
+
+    return false;
+}
+
+bool Algorithm::testCombinaisonKEdgeminConnexity(std::vector<int> vectest){
+    killNodeAttrsByIndex(vectest);
+    updateEdgesActive();
+    //////////////////Changer constr
+    Graph graphTest;
+
+    algoForteConnexity(graphTest);
+
+    bool resul = testIdenticForteConnexity(*m_graph, graphTest);
+    ReviveNodeAttrsByIndex(vectest);
+    updateEdgesActive();
+
+    return resul;
+}
+
+void Algorithm::findKEdgeminConnexity(){
+
+    clearAllMarck(*m_graph);
+
+    algoForteConnexity(*m_graph);
+
+    std::vector<int> vecIndex;
+    std::vector<int> combination;
+
+    clearVecteur<int>(m_vecIndexCombinaison);
+
+    for(int i = 0; i < m_graph->size(); i++){
+        vecIndex.push_back(i);
+    }
+
+    int kmin = 1;
+
+    while(!goKEdgeminConnexity(0,kmin, vecIndex, combination)){
+        kmin++;
+    }
+
+    std::cout<< "Done : Kmin = " << kmin << "\n Combinaison : [ ";
+
+    for(const auto l : m_vecIndexCombinaison){
+        std::cout << l << " ,";
+    }
+
+    std::cout << "]\n\n";
+
+    processedKmin();
 }
