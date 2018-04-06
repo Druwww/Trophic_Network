@@ -2,8 +2,8 @@
 #define ALGORITHM_H_INCLUDED
 
 #include "../../entities/graph/include/Graph.h"
-#include "../../entities/animal/include/NodeAttr.h"
-#include "../../entities/animal/include/NodeAttr.h"
+#include "../../entities/data/include/NodeAttr.h"
+#include "../../entities/data/include/NodeAttr.h"
 #include <math.h>
 
 
