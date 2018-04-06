@@ -14,6 +14,8 @@ struct Algorithm{
 
         std::vector<int> m_vecIndexCombinaison;
 
+        std::vector<Edge*> m_vecLiaisonGraph;
+
     public:
         Algorithm();
         Algorithm(Graph* graph);
@@ -56,7 +58,9 @@ struct Algorithm{
         void findKmin();
 
         //trouver k connexe min
+        void makeVecEdgeGraph();
 
+        bool testUnicEdgeInVec(Edge* edgeTest);
 
         ///Fonction temporaire
         void displayNodeProssed();

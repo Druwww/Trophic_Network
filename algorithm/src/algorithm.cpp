@@ -276,5 +276,32 @@ void Algorithm::findKmin(){
     }
 
     std::cout << "]\n\n";
+}
 
+void Algorithm::makeVecEdgeGraph(){
+
+    for(int i = 0; i < m_graph->size(); i++){
+        data d = m_graph->get(i);
+
+        for(auto & l : d.first.first){
+            if(testUnicEdgeInVec(l)){
+                m_vecLiaisonGraph.push_back(l);
+            }
+        }
+        for(auto & l : d.first.second){
+            if(testUnicEdgeInVec(l)){
+                m_vecLiaisonGraph.push_back(l);
+            }
+        }
+    }
+}
+
+bool Algorithm::testUnicEdgeInVec(Edge* edgeTest){
+    for(const auto & l : m_vecLiaisonGraph){
+        if(edgeTest->getUid() == l->getUid()){
+            return false;
+        }
+    }
+
+    return true;
 }
