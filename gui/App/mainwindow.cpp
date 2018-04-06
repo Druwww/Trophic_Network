@@ -121,7 +121,7 @@ void MainWindow::editNode(){
         QVariant variant = action->data();
         GNode *gnode = (GNode*) variant.value<void *>();
         gnode->m_attr->m_imageFilepath = filePath.toStdString();
-        gnode->update();
+        gnode->updateImage();
         update();
     }
 }
@@ -220,7 +220,7 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event){
             m_selectedNode->m_attr->m_x += mouseEvent->pos().x()-m_mousePos.x();
             m_selectedNode->m_attr->m_y += mouseEvent->pos().y()-m_mousePos.y();
             m_mousePos = QPoint(mouseEvent->pos().x(), mouseEvent->pos().y());
-            m_selectedNode->update();
+            m_selectedNode->updatePos();
             update();
         }
 
