@@ -14,6 +14,7 @@ void EditNodeDialog::createFormGroupBox(){
     m_filepathLineEdit = new QLineEdit;
     m_quantitySpinBox = new QSpinBox;
     m_birthRateSpinBox = new QDoubleSpinBox;
+
     QFormLayout* layout = new QFormLayout;
     layout->addRow(new QLabel(tr("Image filepath :")), m_filepathLineEdit);
     layout->addRow(new QLabel(tr("Quantity :")), m_quantitySpinBox);

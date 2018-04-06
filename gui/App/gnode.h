@@ -46,6 +46,7 @@ struct GNode : public QWidget{
 
     void updateImage(){
         m_image->load(QString::fromStdString(m_gui->m_imageFilepath));
+        *m_image = m_image->scaled(m_gui->m_width, m_gui->m_height, Qt::KeepAspectRatio, Qt::SmoothTransformation);
         resize(m_gui->m_width, m_gui->m_height);
     }
 
