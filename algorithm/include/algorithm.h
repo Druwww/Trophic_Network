@@ -22,6 +22,7 @@ struct Algorithm{
 
         //Vecteur who will have the edge's pointeurs of our solution for kEdgeMin
         std::vector<Edge*> m_vecKEdgeMin;
+
     public:
         //Defauklt ctor
         Algorithm();
@@ -40,6 +41,7 @@ struct Algorithm{
 
         //Clean all prossed for all nodes and edges
         void clearAllMarck();
+        void clearAllMarck(Graph& graph);
 
         //Return true if all nodes are prossed
         bool checkAllNodeMarck();
@@ -133,6 +135,16 @@ struct Algorithm{
 
         ///Functopn not permanente for display resulte in consol
         void displayNodeProssed();
+
+
+        /*
+        Algo strong connexity ... ty to anwser quicly in the forum
+        */
+        void BFSConnexity(data d, Graph& graphProssed, bool normal);
+
+        void emptyConnexity(int numero, Graph& graph1, Graph& graph2);
+
+        void algoForteConnexity();
 
 };
 

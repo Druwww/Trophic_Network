@@ -26,6 +26,21 @@ void Algorithm::clearAllMarck(){
     }
 }
 
+void Algorithm::clearAllMarck(Graph& graph){
+
+    for(int i = 0; i < graph.size(); i++){
+        data d = graph.get(i);
+        d.first->setProcessed(false);
+        for(auto & v : d.second.first){
+            v->setProcessed(false);
+        }
+        for(auto & v : d.second.second){
+            v->setProcessed(false);
+        }
+    }
+}
+
+
 bool Algorithm::checkAllNodeMarck(){
     for(int i = 0; i < m_graph->size(); i++){
         data d = m_graph->get(i);
@@ -397,6 +412,65 @@ void Algorithm::processedKEdgemin(){
     if(!m_vecKEdgeMin.empty()){
         for(auto l : m_vecKEdgeMin){
             l->setProcessed(true);
+        }
+    }
+}
+
+void Algorithm::BFSConnexity(data d, Graph& graphProssed, bool normal){
+    d.first->setProcessed(true);
+
+    if(normal){
+        for(auto& l : d.second.second){
+            if(!l->getEndNode()->isProcessed()){
+                BFSConnexity(graphProssed.get(graphProssed.getIndexByUid(l->getEndNode()->getUid())), graphProssed, normal);
+            }
+        }
+    }
+    else{
+        for(auto& l : d.second.first){
+            if(!l->getStartNode()->isProcessed()){
+                BFSConnexity(graphProssed.get(graphProssed.getIndexByUid(l->getStartNode()->getUid())), graphProssed, normal);
+            }
+        }
+    }
+}
+
+void Algorithm::emptyConnexity(int numero, Graph& graph1, Graph& graph2){
+
+    for(int i = 0; i < m_graph->size(); i++){
+        data dEtude = m_graph->get(i);
+
+        if(graph1.get(i).first->isProcessed() && graph2.get(i).first->isProcessed()){
+            dEtude.first->setGroup(numero);
+        }
+    }
+
+    clearAllMarck(graph1);
+    clearAllMarck(graph2);
+}
+
+void Algorithm::algoForteConnexity(){
+
+    for(int i = 0; i < m_graph->size(); i++){
+        m_graph->get(i).first->setGroup(0);
+    }
+
+
+    ////////////////////Changer le constructeur
+    Graph graph1;
+    Graph graph2;
+
+    int numeroGroupe = 0;
+
+    for(int i = 0; i < m_graph->size(); i++){
+        if(m_graph->get(i).first->getGroup() == 0){
+
+            numeroGroupe++;
+
+            BFSConnexity(graph1.get(i), graph1, true);
+            BFSConnexity(graph2.get(i), graph2, false);
+
+            emptyConnexity(numeroGroupe, graph1, graph2);
         }
     }
 }

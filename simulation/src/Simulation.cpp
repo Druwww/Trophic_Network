@@ -48,7 +48,7 @@ void Simulation::generateVecIndexOrdre(){
 }
 
 void Simulation::nextYearNode(Node* nodeUpdate){
-    NodeAttr* dataNode = nodeUpdate->getData;
+    NodeAttr* dataNode = (NodeAttr*) nodeUpdate->getData();
 
     ///EQUA MISE A JOUR
 
