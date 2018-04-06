@@ -4,42 +4,54 @@
 #include <QWidget>
 #include <QPixmap>
 #include <QLabel>
-#include <QVBoxLayout>
+#include <QPainter>
 
 #include "../../entities/graph/include/Node.h"
+#include "../../entities/data/include/NodeAttr.h"
 #include "nodeguiattr.h"
 
 struct GNode : public QWidget{
-    Node *m_node;
-    QLabel *m_label;
-    QVBoxLayout *m_layout;
-    NodeGuiAttr* m_attr;
+    Node* m_node;
+    NodeAttr* m_attr;
+    NodeGuiAttr* m_gui;
 
-    GNode(Node* node, NodeGuiAttr* attr, QWidget* parent=0) : QWidget(parent){
+    QPixmap* m_image;
+
+    GNode(Node* node, NodeGuiAttr* gui, QWidget* parent=0) : QWidget(parent){
         setMouseTracking(true);
 
         m_node = node;
-        m_attr = attr;
-        m_layout = new QVBoxLayout();
-        m_label = new QLabel(this);
-        m_label->setScaledContents(true);
-        m_layout->addWidget(m_label);
-        setLayout(m_layout);
+        m_gui = gui;
+        m_attr = (NodeAttr*) m_node->getData();
+        m_attr->m_gui = m_gui;
 
-        update();
+        m_image = new QPixmap;
+
+        updateImage();
+        updatePos();
     }
 
     virtual ~GNode(){
-        delete m_label;
-        delete m_layout;
+        delete m_image;
     }
 
-    void update(){
-        QImage tmp(QString::fromStdString(m_attr->m_imageFilepath));
-        QImage img = tmp.scaled(m_attr->m_width, m_attr->m_width, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-        m_label->setPixmap(QPixmap::fromImage(img));
-        move(m_attr->m_x, m_attr->m_y);
-        resize(m_attr->m_width, m_attr->m_height);
+    void painEvent(QPainter& painter){
+        int margin = 6;
+        QString str = "Q = "+QString::number(m_attr->m_quantity)
+                + " | R = "+QString::number(m_attr->m_birthRate);
+        painter.setPen(QPen(Qt::blue, 3, Qt::SolidLine, Qt::RoundCap));
+        painter.drawText(m_gui->m_x, m_gui->m_y-margin, str);
+        painter.drawPixmap(m_gui->m_x, m_gui->m_y, m_gui->m_width, m_gui->m_height, *m_image);
+    }
+
+    void updateImage(){
+        m_image->load(QString::fromStdString(m_gui->m_imageFilepath));
+        *m_image = m_image->scaled(m_gui->m_width, m_gui->m_height, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        resize(m_gui->m_width, m_gui->m_height);
+    }
+
+    void updatePos(){
+        move(m_gui->m_x, m_gui->m_y);
     }
 };
 

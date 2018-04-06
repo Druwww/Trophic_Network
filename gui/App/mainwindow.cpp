@@ -8,10 +8,18 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     installEventFilter(this);
     setMouseTracking(true);
 
-    initContextMenu();
-    initMenuBar();
-    initGraph();
     initVar();
+    initGraph();
+    initMenuBar();
+    initContextMenu();
+
+
+    std::ifstream file("/home/omar/Desktop/v3.graph");
+    if(file){
+        m_graph->read(file);
+        file.close();
+        update();
+    }
 }
 
 MainWindow::~MainWindow()
@@ -77,8 +85,9 @@ void MainWindow::initGraph(){
 
 void MainWindow::initVar(){
     m_selectedNode = nullptr;
+    m_startNode = nullptr;
+    m_endNode = nullptr;
     m_drag = false;
-    m_linking = false;
 }
 
 void MainWindow::addNode(){
@@ -113,15 +122,24 @@ void MainWindow::removeNode(){
 }
 
 void MainWindow::editNode(){
-    QString filePath = QInputDialog::getText(this, "Change node image", "filepath :", QLineEdit::Normal,
-                QDir::home().dirName(), nullptr);
+    QAction *action = qobject_cast<QAction *>(sender());
+    QVariant variant = action->data();
+    GNode *gnode = (GNode*) variant.value<void *>();
 
-    if(!filePath.isEmpty()){
-        QAction *action = qobject_cast<QAction *>(sender());
-        QVariant variant = action->data();
-        GNode *gnode = (GNode*) variant.value<void *>();
-        gnode->m_attr->m_imageFilepath = filePath.toStdString();
-        gnode->update();
+    EditNodeDialog dialog(gnode);
+    if (dialog.exec() == QDialog::Accepted) {
+        NodeAttr* attr = (NodeAttr*) gnode->m_node->getData();
+        NodeGuiAttr* gui = attr->m_gui;
+
+        QString filePath = dialog.getNodeImageFilepath();
+        if(!filePath.isEmpty()){
+            gui->m_imageFilepath = filePath.toStdString();
+            gnode->updateImage();
+        }
+
+        attr->m_quantity = dialog.getNodeQuantity();
+        attr->m_birthRate = dialog.getNodeBirthRate();
+
         update();
     }
 }
@@ -131,18 +149,11 @@ void MainWindow::paintEvent(QPaintEvent *event){
 
     for(int i=0 ; i<m_graph->size() ; i++){
         std::pair<Node*, std::pair<std::vector<Edge*>, std::vector<Edge*> > > p = m_graph->get(i);
-
-        // node
         Node* end = p.first;
         NodeAttr* ea = (NodeAttr*) end->getData();
         NodeGuiAttr* egui = ea->m_gui;
-        GNode *egnode = getGNode(end);
-        if(egnode==nullptr){
-            egnode = new GNode(end, egui, this);
-            m_gnodes.push_back(egnode);
-        }
-        egnode->show();
 
+        // edges
         std::vector<Edge*> in = p.second.first;
         for(auto const& e : in){
             Node* start = e->getStartNode();
@@ -156,10 +167,10 @@ void MainWindow::paintEvent(QPaintEvent *event){
             painter.drawLine(pStart, pEnd);
 
             // arrow
-            float h = 20, w = 10;
-            QPointF pMiddle = (pStart+pEnd)/2;
+            float h = 20, w = 10, k = 50;
             QPointF U = (pEnd-pStart)/(pEnd-pStart).manhattanLength();
             QPointF V = QPointF(-U.y(), U.x());
+            QPointF pMiddle = (pStart+pEnd)/2 + k*U;
             QPointF P1 = pMiddle - h*U + w*V;
             QPointF P2 = pMiddle - h*U - w*V;
             painter.setPen(QPen(Qt::red, 3, Qt::SolidLine, Qt::RoundCap));
@@ -168,18 +179,26 @@ void MainWindow::paintEvent(QPaintEvent *event){
         }
     }
 
-    if(m_linking){
+    // nodes
+    for(int i=0 ; i<m_graph->size() ; i++){
+        Node* node = m_graph->get(i).first;
+        NodeAttr* attr = (NodeAttr*) node->getData();
+        NodeGuiAttr* gui = attr->m_gui;
+        GNode *gnode = getGNode(node);
+        if(gnode==nullptr){
+            gnode = new GNode(node, gui, this);
+            m_gnodes.push_back(gnode);
+        }
+        gnode->show();
+        gnode->painEvent(painter);
+    }
+
+    if(m_startNode!=nullptr){
         QPoint pos = mapFromGlobal(QCursor::pos());
-        painter.setPen(QPen(Qt::blue, 3, Qt::DashLine, Qt::RoundCap));
         NodeAttr* attr = (NodeAttr*) m_startNode->m_node->getData();
         NodeGuiAttr* gui = attr->m_gui;
+        painter.setPen(QPen(Qt::blue, 3, Qt::DashLine, Qt::RoundCap));
         painter.drawLine(gui->m_x+gui->m_width/2, gui->m_y+gui->m_height/2, pos.x(), pos.y());
-    }
-    else if(!m_linking && m_endNode!=nullptr){
-        m_graph->connect(m_startNode->m_node, m_endNode->m_node);
-        m_startNode = nullptr;
-        m_endNode = nullptr;
-        update();
     }
 }
 
@@ -188,7 +207,6 @@ void MainWindow::mousePressEvent(QMouseEvent *event){
         for(const auto& gnode : m_gnodes){
             if(gnode->geometry().contains(event->pos())) {
                 m_selectedNode = gnode;
-                m_nodePos = QPoint(gnode->pos().x(), gnode->pos().y());
                 m_mousePos = QPoint(event->pos().x(), event->pos().y());
                 m_drag = true;
                 break;
@@ -215,14 +233,14 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event){
         QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
 
         if(m_drag && m_selectedNode!=nullptr){
-            m_selectedNode->m_attr->m_x += mouseEvent->pos().x()-m_mousePos.x();
-            m_selectedNode->m_attr->m_y += mouseEvent->pos().y()-m_mousePos.y();
+            m_selectedNode->m_gui->m_x += mouseEvent->pos().x()-m_mousePos.x();
+            m_selectedNode->m_gui->m_y += mouseEvent->pos().y()-m_mousePos.y();
             m_mousePos = QPoint(mouseEvent->pos().x(), mouseEvent->pos().y());
-            m_selectedNode->update();
+            m_selectedNode->updatePos();
             update();
         }
 
-        if(m_linking){
+        if(m_startNode!=nullptr){
             update();
         }
     }
@@ -234,7 +252,6 @@ bool MainWindow::eventFilter(QObject* obj, QEvent* event){
         if (key->key()==Qt::Key_Control) {
             QPoint pos = mapFromGlobal(QCursor::pos());
             m_startNode = gnodeAt(pos);
-            m_linking = (m_startNode!=nullptr);
             return true;
         }
     }
@@ -243,7 +260,19 @@ bool MainWindow::eventFilter(QObject* obj, QEvent* event){
         if (key->key()==Qt::Key_Control) {
             QPoint pos = mapFromGlobal(QCursor::pos());
             m_endNode = gnodeAt(pos);
-            m_linking = false;
+
+            if(m_startNode!=nullptr && m_endNode!=nullptr){
+                if(!m_graph->areConnected(m_startNode->m_node, m_endNode->m_node)){
+                    m_graph->connect(m_startNode->m_node, m_endNode->m_node);
+                }
+                else{
+                    statusBar()->showMessage("Nodes already connected !", 3000);
+                }
+            }
+
+            m_startNode = nullptr;
+            m_endNode = nullptr;
+
             update();
             return true;
         }
@@ -266,6 +295,10 @@ GNode* MainWindow::gnodeAt(const QPoint& pos){
             return gnode;
         }
     }
+    return nullptr;
+}
+
+Edge* MainWindow::edgeAt(const QPoint& pos){
     return nullptr;
 }
 
