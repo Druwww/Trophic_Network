@@ -44,22 +44,21 @@ class MainWindow : public QMainWindow
         Graph* m_graph;
         std::vector<GNode*> m_gnodes;
 
-        GNode* getGNode(Node* node);
         GNode* m_selectedNode;
-        QPoint m_nodePos;
         QPoint m_mousePos;
         bool m_drag;
 
         GNode* m_startNode;
         GNode* m_endNode;
 
+        GNode* getGNode(Node* node);
+        GNode* gnodeAt(const QPoint& pos);
+        Edge* edgeAt(const QPoint& pos);
+
         void initMenuBar();
         void initContextMenu();
         void initGraph();
         void initVar();
-
-        GNode* gnodeAt(const QPoint& pos);
-        Edge* edgeAt(const QPoint& pos);
 
     private slots:
         void addNode();

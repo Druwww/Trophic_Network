@@ -8,10 +8,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     installEventFilter(this);
     setMouseTracking(true);
 
-    initContextMenu();
-    initMenuBar();
-    initGraph();
     initVar();
+    initGraph();
+    initMenuBar();
+    initContextMenu();
 }
 
 MainWindow::~MainWindow()
@@ -77,6 +77,8 @@ void MainWindow::initGraph(){
 
 void MainWindow::initVar(){
     m_selectedNode = nullptr;
+    m_startNode = nullptr;
+    m_endNode = nullptr;
     m_drag = false;
 }
 
@@ -190,7 +192,6 @@ void MainWindow::mousePressEvent(QMouseEvent *event){
         for(const auto& gnode : m_gnodes){
             if(gnode->geometry().contains(event->pos())) {
                 m_selectedNode = gnode;
-                m_nodePos = QPoint(gnode->pos().x(), gnode->pos().y());
                 m_mousePos = QPoint(event->pos().x(), event->pos().y());
                 m_drag = true;
                 break;
