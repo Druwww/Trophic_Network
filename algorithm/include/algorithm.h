@@ -23,14 +23,15 @@ struct Algorithm{
         Graph* getGraph() const {return m_graph;}
         void setGraph(Graph* val){m_graph = val;}
 
-        void reinitialisationVecCombinaison();
-
-
         ///Algorithm fonctions
         void clearAllMarck();
 
         bool checkAllNodeMarck();
 
+        template <typename T>
+        void clearVecteur(std::vector<T>& vec);
+
+        //Marquage composante fortement connexe
         void processedThreeOfNodeByNode(Node* nodeWork);
 
         void processedThreeRecursive(data d, bool down);
@@ -39,6 +40,7 @@ struct Algorithm{
 
         void processedGraphRecursive(data d);
 
+        //Trouver kmin
         int updateEdgesActive();
 
         bool updateEdgeActive(Edge* l);
@@ -52,6 +54,10 @@ struct Algorithm{
         bool testCombinaison(std::vector<int> vectest);
 
         void findKmin();
+
+        //trouver k connexe min
+
+
         ///Fonction temporaire
         void displayNodeProssed();
 

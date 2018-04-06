@@ -37,6 +37,13 @@ bool Algorithm::checkAllNodeMarck(){
     return true;
 }
 
+template <typename T>
+void Algorithm::clearVecteur(std::vector<T>& vec){
+    while(!vec.empty()){
+        vec.pop_back();
+    }
+}
+
 void Algorithm::processedThreeRecursive(data d, bool down){
 
     //marque le sommet
@@ -249,6 +256,8 @@ void Algorithm::findKmin(){
 
     std::vector<int> vecIndex;
     std::vector<int> combination;
+
+    clearVecteur<int>(m_vecIndexCombinaison);
 
     for(int i = 0; i < m_graph->size(); i++){
         vecIndex.push_back(i);

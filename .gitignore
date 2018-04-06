@@ -41,3 +41,5 @@ gui/build-App-Desktop-Release
 
 Makefile
 Documents/2017-2018-projet-graphes-ING2-sem2-trophic-networks.pdf
+
+main.cpp
