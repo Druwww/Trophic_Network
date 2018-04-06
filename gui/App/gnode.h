@@ -7,6 +7,7 @@
 #include <QVBoxLayout>
 
 #include "../../entities/graph/include/Node.h"
+#include "../../entities/data/include/NodeAttr.h"
 #include "nodeguiattr.h"
 
 struct GNode : public QWidget{
@@ -19,7 +20,10 @@ struct GNode : public QWidget{
         setMouseTracking(true);
 
         m_node = node;
+        NodeAttr* data = (NodeAttr*) m_node->getData();
+        data->m_gui = attr;
         m_attr = attr;
+
         m_layout = new QVBoxLayout();
         m_label = new QLabel(this);
         m_label->setScaledContents(true);

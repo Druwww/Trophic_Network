@@ -8,6 +8,7 @@
 #include <QLineEdit>
 #include <QComboBox>
 #include <QSpinBox>
+#include <QDoubleSpinBox>
 #include <QLabel>
 
 #include "gnode.h"
@@ -25,6 +26,8 @@ class EditNodeDialog : public QDialog
 
         // fields
         QLineEdit* m_filepathLineEdit;
+        QSpinBox* m_quantitySpinBox;
+        QDoubleSpinBox* m_birthRateSpinBox;
 
         void createFormGroupBox();
         void createButtonBox();
@@ -35,6 +38,8 @@ class EditNodeDialog : public QDialog
         EditNodeDialog(GNode* gnode);
 
         QString getNodeImageFilepath() const;
+        int getNodeQuantity() const;
+        double getNodeBirthRate() const;
 };
 
 #endif // EDITNODEDIALOG_H

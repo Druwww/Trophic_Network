@@ -119,11 +119,18 @@ void MainWindow::editNode(){
 
     EditNodeDialog dialog(gnode);
     if (dialog.exec() == QDialog::Accepted) {
+        NodeAttr* attr = (NodeAttr*) gnode->m_node->getData();
+        NodeGuiAttr* gui = attr->m_gui;
+
         QString filePath = dialog.getNodeImageFilepath();
         if(!filePath.isEmpty()){
-            gnode->m_attr->m_imageFilepath = filePath.toStdString();
+            gui->m_imageFilepath = filePath.toStdString();
             gnode->updateImage();
         }
+
+        attr->m_quantity = dialog.getNodeQuantity();
+        attr->m_birthRate = dialog.getNodeBirthRate();
+
         update();
     }
 }
