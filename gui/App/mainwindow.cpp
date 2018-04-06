@@ -252,9 +252,10 @@ bool MainWindow::eventFilter(QObject* obj, QEvent* event){
                 else{
                     statusBar()->showMessage("Nodes already connected !", 3000);
                 }
-                m_startNode = nullptr;
-                m_endNode = nullptr;
             }
+
+            m_startNode = nullptr;
+            m_endNode = nullptr;
 
             update();
             return true;
