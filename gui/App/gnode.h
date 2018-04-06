@@ -11,42 +11,64 @@
 #include "nodeguiattr.h"
 
 struct GNode : public QWidget{
-    Node *m_node;
-    QLabel *m_label;
-    QVBoxLayout *m_layout;
-    NodeGuiAttr* m_attr;
+    Node* m_node;
+    NodeAttr* m_attr;
+    NodeGuiAttr* m_gui;
 
-    GNode(Node* node, NodeGuiAttr* attr, QWidget* parent=0) : QWidget(parent){
+    QLabel* m_imageLabel;
+    QLabel* m_quantityLabel;
+    QVBoxLayout* m_mainLayout;
+    QVBoxLayout* m_imageLayout;
+
+    GNode(Node* node, NodeGuiAttr* gui, QWidget* parent=0) : QWidget(parent){
         setMouseTracking(true);
 
         m_node = node;
-        NodeAttr* data = (NodeAttr*) m_node->getData();
-        data->m_gui = attr;
-        m_attr = attr;
+        m_gui = gui;
+        m_attr = (NodeAttr*) m_node->getData();
+        m_gui = m_gui;
 
-        m_layout = new QVBoxLayout();
-        m_label = new QLabel(this);
-        m_label->setScaledContents(true);
-        m_layout->addWidget(m_label);
-        setLayout(m_layout);
+        createView();
         updateImage();
+        updateData();
         updatePos();
     }
 
     virtual ~GNode(){
-        delete m_label;
-        delete m_layout;
+        delete m_imageLayout;
+        delete m_mainLayout;
+        delete m_quantityLabel;
+        delete m_imageLabel;
+    }
+
+    void createView(){
+        m_imageLayout = new QVBoxLayout;
+        m_mainLayout = new QVBoxLayout;
+        m_quantityLabel = new QLabel;
+        m_imageLabel = new QLabel;
+
+        m_imageLabel->setScaledContents(true);
+        m_imageLayout->addWidget(m_imageLabel);
+
+//        m_mainLayout->addWidget(m_quantityLabel);
+        m_mainLayout->addLayout(m_imageLayout);
+        setLayout(m_mainLayout);
+    }
+
+    void updateData(){
+        NodeAttr* data = (NodeAttr*) m_node->getData();
+        m_quantityLabel->setText(QString::number(data->m_quantity));
     }
 
     void updateImage(){
-        QImage tmp(QString::fromStdString(m_attr->m_imageFilepath));
-        QImage img = tmp.scaled(m_attr->m_width, m_attr->m_width, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-        m_label->setPixmap(QPixmap::fromImage(img));
-        resize(m_attr->m_width, m_attr->m_height);
+        QImage tmp(QString::fromStdString(m_gui->m_imageFilepath));
+        QImage img = tmp.scaled(m_gui->m_width, m_gui->m_height, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        m_imageLabel->setPixmap(QPixmap::fromImage(img));
+        resize(m_gui->m_width, m_gui->m_height);
     }
 
     void updatePos(){
-        move(m_attr->m_x, m_attr->m_y);
+        move(m_gui->m_x, m_gui->m_y);
     }
 };
 

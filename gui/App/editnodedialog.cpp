@@ -18,6 +18,7 @@ void EditNodeDialog::createFormGroupBox(){
     layout->addRow(new QLabel(tr("Image filepath :")), m_filepathLineEdit);
     layout->addRow(new QLabel(tr("Quantity :")), m_quantitySpinBox);
     layout->addRow(new QLabel(tr("Birth Rate :")), m_birthRateSpinBox);
+    m_quantitySpinBox->setMaximum(1000);
     m_formGroupBox->setLayout(layout);
 }
 

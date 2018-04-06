@@ -131,6 +131,7 @@ void MainWindow::editNode(){
 
         attr->m_quantity = dialog.getNodeQuantity();
         attr->m_birthRate = dialog.getNodeBirthRate();
+        gnode->updateData();
 
         update();
     }
@@ -218,8 +219,8 @@ void MainWindow::mouseMoveEvent(QMouseEvent *event){
         QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
 
         if(m_drag && m_selectedNode!=nullptr){
-            m_selectedNode->m_attr->m_x += mouseEvent->pos().x()-m_mousePos.x();
-            m_selectedNode->m_attr->m_y += mouseEvent->pos().y()-m_mousePos.y();
+            m_selectedNode->m_gui->m_x += mouseEvent->pos().x()-m_mousePos.x();
+            m_selectedNode->m_gui->m_y += mouseEvent->pos().y()-m_mousePos.y();
             m_mousePos = QPoint(mouseEvent->pos().x(), mouseEvent->pos().y());
             m_selectedNode->updatePos();
             update();
