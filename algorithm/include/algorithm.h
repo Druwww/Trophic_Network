@@ -140,15 +140,19 @@ struct Algorithm{
         /*
         Algo strong connexity ... ty to anwser quicly in the forum
         */
+        //do the BFS recursive for make strong connexe
         void BFSConnexity(data d, Graph& graphProssed, bool normal);
 
+        //put the group number to node who are in the new group
         void emptyConnexity(int numero, Graph& graph1, Graph& graph2, Graph& graphData);
 
+        //algo who put the number of strong connexity in all nodes
         void algoForteConnexity(Graph& graphData);
 
         /*
         Algo find the real kmin for edge .... en gros il va dire combien d arrete qu il faut enlever pour briser n'importe quelle composante fortement connexe
         */
+        //true if 2 graph have all nodes with same connexity group
         bool testIdenticForteConnexity(Graph& graph1, Graph& graph2);
 
         ///Algo/code retake from : https://stackoverflow.com/questions/12991758/creating-all-possible-k-combinations-of-n-items-in-c
@@ -161,6 +165,7 @@ struct Algorithm{
         //return true if he success
         bool testCombinaisonKminConnexity(std::vector<int> vectest);
 
+        //function who will prossed all node to kill to break a strong connexity
         void findKminConnexity();
 
         /*
@@ -176,9 +181,8 @@ struct Algorithm{
         //return true if he success
         bool testCombinaisonKEdgeminConnexity(std::vector<int> vectest);
 
+        //function who will prossed all edge to kill to break a strong connexity
         void findKEdgeminConnexity();
-
-
 };
 
 #endif

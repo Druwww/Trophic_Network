@@ -487,7 +487,7 @@ bool Algorithm::testIdenticForteConnexity(Graph& graph1, Graph& graph2){
 }
 
 //Code inspiré puis repris de : https://stackoverflow.com/questions/12991758/creating-all-possible-k-combinations-of-n-items-in-c
-bool Algorithm::goKminConnexity(int offset, int k, std::vector<int> vecIndex, std::vector<int>& combination) {
+bool Algorithm::goKEdgeminConnexity(int offset, int k, std::vector<int> vecIndex, std::vector<int>& combination) {
     if (k == 0) {
       return testCombinaisonKminConnexity(combination);
     }
@@ -505,7 +505,7 @@ bool Algorithm::goKminConnexity(int offset, int k, std::vector<int> vecIndex, st
 
 }
 
-bool Algorithm::testCombinaisonKminConnexity(std::vector<int> vectest){
+bool Algorithm::testCombinaisonKEdgeminConnexity(std::vector<int> vectest){
     killEdgeByIndex(vectest);
 
     //////////////////Changer constr
@@ -519,7 +519,7 @@ bool Algorithm::testCombinaisonKminConnexity(std::vector<int> vectest){
     return resul;
 }
 
-void Algorithm::findKminConnexity(){
+void Algorithm::findKEdgeminConnexity(){
 
     std::vector<int> vecIndex;
     std::vector<int> combination;
@@ -556,7 +556,7 @@ void Algorithm::findKminConnexity(){
 }
 
 //Code inspiré puis repris de : https://stackoverflow.com/questions/12991758/creating-all-possible-k-combinations-of-n-items-in-c
-bool Algorithm::goKEdgeminConnexity(int offset, int k, std::vector<int> vecIndex, std::vector<int>& combination) {
+bool Algorithm::goKminConnexity(int offset, int k, std::vector<int> vecIndex, std::vector<int>& combination) {
     if (k == 0) {
       return testCombinaisonKEdgeminConnexity(combination);
     }
@@ -574,7 +574,7 @@ bool Algorithm::goKEdgeminConnexity(int offset, int k, std::vector<int> vecIndex
     return false;
 }
 
-bool Algorithm::testCombinaisonKEdgeminConnexity(std::vector<int> vectest){
+bool Algorithm::testCombinaisonKminConnexity(std::vector<int> vectest){
     killNodeAttrsByIndex(vectest);
     updateEdgesActive();
     //////////////////Changer constr
@@ -589,7 +589,7 @@ bool Algorithm::testCombinaisonKEdgeminConnexity(std::vector<int> vectest){
     return resul;
 }
 
-void Algorithm::findKEdgeminConnexity(){
+void Algorithm::findKminConnexity(){
 
     clearAllMarck(*m_graph);
 
