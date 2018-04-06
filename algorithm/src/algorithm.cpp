@@ -275,6 +275,16 @@ void Algorithm::findKmin(){
     }
 
     std::cout << "]\n\n";
+
+    processedKmin();
+}
+
+void Algorithm::processedKmin(){
+    if(!m_vecIndexCombinaison.empty()){
+        for(auto l : m_vecIndexCombinaison){
+            m_graph->get(l).first->setProcessed(true);
+        }
+    }
 }
 
 void Algorithm::makeVecEdgeGraph(){
@@ -379,4 +389,14 @@ void Algorithm::findKEdgeMin(){
     }
 
     std::cout << "\n\n";
+
+    processedKEdgemin();
+}
+
+void Algorithm::processedKEdgemin(){
+    if(!m_vecKEdgeMin.empty()){
+        for(auto l : m_vecKEdgeMin){
+            l->setProcessed(true);
+        }
+    }
 }

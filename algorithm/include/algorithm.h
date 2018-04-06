@@ -58,6 +58,8 @@ struct Algorithm{
 
         void findKmin();
 
+        void processedKmin();
+
         //trouver k connexe min
         void makeVecEdgeGraph();
 
@@ -74,6 +76,8 @@ struct Algorithm{
         void reviveEdgeByIndex(std::vector<int> vecIndex);
 
         void findKEdgeMin();
+
+        void processedKEdgemin();
 
         ///Fonction temporaire
         void displayNodeProssed();
