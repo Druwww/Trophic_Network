@@ -26,12 +26,20 @@ bool Node::isProcessed() const{
     return m_processed;
 }
 
+int Node::getGroup() const{
+    return m_group;
+}
+
 void* Node::getData() const{
     return m_data;
 }
 
 void Node::setProcessed(const bool& processed){
     m_processed = processed;
+}
+
+void Node::setGroup(const int& group){
+    m_group = group;
 }
 
 void Node::setData(void* data){
