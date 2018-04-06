@@ -12,6 +12,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     initGraph();
     initMenuBar();
     initContextMenu();
+
+
+    std::ifstream file("/home/omar/Desktop/v3.graph");
+    if(file){
+        m_graph->read(file);
+        file.close();
+        update();
+    }
 }
 
 MainWindow::~MainWindow()
@@ -131,7 +139,6 @@ void MainWindow::editNode(){
 
         attr->m_quantity = dialog.getNodeQuantity();
         attr->m_birthRate = dialog.getNodeBirthRate();
-        gnode->updateData();
 
         update();
     }
@@ -142,18 +149,11 @@ void MainWindow::paintEvent(QPaintEvent *event){
 
     for(int i=0 ; i<m_graph->size() ; i++){
         std::pair<Node*, std::pair<std::vector<Edge*>, std::vector<Edge*> > > p = m_graph->get(i);
-
-        // node
         Node* end = p.first;
         NodeAttr* ea = (NodeAttr*) end->getData();
         NodeGuiAttr* egui = ea->m_gui;
-        GNode *egnode = getGNode(end);
-        if(egnode==nullptr){
-            egnode = new GNode(end, egui, this);
-            m_gnodes.push_back(egnode);
-        }
-        egnode->show();
 
+        // edges
         std::vector<Edge*> in = p.second.first;
         for(auto const& e : in){
             Node* start = e->getStartNode();
@@ -179,11 +179,25 @@ void MainWindow::paintEvent(QPaintEvent *event){
         }
     }
 
+    // nodes
+    for(int i=0 ; i<m_graph->size() ; i++){
+        Node* node = m_graph->get(i).first;
+        NodeAttr* attr = (NodeAttr*) node->getData();
+        NodeGuiAttr* gui = attr->m_gui;
+        GNode *gnode = getGNode(node);
+        if(gnode==nullptr){
+            gnode = new GNode(node, gui, this);
+            m_gnodes.push_back(gnode);
+        }
+        gnode->show();
+        gnode->painEvent(painter);
+    }
+
     if(m_startNode!=nullptr){
         QPoint pos = mapFromGlobal(QCursor::pos());
-        painter.setPen(QPen(Qt::blue, 3, Qt::DashLine, Qt::RoundCap));
         NodeAttr* attr = (NodeAttr*) m_startNode->m_node->getData();
         NodeGuiAttr* gui = attr->m_gui;
+        painter.setPen(QPen(Qt::blue, 3, Qt::DashLine, Qt::RoundCap));
         painter.drawLine(gui->m_x+gui->m_width/2, gui->m_y+gui->m_height/2, pos.x(), pos.y());
     }
 }

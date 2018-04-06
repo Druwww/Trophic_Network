@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QPixmap>
 #include <QLabel>
-#include <QVBoxLayout>
+#include <QPainter>
 
 #include "../../entities/graph/include/Node.h"
 #include "../../entities/data/include/NodeAttr.h"
@@ -15,10 +15,7 @@ struct GNode : public QWidget{
     NodeAttr* m_attr;
     NodeGuiAttr* m_gui;
 
-    QLabel* m_imageLabel;
-    QLabel* m_quantityLabel;
-    QVBoxLayout* m_mainLayout;
-    QVBoxLayout* m_imageLayout;
+    QPixmap* m_image;
 
     GNode(Node* node, NodeGuiAttr* gui, QWidget* parent=0) : QWidget(parent){
         setMouseTracking(true);
@@ -26,44 +23,29 @@ struct GNode : public QWidget{
         m_node = node;
         m_gui = gui;
         m_attr = (NodeAttr*) m_node->getData();
-        m_gui = m_gui;
+        m_attr->m_gui = m_gui;
 
-        createView();
+        m_image = new QPixmap;
+
         updateImage();
-        updateData();
         updatePos();
     }
 
     virtual ~GNode(){
-        delete m_imageLayout;
-        delete m_mainLayout;
-        delete m_quantityLabel;
-        delete m_imageLabel;
+        delete m_image;
     }
 
-    void createView(){
-        m_imageLayout = new QVBoxLayout;
-        m_mainLayout = new QVBoxLayout;
-        m_quantityLabel = new QLabel;
-        m_imageLabel = new QLabel;
-
-        m_imageLabel->setScaledContents(true);
-        m_imageLayout->addWidget(m_imageLabel);
-
-//        m_mainLayout->addWidget(m_quantityLabel);
-        m_mainLayout->addLayout(m_imageLayout);
-        setLayout(m_mainLayout);
-    }
-
-    void updateData(){
-        NodeAttr* data = (NodeAttr*) m_node->getData();
-        m_quantityLabel->setText(QString::number(data->m_quantity));
+    void painEvent(QPainter& painter){
+        int margin = 6;
+        QString str = "Q = "+QString::number(m_attr->m_quantity)
+                + " | R = "+QString::number(m_attr->m_birthRate);
+        painter.setPen(QPen(Qt::blue, 3, Qt::SolidLine, Qt::RoundCap));
+        painter.drawText(m_gui->m_x, m_gui->m_y-margin, str);
+        painter.drawPixmap(m_gui->m_x, m_gui->m_y, m_gui->m_width, m_gui->m_height, *m_image);
     }
 
     void updateImage(){
-        QImage tmp(QString::fromStdString(m_gui->m_imageFilepath));
-        QImage img = tmp.scaled(m_gui->m_width, m_gui->m_height, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-        m_imageLabel->setPixmap(QPixmap::fromImage(img));
+        m_image->load(QString::fromStdString(m_gui->m_imageFilepath));
         resize(m_gui->m_width, m_gui->m_height);
     }
 
