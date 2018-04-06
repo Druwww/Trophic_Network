@@ -222,16 +222,15 @@ void Algorithm::ReviveNodeAttrsByIndex(std::vector<int> vecIndex){
     }
 }
 
-
 //Code inspiré puis repris de : https://stackoverflow.com/questions/12991758/creating-all-possible-k-combinations-of-n-items-in-c
-bool Algorithm::go(int offset, int k, std::vector<int> vecIndex, std::vector<int>& combination) {
+bool Algorithm::goKmin(int offset, int k, std::vector<int> vecIndex, std::vector<int>& combination) {
   if (k == 0) {
-    return testCombinaison(combination);
+    return testCombinaisonKmin(combination);
   }
   for (int i = offset; i <= vecIndex.size() - k; ++i) {
     combination.push_back(vecIndex[i]);
 
-    if(go(i+1, k-1, vecIndex, combination)){
+    if(goKmin(i+1, k-1, vecIndex, combination)){
         m_vecIndexCombinaison = combination;
         ReviveNodeAttrsByIndex(combination);
         return true;
@@ -242,7 +241,7 @@ bool Algorithm::go(int offset, int k, std::vector<int> vecIndex, std::vector<int
   return false;
 }
 
-bool Algorithm::testCombinaison(std::vector<int> vectest){
+bool Algorithm::testCombinaisonKmin(std::vector<int> vectest){
     killNodeAttrsByIndex(vectest);
     updateEdgesActive();
     bool resul = !testStrongConnexeGraph();
@@ -265,7 +264,7 @@ void Algorithm::findKmin(){
 
     int kmin = 1;
 
-    while(!go(0,kmin, vecIndex, combination)){
+    while(!goKmin(0,kmin, vecIndex, combination)){
         kmin++;
     }
 
@@ -283,12 +282,12 @@ void Algorithm::makeVecEdgeGraph(){
     for(int i = 0; i < m_graph->size(); i++){
         data d = m_graph->get(i);
 
-        for(auto & l : d.first.first){
+        for(auto& l : d.second.first){
             if(testUnicEdgeInVec(l)){
                 m_vecLiaisonGraph.push_back(l);
             }
         }
-        for(auto & l : d.first.second){
+        for(auto& l : d.second.second){
             if(testUnicEdgeInVec(l)){
                 m_vecLiaisonGraph.push_back(l);
             }
@@ -304,4 +303,80 @@ bool Algorithm::testUnicEdgeInVec(Edge* edgeTest){
     }
 
     return true;
+}
+
+//Code inspiré puis repris de : https://stackoverflow.com/questions/12991758/creating-all-possible-k-combinations-of-n-items-in-c
+bool Algorithm::goKEdgeMin(int offset, int k, std::vector<int> vecIndex, std::vector<int>& combination) {
+  if (k == 0) {
+    return testCombinaisonKedgeMin(combination);
+  }
+  for (int i = offset; i <= vecIndex.size() - k; ++i) {
+    combination.push_back(vecIndex[i]);
+
+    if(goKEdgeMin(i+1, k-1, vecIndex, combination)){
+        saveEdgeByIndex(combination);
+        reviveEdgeByIndex(combination);
+        return true;
+    }
+    combination.pop_back();
+  }
+
+  return false;
+}
+
+bool Algorithm::testCombinaisonKedgeMin(std::vector<int> vectest){
+    killEdgeByIndex(vectest);
+    bool resul = !testStrongConnexeGraph();
+    reviveEdgeByIndex(vectest);
+
+    return resul;
+}
+/// Fin inspiration
+
+void Algorithm::saveEdgeByIndex(std::vector<int>& vecIndex){
+    for(const auto l : vecIndex){
+        m_vecKEdgeMin.push_back(m_vecLiaisonGraph[l]);
+    }
+}
+
+void Algorithm::killEdgeByIndex(std::vector<int> vecIndex){
+    for(auto l : vecIndex){
+        m_vecLiaisonGraph[l]->setActive(false);
+    }
+}
+
+void Algorithm::reviveEdgeByIndex(std::vector<int> vecIndex){
+    for(auto l : vecIndex){
+        m_vecLiaisonGraph[l]->setActive(true);
+    }
+}
+
+void Algorithm::findKEdgeMin(){
+
+    std::vector<int> vecIndex;
+    std::vector<int> combination;
+
+    clearVecteur<Edge*>(m_vecLiaisonGraph);
+    clearVecteur<Edge*>(m_vecKEdgeMin);
+
+    makeVecEdgeGraph();
+
+
+    for(int i = 0; i < m_vecLiaisonGraph.size(); i++){
+        vecIndex.push_back(i);
+    }
+
+    int kEdgemin = 1;
+
+    while(!goKEdgeMin(0,kEdgemin, vecIndex, combination)){
+        kEdgemin++;
+    }
+
+    std::cout<< "Done : KEdgemin = " << kEdgemin << "\n Combinaison :";
+
+    for(const auto l : m_vecKEdgeMin){
+        std::cout << "\n\t[ " << l->getStartNode()->getUid() << " , " << l->getEndNode()->getUid() << " ]";
+    }
+
+    std::cout << "\n\n";
 }

@@ -16,6 +16,7 @@ struct Algorithm{
 
         std::vector<Edge*> m_vecLiaisonGraph;
 
+        std::vector<Edge*> m_vecKEdgeMin;
     public:
         Algorithm();
         Algorithm(Graph* graph);
@@ -51,9 +52,9 @@ struct Algorithm{
 
         void ReviveNodeAttrsByIndex(std::vector<int> vecIndex);
 
-        bool go(int offset, int k, std::vector<int> vecIndex, std::vector<int>& combination);
+        bool goKmin(int offset, int k, std::vector<int> vecIndex, std::vector<int>& combination);
 
-        bool testCombinaison(std::vector<int> vectest);
+        bool testCombinaisonKmin(std::vector<int> vectest);
 
         void findKmin();
 
@@ -61,6 +62,18 @@ struct Algorithm{
         void makeVecEdgeGraph();
 
         bool testUnicEdgeInVec(Edge* edgeTest);
+
+        bool goKEdgeMin(int offset, int k, std::vector<int> vecIndex, std::vector<int>& combination);
+
+        bool testCombinaisonKedgeMin(std::vector<int> vectest);
+
+        void saveEdgeByIndex(std::vector<int>& vecIndex);
+
+        void killEdgeByIndex(std::vector<int> vecIndex);
+
+        void reviveEdgeByIndex(std::vector<int> vecIndex);
+
+        void findKEdgeMin();
 
         ///Fonction temporaire
         void displayNodeProssed();
