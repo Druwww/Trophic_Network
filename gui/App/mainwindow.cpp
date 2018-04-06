@@ -13,13 +13,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     initMenuBar();
     initContextMenu();
 
-
-    std::ifstream file("/home/omar/Desktop/v3.graph");
-    if(file){
-        m_graph->read(file);
-        file.close();
-        update();
-    }
+//    std::ifstream file("/home/omar/Desktop/v2.graph");
+//    if(file){
+//        m_graph->read(file);
+//        file.close();
+//        update();
+//    }
 }
 
 MainWindow::~MainWindow()
@@ -95,7 +94,7 @@ void MainWindow::addNode(){
     QVariant variant = action->data();
     QPoint pos = variant.toPoint();
 
-    std::string path = "/home/omar/Desktop/Trophic_Network/gui/App/image.png";
+    std::string path = "../images/eth.png";
     Node* node = new Node();
     NodeAttr* attr = new NodeAttr();
     attr->m_gui = new NodeGuiAttr(path);
@@ -176,6 +175,14 @@ void MainWindow::paintEvent(QPaintEvent *event){
             painter.setPen(QPen(Qt::red, 3, Qt::SolidLine, Qt::RoundCap));
             painter.drawLine(pMiddle, P1);
             painter.drawLine(pMiddle, P2);
+
+            // data
+            EdgeAttr* e_attr = (EdgeAttr*) e->getData();
+            if(e_attr!=nullptr){
+                QString str = "I = " + QString::number(e_attr->m_importance)
+                        + " | SR = " + QString::number(e_attr->m_survivalRate);
+                painter.drawText(pMiddle+k*V, str);
+            }
         }
     }
 
