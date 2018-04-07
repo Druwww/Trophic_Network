@@ -65,6 +65,11 @@ void MainWindow::showContextMenu(const QPoint& pos){
             editEdgeAction->setData(var);
             connect(editEdgeAction, SIGNAL(triggered()), this, SLOT(editEdge()));
             contextMenu.addAction(editEdgeAction);
+
+            QAction* removeEdgeAction = new QAction("Remove Edge", this);
+            removeEdgeAction->setData(var);
+            connect(removeEdgeAction, SIGNAL(triggered()), this, SLOT(removeEdge()));
+            contextMenu.addAction(removeEdgeAction);
         }
     }
     else{
@@ -153,6 +158,14 @@ void MainWindow::editNode(){
 
         update();
     }
+}
+
+void MainWindow::removeEdge(){
+    QAction* action = qobject_cast<QAction *>(sender());
+    QVariant variant = action->data();
+    Edge* edge = (Edge*) variant.value<void *>();
+
+    // remove edge
 }
 
 void MainWindow::editEdge(){
