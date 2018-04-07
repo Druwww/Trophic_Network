@@ -491,16 +491,18 @@ void MainWindow::algo4(){
 
 void MainWindow::startSimulation(){
     m_simulation.setGraph(m_graph);
+    statusBar()->showMessage("Simulation started. Use next step.", 3000);
 }
 
 void MainWindow::stopSimulation(){
     m_simulation.setGraph(nullptr);
+    statusBar()->clearMessage();
 }
 
 void MainWindow::nextStepSimulation(){
     if(m_simulation.getGraph()!=nullptr){
         m_simulation.nextTurn();
-        update();
+        statusBar()->showMessage("Step "+QString::number(m_simulation.getTurn()));
     }
     else{
         statusBar()->showMessage("You must start the simulation.", 3000);
