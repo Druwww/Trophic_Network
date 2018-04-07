@@ -36,13 +36,13 @@
 *.layout
 *.depend
 
+gui/App/App.pro.user
 gui/build-App-Desktop-Debug
-gui/build-App-Desktop-Release
+gui/build-App-Desktop-Release/*.o
+gui/build-App-Desktop-Release/*.h
+gui/build-App-Desktop-Release/*.cpp
+gui/build-App-Desktop-Release/App
 
-
+Documents/
 test/
-./test.bckp
-./Makefile
-Documents/2017-2018-projet-graphes-ING2-sem2-trophic-networks.pdf
-
-main.cpp
+test.bckp
