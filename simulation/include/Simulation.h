@@ -20,7 +20,7 @@ class Simulation {
         Graph* getGraph() const;
         int getTurn() const;
 
-        vois setGraph(Graph* graph);
+        void setGraph(Graph* graph);
         void setTurn(int turn);
 };
 

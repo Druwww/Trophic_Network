@@ -20,6 +20,7 @@
 
 #include "../../algorithm/include/algorithm.h"
 #include "../../entities/graph/include/Graph.h"
+#include "../../simulation/include/Simulation.h"
 
 namespace Ui {
 class MainWindow;
@@ -58,6 +59,7 @@ class MainWindow : public QMainWindow
         Edge* edgeAt(const QPoint& pos);
 
         Algorithm m_algorithm;
+        Simulation m_simulation;
 
         void initMenuBar();
         void initContextMenu();
@@ -69,6 +71,10 @@ class MainWindow : public QMainWindow
         void algo2();
         void algo3();
         void algo4();
+
+        void startSimulation();
+        void stopSimulation();
+        void nextStepSimulation();
 
         void addNode();
         void removeNode();

@@ -11,7 +11,7 @@ Simulation::Simulation(Graph* graph){
 }
 
 void Simulation::nextTurn(){
-    for(unsigned int i=0 ; i<m_graph->size() ; i++)⁾{
+    for(unsigned int i=0 ; i<m_graph->size() ; i++){
         data d = m_graph->get(i);
         updateDataNode(d);
     }
@@ -46,7 +46,7 @@ int Simulation::getTurn() const{
     return m_turn;
 }
 
-vois Simulation::setGraph(Graph* graph){
+void Simulation::setGraph(Graph* graph){
     m_graph = graph;
 }
 

@@ -55,6 +55,20 @@ void MainWindow::initMenuBar(){
     QMenu* algoMenu = menuBar()->addMenu(tr("Algorithms"));
     QList<QAction*> algoMenuActions({algo1, algo2, algo3});
     algoMenu->addActions(algoMenuActions);
+
+    // Algorithm menu
+    QAction* startSimulAction = new QAction("Start", this);
+    connect(startSimulAction, SIGNAL(triggered(bool)), this, SLOT(startSimulation()));
+
+    QAction* stopSimulAction = new QAction("Stop", this);
+    connect(stopSimulAction, SIGNAL(triggered(bool)), this, SLOT(stopSimulation()));
+
+    QAction* nextStepSimulAction = new QAction("Next Step", this);
+    connect(nextStepSimulAction, SIGNAL(triggered(bool)), this, SLOT(nextStepSimulation()));
+
+    QMenu* simulationMenu = menuBar()->addMenu(tr("Simulation"));
+    QList<QAction*> simulationMenuActions({startSimulAction,stopSimulAction, nextStepSimulAction});
+    simulationMenu->addActions(simulationMenuActions);
 }
 
 void MainWindow::initContextMenu(){
@@ -473,4 +487,21 @@ void MainWindow::algo4(){
     m_algorithm.setGraph(m_graph);
     m_algorithm.processedThreeOfNodeByNode(node);
     update();
+}
+
+void MainWindow::startSimulation(){
+    m_simulation.setGraph(m_graph);
+}
+
+void MainWindow::stopSimulation(){
+    m_simulation.setGraph(nullptr);
+}
+
+void MainWindow::nextStepSimulation(){
+    if(m_simulation.getGraph()!=nullptr){
+        m_simulation.nextTurn();
+    }
+    else{
+        statusBar()->showMessage("You must start the simulation.", 3000);
+    }
 }

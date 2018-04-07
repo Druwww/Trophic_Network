@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     ../../utils/src/utils.cpp \
     editnodedialog.cpp \
     editedgedialog.cpp \
-    ../../algorithm/src/algorithm.cpp
+    ../../algorithm/src/algorithm.cpp \
+    ../../simulation/src/Simulation.cpp
 
 HEADERS  += mainwindow.h \
     gnode.h \
@@ -33,7 +34,8 @@ HEADERS  += mainwindow.h \
     ../../utils/include/utils.h \
     editnodedialog.h \
     editedgedialog.h \
-    ../../algorithm/include/algorithm.h
+    ../../algorithm/include/algorithm.h \
+    ../../simulation/include/Simulation.h
 
 FORMS    += mainwindow.ui
 
