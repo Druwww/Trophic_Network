@@ -5,6 +5,7 @@
 #include <QPixmap>
 #include <QLabel>
 #include <QPainter>
+#include <QList>
 
 #include "../../entities/graph/include/Node.h"
 #include "../../entities/data/include/NodeAttr.h"
@@ -16,6 +17,7 @@ struct GNode : public QWidget{
     NodeGuiAttr* m_gui;
 
     QPixmap* m_image;
+    QList<QColor> m_colors;
 
     GNode(Node* node, NodeGuiAttr* gui, QWidget* parent=0) : QWidget(parent){
         setMouseTracking(true);
@@ -26,6 +28,11 @@ struct GNode : public QWidget{
         m_attr->m_gui = m_gui;
 
         m_image = new QPixmap;
+        m_colors = {
+            Qt::darkGray, Qt::red, Qt::blue, Qt::magenta,
+            Qt::yellow, Qt::darkRed, Qt::darkGreen, Qt::darkBlue,
+            Qt::darkCyan, Qt::darkMagenta, Qt::darkYellow
+        };
 
         updateImage();
         updatePos();
@@ -42,6 +49,17 @@ struct GNode : public QWidget{
         painter.setPen(QPen(Qt::blue, 3, Qt::SolidLine, Qt::RoundCap));
         painter.drawText(m_gui->m_x, m_gui->m_y-margin, str);
         painter.drawPixmap(m_gui->m_x, m_gui->m_y, m_gui->m_width, m_gui->m_height, *m_image);
+
+        int group = m_node->getGroup();
+        if(group>0){
+            QColor color = group<m_colors.size()?m_colors[group]:Qt::black;
+            painter.setPen(QPen(color, 2, Qt::SolidLine, Qt::RoundCap));
+            painter.drawRect(m_gui->m_x, m_gui->m_y, m_gui->m_width, m_gui->m_height);
+        }
+        else if(m_node->isProcessed()){
+            painter.setPen(QPen(Qt::blue, 2, Qt::DotLine, Qt::RoundCap));
+            painter.drawRect(m_gui->m_x, m_gui->m_y, m_gui->m_width, m_gui->m_height);
+        }
     }
 
     void updateImage(){
