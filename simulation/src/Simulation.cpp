@@ -19,20 +19,29 @@ void Simulation::nextTurn(){
 }
 
 void Simulation::updateDataNode(data& d) const{
-    NodeAttr* attr = (NodeAttr*) d.first->getData();
-    attr->m_quantity = attr->m_quantity + attr->m_birthRate*attr->m_quantity;
     int a=0, b=0;
+
+    NodeAttr* attr = (NodeAttr*) d.first->getData();
+    if(attr==nullptr){
+        return;
+    }
+    
+    attr->m_quantity = attr->m_quantity + attr->m_birthRate*attr->m_quantity;
 
     for(auto& l : d.second.second){
         EdgeAttr* e_attr = (EdgeAttr*) l->getData();
         NodeAttr* n_attr = (NodeAttr*) l->getEndNode()->getData();
-        a += n_attr->m_quantity * e_attr->m_survivalRate;
+        if(e_attr!=nullptr && n_attr!=nullptr){
+            a += n_attr->m_quantity * e_attr->m_survivalRate;
+        }
     }
 
     for(auto& l : d.second.first){
         EdgeAttr* e_attr = (EdgeAttr*) l->getData();
         NodeAttr* n_attr = (NodeAttr*) l->getStartNode()->getData();
-        b += n_attr->m_quantity * e_attr->m_survivalRate;
+        if(e_attr!=nullptr && n_attr!=nullptr){
+            b += n_attr->m_quantity * e_attr->m_survivalRate;
+        }
     }
 
     attr->m_quantity += (a-b);
@@ -46,7 +55,7 @@ int Simulation::getTurn() const{
     return m_turn;
 }
 
-vois Simulation::setGraph(Graph* graph){
+void Simulation::setGraph(Graph* graph){
     m_graph = graph;
 }
 
