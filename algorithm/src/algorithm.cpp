@@ -39,7 +39,7 @@ void onCopyNodeData(void* data, void** copy){
 
 void onCopyEdgeData(void* data, void** copy){
     EdgeAttr* attr = (EdgeAttr*) data;
-    *copy = new EdgeAttr(*attr);
+    *copy = (attr==nullptr?nullptr:new EdgeAttr(*attr));
 }
 
 

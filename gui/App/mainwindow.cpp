@@ -13,7 +13,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     initMenuBar();
     initContextMenu();
 
-    openGraph();
+    std::ifstream file("../raws/v1.graph");
+    if(file){
+        m_graph->read(file);
+        update();
+        file.close();
+    }
 }
 
 MainWindow::~MainWindow()
@@ -537,7 +542,19 @@ void MainWindow::chartSimulation(){
                 q += attr->m_quantity;
             }
 
-            series->append(q, y++);
+            series->append(y++, q);
         }
+
+        QChart* chart = new QChart();
+        chart->legend()->hide();
+        chart->addSeries(series);
+        chart->createDefaultAxes();
+        chart->setTitle("Evolution Population");
+
+
+        QChartView* chartView = new QChartView(chart);
+        chartView->setRenderHint(QPainter::Antialiasing);
+        chartView->resize(700,600);
+        chartView->show();
     }
 }
