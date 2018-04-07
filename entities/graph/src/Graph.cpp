@@ -9,6 +9,33 @@ Graph::Graph(){
     m_deserializeEdgeData = nullptr;
 }
 
+Graph::Graph(const Graph& graph){
+    m_destroyNodeData = graph.m_destroyNodeData;
+    m_destroyEdgeData = graph.m_destroyEdgeData;
+    m_serializeNodeData = graph.m_serializeNodeData;
+    m_serializeEdgeData = graph.m_serializeEdgeData;
+    m_deserializeNodeData = graph.m_deserializeNodeData;
+    m_deserializeEdgeData = graph.m_deserializeEdgeData;
+
+    m_data.resize(graph.m_data.size());
+    for(unsigned int i=0 ; i<m_data.size() ; i++){
+        Node* node = new Node(*graph.m_data[i].first);
+        m_data[i].first = node;
+    }
+
+    for(unsigned int i=0 ; i<m_data.size() ; i++){
+        IO io = graph.m_data[i].second;
+        for(unsigned int j=0 ; j<io.first.size() ; j++){
+            Edge* edge = new Edge(*io.first[j]);
+            int startNodeIndex = getIndexByUid(edge->getStartNode()->getUid());
+            edge->setStartNode(m_data[startNodeIndex].first);
+            edge->setEndNode(m_data[i].first);
+            m_data[i].second.first.push_back(edge);
+            m_data[startNodeIndex].second.second.push_back(edge);
+        }
+    }
+}
+
 Graph::~Graph(){
     assert(m_destroyNodeData!=nullptr && m_destroyEdgeData!=nullptr);
 
@@ -197,6 +224,21 @@ void Graph::setOnDeserializeNodeData(void (*deserializeNodeData)(std::istream&, 
 
 void Graph::setOnDeserializeEdgeData(void (*deserializeEdgeData)(std::istream&, void**)){
     m_deserializeEdgeData = deserializeEdgeData;
+}
+
+void Graph::print() const{
+    for(unsigned int i=0 ; i<m_data.size() ; i++){
+        data d = m_data[i];
+        std::cout << d.first->getUid() << std::endl;
+        for(const auto& e : d.second.first){
+            std::cout << "\t<- " << e->getUid() << " ";
+            std::cout << e->getStartNode()->getUid() << std::endl;
+        }
+        for(const auto& e : d.second.second){
+            std::cout << "\t-> " << e->getUid() << " ";
+            std::cout << e->getEndNode()->getUid() << std::endl;
+        }
+    }
 }
 
 void Graph::write(std::ostream& os) const{

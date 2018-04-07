@@ -42,7 +42,7 @@ gui/build-App-Desktop-Release/*.h
 gui/build-App-Desktop-Release/*.cpp
 gui/build-App-Desktop-Release/App
 
-Makefile
-Documents/2017-2018-projet-graphes-ING2-sem2-trophic-networks.pdf
-
-main.cpp
+./Makefile
+Documents/
+test/
+test.bckp

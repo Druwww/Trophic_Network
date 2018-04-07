@@ -10,6 +10,16 @@ Edge::Edge(){
     m_data = nullptr;
 }
 
+Edge::Edge(const Edge& edge){
+    m_uid = edge.m_uid;
+    m_weight = edge.m_weight;
+    m_active = edge.m_active;
+    m_processed = edge.m_processed;
+    m_startNode = edge.m_startNode;
+    m_endNode = edge.m_endNode;
+    m_data = edge.m_data;
+}
+
 std::string Edge::getUid() const{
     return m_uid;
 }
