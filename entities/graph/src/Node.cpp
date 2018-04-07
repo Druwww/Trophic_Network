@@ -3,18 +3,21 @@
 Node::Node(){
     m_uid = genUid();
     m_processed = false;
+    m_group = -1;
     m_data = nullptr;
 }
 
 Node::Node(const std::string& uid){
     m_uid = uid;
     m_processed = false;
+    m_group = -1;
     m_data = nullptr;
 }
 
 Node::Node(const Node& node){
     m_uid = node.m_uid;
     m_processed = node.m_processed;
+    m_group = node.m_group;
     m_data = node.m_data;
 }
 

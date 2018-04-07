@@ -39,7 +39,10 @@
 gui/build-App-Desktop-Debug
 gui/build-App-Desktop-Release
 
-Makefile
+
+test/
+./test.bckp
+./Makefile
 Documents/2017-2018-projet-graphes-ING2-sem2-trophic-networks.pdf
 
 main.cpp
