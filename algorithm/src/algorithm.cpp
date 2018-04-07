@@ -236,7 +236,7 @@ int Algorithm::updateEdgesActive(Graph& graph){
 
     int nb_changement = 0;
 
-    clearAllMarck();
+    // clearAllMarck();
 
     for(int i = 0; i < graph.size(); i++){
         data d =graph.get(i);
@@ -254,7 +254,7 @@ int Algorithm::updateEdgesActive(Graph& graph){
 
     }
 
-    clearAllMarck();
+    // clearAllMarck();
 
     return nb_changement;
 }

@@ -46,6 +46,8 @@ struct GNode : public QWidget{
         int margin = 6;
         QString str = "Q = "+QString::number(m_attr->m_quantity)
                 + " | BR = "+QString::number(m_attr->m_birthRate);
+
+        painter.setOpacity(m_attr->m_quantity==0?0.2:1);
         painter.setPen(QPen(Qt::blue, 3, Qt::SolidLine, Qt::RoundCap));
         painter.drawText(m_gui->m_x, m_gui->m_y-margin, str);
         painter.drawPixmap(m_gui->m_x, m_gui->m_y, m_gui->m_width, m_gui->m_height, *m_image);

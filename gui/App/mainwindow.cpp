@@ -13,12 +13,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     initMenuBar();
     initContextMenu();
 
-    std::ifstream file("../raws/v1.graph");
-    if(file){
-        m_graph->read(file);
-        file.close();
-        update();
-    }
+    openGraph();
 }
 
 MainWindow::~MainWindow()
@@ -192,6 +187,7 @@ void MainWindow::editNode(){
         attr->m_quantity = dialog.getNodeQuantity();
         attr->m_birthRate = dialog.getNodeBirthRate();
 
+        m_algorithm.updateEdgesActive(*m_graph);
         update();
     }
 }
@@ -240,9 +236,12 @@ void MainWindow::paintEvent(QPaintEvent *event){
             NodeGuiAttr* sgui = sa->m_gui;
 
             // line
+            double weight = e->getWeight();
+            weight = weight>10?10:weight+1;
+            QColor color = e->isActive()?Qt::black:Qt::gray;
             QPointF pStart(sgui->m_x+sgui->m_width/2, sgui->m_y+sgui->m_height/2);
             QPointF pEnd(egui->m_x+egui->m_width/2, egui->m_y+egui->m_height/2);
-            painter.setPen(QPen(Qt::black, 3, Qt::DashLine, Qt::RoundCap));
+            painter.setPen(QPen(color, weight, Qt::DashLine, Qt::RoundCap));
             painter.drawLine(pStart, pEnd);
 
             // arrow
@@ -432,6 +431,8 @@ void MainWindow::openGraph(){
             m_gnodes.clear();
             m_graph->read(file);
             file.close();
+
+            m_algorithm.updateEdgesActive(*m_graph);
             update();
         }
         else{
@@ -502,7 +503,9 @@ void MainWindow::stopSimulation(){
 void MainWindow::nextStepSimulation(){
     if(m_simulation.getGraph()!=nullptr){
         m_simulation.nextTurn();
+        m_algorithm.updateEdgesActive(*m_graph);
         statusBar()->showMessage("Step "+QString::number(m_simulation.getTurn()));
+        update();
     }
     else{
         statusBar()->showMessage("You must start the simulation.", 3000);
