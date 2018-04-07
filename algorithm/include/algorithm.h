@@ -12,8 +12,8 @@ void onSerializeNode(std::ostream& os, void* data);
 void onSerializeEdge(std::ostream& os, void* data);
 void onDeserializeNode(std::istream& is, void** data);
 void onDeserializeEdge(std::istream& is, void** data);
-
-
+void onCopyNodeData(void* data, void** copy);
+void onCopyEdgeData(void* data, void** copy);
 
 struct Algorithm{
 

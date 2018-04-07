@@ -13,12 +13,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     initMenuBar();
     initContextMenu();
 
-    std::ifstream file("../raws/v1.graph");
-    if(file){
-        m_graph->read(file);
-        update();
-        file.close();
-    }
+    openGraph();
 }
 
 MainWindow::~MainWindow()
@@ -135,6 +130,8 @@ void MainWindow::initGraph(){
     m_graph->setOnSerializeEdgeData(onSerializeEdge);
     m_graph->setOnDeserializeNodeData(onDeserializeNode);
     m_graph->setOnDeserializeEdgeData(onDeserializeEdge);
+    m_graph->setOnCopyNodeData(onCopyNodeData);
+    m_graph->setOnCopyEdgeData(onCopyEdgeData);
 }
 
 void MainWindow::initVar(){
@@ -525,8 +522,8 @@ void MainWindow::chartSimulation(){
     bool ok = false;
     int epochs = QInputDialog::getInt(this, "Fast forward simulation", "Epochs :", 10, 5, 1000, 1, &ok);
     if(ok){
-        Graph* cp = new Graph(*m_graph);
-        m_simulation.setGraph(cp);
+        Graph cp(*m_graph);
+        m_simulation.setGraph(&cp);
         m_simulation.setTurn(0);
 
         int y = 0;
@@ -535,26 +532,12 @@ void MainWindow::chartSimulation(){
         while(m_simulation.getTurn()<epochs){
             m_simulation.nextTurn();
             int q = 0;
-            for(unsigned int i=0 ; i<cp->size() ; i++){
-                NodeAttr* attr = (NodeAttr*) cp->get(i).first->getData();
+            for(unsigned int i=0 ; i<cp.size() ; i++){
+                NodeAttr* attr = (NodeAttr*) cp.get(i).first->getData();
                 q += attr->m_quantity;
             }
 
-            series->append(y++, q);
+            series->append(q, y++);
         }
-
-        QChart* chart = new QChart();
-        chart->legend()->hide();
-        chart->addSeries(series);
-        chart->createDefaultAxes();
-        chart->setTitle("Evolution Population");
-
-
-        QChartView* chartView = new QChartView(chart);
-        chartView->setRenderHint(QPainter::Antialiasing);
-        chartView->resize(700,600);
-        chartView->show();
-
-        delete cp;
     }
 }

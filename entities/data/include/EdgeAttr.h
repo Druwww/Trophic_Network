@@ -13,6 +13,11 @@ struct EdgeAttr {
         m_importance = importance;
     }
 
+    EdgeAttr(const EdgeAttr& attr){
+        m_survivalRate = attr.m_survivalRate;
+        m_importance = attr.m_importance;
+    }
+
     void write(std::ostream& os) const{
         os << m_survivalRate << " ";
         os << m_importance;

@@ -22,6 +22,8 @@ class Graph{
         void (*m_serializeEdgeData)(std::ostream&, void*);
         void (*m_deserializeNodeData)(std::istream&, void**);
         void (*m_deserializeEdgeData)(std::istream&, void**);
+        void (*m_copyNodeData)(void*, void**);
+        void (*m_copyEdgeData)(void*, void**);
 
         void subtract(std::vector<Edge*>& v1, const std::vector<Edge*>& v2);
 
@@ -53,6 +55,8 @@ class Graph{
         void setOnSerializeEdgeData(void (*serializeEdgeData)(std::ostream&, void*));
         void setOnDeserializeNodeData(void (*deserializeNodeData)(std::istream&, void**));
         void setOnDeserializeEdgeData(void (*deserializeEdgeData)(std::istream&, void**));
+        void setOnCopyNodeData(void (*copyNodeData)(void*, void**));
+        void setOnCopyEdgeData(void (*copyEdgeData)(void*, void**));
 
         void print() const;
         void write(std::ostream& os) const;

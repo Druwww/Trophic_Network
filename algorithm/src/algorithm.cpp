@@ -32,6 +32,16 @@ void onDeserializeEdge(std::istream& is, void** data){
     *data = attr;
 }
 
+void onCopyNodeData(void* data, void** copy){
+    NodeAttr* attr = (NodeAttr*) data;
+    *copy = new NodeAttr(*attr);
+}
+
+void onCopyEdgeData(void* data, void** copy){
+    EdgeAttr* attr = (EdgeAttr*) data;
+    *copy = new EdgeAttr(*attr);
+}
+
 
 Algorithm::Algorithm(){
     m_graph = nullptr;
@@ -509,19 +519,6 @@ void Algorithm::algoForteConnexity(Graph& graphData){
     ////////////////////Changer le constructeur
     Graph graph1(graphData);
     Graph graph2(graphData);
-
-    graph1.setOnDestroyNodeData(onDeleteNode);
-    graph1.setOnDestroyEdgeData(onDeleteEdge);
-    graph1.setOnSerializeNodeData(onSerializeNode);
-    graph1.setOnSerializeEdgeData(onSerializeEdge);
-    graph1.setOnDeserializeNodeData(onDeserializeNode);
-    graph1.setOnDeserializeEdgeData(onDeserializeEdge);
-    graph2.setOnDestroyNodeData(onDeleteNode);
-    graph2.setOnDestroyEdgeData(onDeleteEdge);
-    graph2.setOnSerializeNodeData(onSerializeNode);
-    graph2.setOnSerializeEdgeData(onSerializeEdge);
-    graph2.setOnDeserializeNodeData(onDeserializeNode);
-    graph2.setOnDeserializeEdgeData(onDeserializeEdge);
     /////////////////////
 
     int numeroGroupe = 0;
@@ -583,14 +580,6 @@ bool Algorithm::testCombinaisonKEdgeminConnexity(std::vector<int> vectest){
 
     //////////////////Changer constr
     Graph graphTest(*m_graph);
-
-    graphTest.setOnDestroyNodeData(onDeleteNode);
-    graphTest.setOnDestroyEdgeData(onDeleteEdge);
-    graphTest.setOnSerializeNodeData(onSerializeNode);
-    graphTest.setOnSerializeEdgeData(onSerializeEdge);
-    graphTest.setOnDeserializeNodeData(onDeserializeNode);
-    graphTest.setOnDeserializeEdgeData(onDeserializeEdge);
-
 
     algoForteConnexity(graphTest);
 

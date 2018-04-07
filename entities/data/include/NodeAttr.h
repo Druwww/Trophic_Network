@@ -15,6 +15,12 @@ struct NodeAttr {
         m_gui = nullptr;
     }
 
+    NodeAttr(const NodeAttr& attr){
+        m_quantity = attr.m_quantity;
+        m_birthRate = attr.m_birthRate;
+        m_gui = new NodeGuiAttr(*attr.m_gui);
+    }
+
     void write(std::ostream& os) const{
         os << m_quantity << " ";
         os << m_birthRate << " ";

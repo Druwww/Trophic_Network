@@ -18,6 +18,14 @@ struct NodeGuiAttr{
         m_y = 0;
     }
 
+    NodeGuiAttr(const NodeGuiAttr& attr){
+        m_imageFilepath = attr.m_imageFilepath;
+        m_width = attr.m_width;
+        m_height = attr.m_height;
+        m_x = attr.m_x;
+        m_y = attr.m_y;
+    }
+
     void write(std::ostream& os) const{
         os << m_imageFilepath << " ";
         os << m_width << " " << m_height << " ";
@@ -32,4 +40,3 @@ struct NodeGuiAttr{
 };
 
 #endif // NODEGUIATTR
-

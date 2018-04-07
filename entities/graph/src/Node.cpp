@@ -14,11 +14,11 @@ Node::Node(const std::string& uid){
     m_data = nullptr;
 }
 
-Node::Node(const Node& node){
+Node::Node(const Node& node, void (*copyNodeDataListener)(void*, void**)){
     m_uid = node.m_uid;
     m_processed = node.m_processed;
     m_group = node.m_group;
-    m_data = node.m_data;
+    (*copyNodeDataListener)(node.m_data, &m_data);
 }
 
 std::string Node::getUid() const{

@@ -7,6 +7,8 @@ Graph::Graph(){
     m_serializeEdgeData = nullptr;
     m_deserializeNodeData = nullptr;
     m_deserializeEdgeData = nullptr;
+    m_copyNodeData = nullptr;
+    m_copyEdgeData = nullptr;
 }
 
 Graph::Graph(const Graph& graph){
@@ -16,17 +18,19 @@ Graph::Graph(const Graph& graph){
     m_serializeEdgeData = graph.m_serializeEdgeData;
     m_deserializeNodeData = graph.m_deserializeNodeData;
     m_deserializeEdgeData = graph.m_deserializeEdgeData;
+    m_copyNodeData = graph.m_copyNodeData;
+    m_copyEdgeData = graph.m_copyEdgeData;
 
     m_data.resize(graph.m_data.size());
     for(unsigned int i=0 ; i<m_data.size() ; i++){
-        Node* node = new Node(*graph.m_data[i].first);
+        Node* node = new Node(*graph.m_data[i].first, m_copyNodeData);
         m_data[i].first = node;
     }
 
     for(unsigned int i=0 ; i<m_data.size() ; i++){
         IO io = graph.m_data[i].second;
         for(unsigned int j=0 ; j<io.first.size() ; j++){
-            Edge* edge = new Edge(*io.first[j]);
+            Edge* edge = new Edge(*io.first[j], m_copyEdgeData);
             int startNodeIndex = getIndexByUid(edge->getStartNode()->getUid());
             edge->setStartNode(m_data[startNodeIndex].first);
             edge->setEndNode(m_data[i].first);
@@ -259,6 +263,14 @@ void Graph::setOnDeserializeNodeData(void (*deserializeNodeData)(std::istream&, 
 
 void Graph::setOnDeserializeEdgeData(void (*deserializeEdgeData)(std::istream&, void**)){
     m_deserializeEdgeData = deserializeEdgeData;
+}
+
+void Graph::setOnCopyNodeData(void (*copyNodeData)(void*, void**)){
+    m_copyNodeData = copyNodeData;
+}
+
+void Graph::setOnCopyEdgeData(void (*copyEdgeData)(void*, void**)){
+    m_copyEdgeData = copyEdgeData;
 }
 
 void Graph::print() const{

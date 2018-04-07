@@ -15,7 +15,7 @@ class Node{
     public:
         Node();
         Node(const std::string& uid);
-        Node(const Node& node);
+        Node(const Node& node, void (*copyNodeDataListener)(void*, void**));
 
         std::string getUid() const;
         bool isProcessed() const;
