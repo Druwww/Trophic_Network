@@ -15,7 +15,6 @@
 
 #include "gnode.h"
 #include "nodeguiattr.h"
-#include "graphhelper.h"
 #include "editnodedialog.h"
 #include "editedgedialog.h"
 
