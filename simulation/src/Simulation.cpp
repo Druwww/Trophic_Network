@@ -45,6 +45,10 @@ void Simulation::updateDataNode(data& d) const{
     }
 
     attr->m_quantity += (a-b);
+
+    if(attr->m_quantity<0){
+        attr->m_quantity = 0;
+    }
 }
 
 Graph* Simulation::getGraph() const{
