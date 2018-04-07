@@ -37,8 +37,8 @@
 *.depend
 
 gui/App/App.pro.user
-gui/build-App-Desktop-Debug
-gui/build-App-Desktop-Release
+gui/build-App-Desktop-Debug/
+gui/build-App-Desktop-Release/
 
 Documents/
 test/
