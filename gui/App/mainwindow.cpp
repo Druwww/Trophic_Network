@@ -29,8 +29,11 @@ MainWindow::~MainWindow()
 
 void MainWindow::initMenuBar(){
     QAction* openGraph = new QAction("Open Graph", this);
-    QAction* saveGraph = new QAction("Save Graph", this);
+    openGraph->setShortcuts(QKeySequence::Open);
     connect(openGraph, SIGNAL(triggered(bool)), this, SLOT(openGraph()));
+
+    QAction* saveGraph = new QAction("Save Graph", this);
+    saveGraph->setShortcuts(QKeySequence::Save);
     connect(saveGraph, SIGNAL(triggered(bool)), this, SLOT(saveGraph()));
 
     QMenu* fileMenu = menuBar()->addMenu(tr("File"));
@@ -339,6 +342,7 @@ Edge* MainWindow::edgeAt(const QPoint& pos){
             QPointF pEnd(egui->m_x+egui->m_width/2, egui->m_y+egui->m_height/2);
 
             // check if pos lies between pStart and pEnd
+
         }
 
     }
