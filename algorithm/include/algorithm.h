@@ -3,8 +3,16 @@
 
 #include "../../entities/graph/include/Graph.h"
 #include "../../entities/data/include/NodeAttr.h"
-#include "../../entities/data/include/NodeAttr.h"
+#include "../../entities/data/include/EdgeAttr.h"
 #include <math.h>
+
+void onDeleteNode(void* data);
+void onDeleteEdge(void* data);
+void onSerializeNode(std::ostream& os, void* data);
+void onSerializeEdge(std::ostream& os, void* data);
+void onDeserializeNode(std::istream& is, void** data);
+void onDeserializeEdge(std::istream& is, void** data);
+
 
 
 struct Algorithm{
@@ -145,6 +153,8 @@ struct Algorithm{
 
         //put the group number to node who are in the new group
         void emptyConnexity(int numero, Graph& graph1, Graph& graph2, Graph& graphData);
+
+        int testStillConnexe0(Graph& graph);
 
         //algo who put the number of strong connexity in all nodes
         void algoForteConnexity(Graph& graphData);
