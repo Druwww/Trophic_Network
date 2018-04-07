@@ -43,7 +43,8 @@ gui/build-App-Desktop-Release/*.h
 gui/build-App-Desktop-Release/*.cpp
 gui/build-App-Desktop-Release/App
 
-./Makefile
-Documents/
+
+Document/
 test/
+./Makefile
 test.bckp

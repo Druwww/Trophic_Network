@@ -9,7 +9,7 @@ class Node{
     private:
         std::string m_uid;
         bool m_processed;
-
+        int m_group;
         void* m_data;
 
     public:
@@ -19,9 +19,11 @@ class Node{
 
         std::string getUid() const;
         bool isProcessed() const;
+        int getGroup() const;
         void* getData() const;
 
         void setProcessed(const bool& processed);
+        void setGroup(const int& group);
         void setData(void* data);
 
         void write(std::ostream& os) const;

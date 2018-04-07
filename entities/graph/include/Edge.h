@@ -18,6 +18,7 @@ class Edge{
 
     public:
         Edge();
+        Edge(const Edge& edge);
 
         std::string getUid() const;
         float getWeight() const;
