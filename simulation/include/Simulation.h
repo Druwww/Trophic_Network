@@ -5,44 +5,23 @@
 #include "../../entities/data/include/NodeAttr.h"
 #include "../../entities/data/include/EdgeAttr.h"
 
-
 class Simulation {
-private:
+    private:
+        Graph* m_graph;
+        int m_turn;
 
-    Graph* m_graph;
+    public:
+        Simulation();
+        Simulation(Graph* graph);
 
-    int m_turn;
+        void nextTurn();
+        void updateDataNode(data& d) const;
 
-    std::vector<int> m_vecIndexOrdre;
+        Graph* getGraph() const;
+        int getTurn() const;
 
-public:
-    Simulation ();
-    Simulation(Graph* graph);
-
-    virtual ~Simulation ();
-
-    ///getter setter init
-    Graph* getGraph() const {return m_graph;}
-    void setGraph(Graph* val){m_graph = val;}
-
-    int getTurn() const {return m_turn;}
-    void setTurn(int val){m_turn = val;}
-
-    // Preparation function
-    int numberDegreEatNode(Node* node);
-
-    template <typename T>
-    void clearVecteur(std::vector<T>& vec);
-
-    void generateVecIndexOrdre();
-
-    void nextYearNode(Node* nodeUpdate);
-
-    void nextYearNodes();
-
-
-
+        vois setGraph(Graph* graph);
+        void setTurn(int turn);
 };
-
 
 #endif
