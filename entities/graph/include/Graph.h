@@ -27,6 +27,7 @@ class Graph{
 
     public:
         Graph();
+        Graph(const Graph& graph);
         ~Graph();
 
         int size() const;
@@ -52,6 +53,7 @@ class Graph{
         void setOnDeserializeNodeData(void (*deserializeNodeData)(std::istream&, void**));
         void setOnDeserializeEdgeData(void (*deserializeEdgeData)(std::istream&, void**));
 
+        void print() const;
         void write(std::ostream& os) const;
         void read(std::istream& is);
 };
