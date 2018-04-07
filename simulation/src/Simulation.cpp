@@ -11,7 +11,7 @@ Simulation::Simulation(Graph* graph){
 }
 
 void Simulation::nextTurn(){
-    for(unsigned int i=0 ; i<m_graph->size() ; i++)⁾{
+    for(unsigned int i=0 ; i<m_graph->size() ; i++){
         data d = m_graph->get(i);
         updateDataNode(d);
     }
@@ -25,7 +25,7 @@ void Simulation::updateDataNode(data& d) const{
     if(attr==nullptr){
         return;
     }
-    
+
     attr->m_quantity = attr->m_quantity + attr->m_birthRate*attr->m_quantity;
 
     for(auto& l : d.second.second){
