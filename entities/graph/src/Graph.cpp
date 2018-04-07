@@ -162,6 +162,41 @@ bool Graph::removeNode(const std::string& uid){
     return true;
 }
 
+bool Graph::removeEdge(Edge* edge){
+    Node* start = edge->getStartNode();
+    Node* end = edge->getEndNode();
+    int startIndex = getIndexByUid(start->getUid());
+    int endIndex = getIndexByUid(end->getUid());
+
+    if(startIndex==-1 || endIndex==-1){
+        return false;
+    }
+
+    int c = 0;
+
+    for(unsigned int i=0 ; i<m_data[startIndex].second.second.size() ; i++){
+        if(m_data[startIndex].second.second[i]->getUid()==edge->getUid()){
+            m_data[startIndex].second.second.erase(
+                m_data[startIndex].second.second.begin() + i
+            );
+            c++;
+            break;
+        }
+    }
+
+    for(unsigned int i=0 ; i<m_data[endIndex].second.first.size() ; i++){
+        if(m_data[endIndex].second.first[i]->getUid()==edge->getUid()){
+            m_data[endIndex].second.first.erase(
+                m_data[endIndex].second.first.begin() + i
+            );
+            c++;
+            break;
+        }
+    }
+
+    return c==2;
+}
+
 bool Graph::hasNode(Node* node) const{
     for(const auto& p : m_data){
         if(p.first->getUid()==node->getUid()){
