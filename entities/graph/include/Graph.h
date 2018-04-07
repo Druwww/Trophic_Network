@@ -45,6 +45,7 @@ class Graph{
         int addNode(Node* node);
         bool removeNode(Node* node);
         bool removeNode(const std::string& uid);
+        bool removeEdge(Edge* edge);
 
         void setOnDestroyNodeData(void (*destroyNodeData)(void*));
         void setOnDestroyEdgeData(void (*destroyEdgeData)(void*));

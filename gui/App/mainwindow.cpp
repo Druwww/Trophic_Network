@@ -164,8 +164,12 @@ void MainWindow::removeEdge(){
     QAction* action = qobject_cast<QAction *>(sender());
     QVariant variant = action->data();
     Edge* edge = (Edge*) variant.value<void *>();
-
-    // remove edge
+    if(!m_graph->removeEdge(edge)){
+        statusBar()->showMessage("Oups! Could not remove edge...");
+    }
+    else{
+        update();
+    }
 }
 
 void MainWindow::editEdge(){
@@ -368,8 +372,7 @@ Edge* MainWindow::edgeAt(const QPoint& pos){
                      + sqrt(pow(pos.x()-pEnd.x(), 2) + pow(pos.y()-pEnd.y(), 2));
 
             double diff = qAbs(length-length2);
-
-            if(diff<2){
+            if(diff<0.5){
                 return e;
             }
         }

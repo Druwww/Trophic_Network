@@ -65,6 +65,7 @@ class MainWindow : public QMainWindow
         void addNode();
         void removeNode();
         void editNode();
+        void removeEdge();
         void editEdge();
         void openGraph();
         void saveGraph();
