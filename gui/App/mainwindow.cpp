@@ -342,7 +342,15 @@ Edge* MainWindow::edgeAt(const QPoint& pos){
             QPointF pEnd(egui->m_x+egui->m_width/2, egui->m_y+egui->m_height/2);
 
             // check if pos lies between pStart and pEnd
+//            double length = (pStart-pEnd).manhattanLength();
+//            double length2 = (pStart-pos).manhattanLength() + (pEnd-pos).manhattanLength();
+//            double diff = qAbs(length-length2);
 
+//            std::cout << length << " : " << length2 << std::endl;
+
+//            if(diff<2){
+//                return e;
+//            }
         }
 
     }
