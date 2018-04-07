@@ -61,8 +61,11 @@ void MainWindow::initMenuBar(){
     QAction* nextStepSimulAction = new QAction("Next Step", this);
     connect(nextStepSimulAction, SIGNAL(triggered(bool)), this, SLOT(nextStepSimulation()));
 
+    QAction* chartSimulAction = new QAction("Chart", this);
+    connect(chartSimulAction, SIGNAL(triggered(bool)), this, SLOT(chartSimulation()));
+
     QMenu* simulationMenu = menuBar()->addMenu(tr("Simulation"));
-    QList<QAction*> simulationMenuActions({startSimulAction,stopSimulAction, nextStepSimulAction});
+    QList<QAction*> simulationMenuActions({startSimulAction,stopSimulAction, nextStepSimulAction, chartSimulAction});
     simulationMenu->addActions(simulationMenuActions);
 }
 
@@ -497,6 +500,7 @@ void MainWindow::startSimulation(){
 
 void MainWindow::stopSimulation(){
     m_simulation.setGraph(nullptr);
+    m_simulation.setTurn(0);
     statusBar()->clearMessage();
 }
 
@@ -509,5 +513,29 @@ void MainWindow::nextStepSimulation(){
     }
     else{
         statusBar()->showMessage("You must start the simulation.", 3000);
+    }
+}
+
+void MainWindow::chartSimulation(){
+    bool ok = false;
+    int epochs = QInputDialog::getInt(this, "Fast forward simulation", "Epochs :", 10, 5, 1000, 1, &ok);
+    if(ok){
+        Graph cp(*m_graph);
+        m_simulation.setGraph(&cp);
+        m_simulation.setTurn(0);
+
+        int y = 0;
+        QLineSeries *series = new QLineSeries();
+
+        while(m_simulation.getTurn()<epochs){
+            m_simulation.nextTurn();
+            int q = 0;
+            for(unsigned int i=0 ; i<cp.size() ; i++){
+                NodeAttr* attr = (NodeAttr*) cp.get(i).first->getData();
+                q += attr->m_quantity;
+            }
+
+            series->append(q, y++);
+        }
     }
 }

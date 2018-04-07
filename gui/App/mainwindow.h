@@ -11,6 +11,9 @@
 #include <QMessageBox>
 #include <QInputDialog>
 
+#include <QtCharts/QChartView>
+#include <QtCharts/QLineSeries>
+
 #include <fstream>
 
 #include "gnode.h"
@@ -75,6 +78,7 @@ class MainWindow : public QMainWindow
         void startSimulation();
         void stopSimulation();
         void nextStepSimulation();
+        void chartSimulation();
 
         void addNode();
         void removeNode();
