@@ -28,14 +28,47 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::initMenuBar(){
+    // File menu
     QAction* openGraph = new QAction("Open Graph", this);
-    QAction* saveGraph = new QAction("Save Graph", this);
+    openGraph->setShortcuts(QKeySequence::Open);
     connect(openGraph, SIGNAL(triggered(bool)), this, SLOT(openGraph()));
+
+    QAction* saveGraph = new QAction("Save Graph", this);
+    saveGraph->setShortcuts(QKeySequence::Save);
     connect(saveGraph, SIGNAL(triggered(bool)), this, SLOT(saveGraph()));
 
     QMenu* fileMenu = menuBar()->addMenu(tr("File"));
-    QList<QAction*> actions({openGraph, saveGraph});
-    fileMenu->addActions(actions);
+    QList<QAction*> fileMenuActions({openGraph, saveGraph});
+    fileMenu->addActions(fileMenuActions);
+
+
+    // Algorithm menu
+    QAction* algo1 = new QAction("Forte Connexite", this);
+    connect(algo1, SIGNAL(triggered(bool)), this, SLOT(algo1()));
+
+    QAction* algo2 = new QAction("K Min Sommet Connexite", this);
+    connect(algo2, SIGNAL(triggered(bool)), this, SLOT(algo2()));
+
+    QAction* algo3 = new QAction("K Min Arrete Connexite", this);
+    connect(algo3, SIGNAL(triggered(bool)), this, SLOT(algo3()));
+
+    QMenu* algoMenu = menuBar()->addMenu(tr("Algorithms"));
+    QList<QAction*> algoMenuActions({algo1, algo2, algo3});
+    algoMenu->addActions(algoMenuActions);
+
+    // Algorithm menu
+    QAction* startSimulAction = new QAction("Start", this);
+    connect(startSimulAction, SIGNAL(triggered(bool)), this, SLOT(startSimulation()));
+
+    QAction* stopSimulAction = new QAction("Stop", this);
+    connect(stopSimulAction, SIGNAL(triggered(bool)), this, SLOT(stopSimulation()));
+
+    QAction* nextStepSimulAction = new QAction("Next Step", this);
+    connect(nextStepSimulAction, SIGNAL(triggered(bool)), this, SLOT(nextStepSimulation()));
+
+    QMenu* simulationMenu = menuBar()->addMenu(tr("Simulation"));
+    QList<QAction*> simulationMenuActions({startSimulAction,stopSimulAction, nextStepSimulAction});
+    simulationMenu->addActions(simulationMenuActions);
 }
 
 void MainWindow::initContextMenu(){
@@ -62,6 +95,11 @@ void MainWindow::showContextMenu(const QPoint& pos){
             editEdgeAction->setData(var);
             connect(editEdgeAction, SIGNAL(triggered()), this, SLOT(editEdge()));
             contextMenu.addAction(editEdgeAction);
+
+            QAction* removeEdgeAction = new QAction("Remove Edge", this);
+            removeEdgeAction->setData(var);
+            connect(removeEdgeAction, SIGNAL(triggered()), this, SLOT(removeEdge()));
+            contextMenu.addAction(removeEdgeAction);
         }
     }
     else{
@@ -76,6 +114,11 @@ void MainWindow::showContextMenu(const QPoint& pos){
         editAction->setData(var);
         connect(editAction, SIGNAL(triggered()), this, SLOT(editNode()));
         contextMenu.addAction(editAction);
+
+        QAction* algoAction = new QAction("Influence", this);
+        algoAction->setData(var);
+        connect(algoAction, SIGNAL(triggered()), this, SLOT(algo4()));
+        contextMenu.addAction(algoAction);
     }
 
     contextMenu.exec(mapToGlobal(pos));
@@ -119,6 +162,7 @@ void MainWindow::removeNode(){
     QVariant variant = action->data();
     GNode *gnode = (GNode*) variant.value<void *>();
     Node* node = gnode->m_node;
+
     for(unsigned int i=0 ; i<m_gnodes.size() ; i++){
         if(m_gnodes[i]->m_node->getUid()==node->getUid()){
             delete m_gnodes[i];
@@ -152,12 +196,31 @@ void MainWindow::editNode(){
     }
 }
 
+void MainWindow::removeEdge(){
+    QAction* action = qobject_cast<QAction *>(sender());
+    QVariant variant = action->data();
+    Edge* edge = (Edge*) variant.value<void *>();
+    if(!m_graph->removeEdge(edge)){
+        statusBar()->showMessage("Oups! Could not remove edge...");
+    }
+    else{
+        update();
+    }
+}
+
 void MainWindow::editEdge(){
     QAction* action = qobject_cast<QAction *>(sender());
     QVariant variant = action->data();
     Edge* edge = (Edge*) variant.value<void *>();
 
-    // edit edge
+    EditEdgeDialog dialog(edge);
+    if(dialog.exec() == QDialog::Accepted){
+        EdgeAttr* attr = (EdgeAttr*) edge->getData();
+        edge->setWeight(dialog.getEdgeWeight());
+        attr->m_importance = dialog.getEdgeImportance();
+        attr->m_survivalRate = dialog.getEdgeSurvivalRate();
+        update();
+    }
 }
 
 void MainWindow::paintEvent(QPaintEvent *event){
@@ -195,12 +258,14 @@ void MainWindow::paintEvent(QPaintEvent *event){
 
             // data
             EdgeAttr* e_attr = (EdgeAttr*) e->getData();
+            QString str = "W = " + QString::number(e->getWeight());
             if(e_attr!=nullptr){
-                QString str = "I = " + QString::number(e_attr->m_importance)
-                        + " | SR = " + QString::number(e_attr->m_survivalRate);
-                painter.setPen(QPen(Qt::magenta, 3, Qt::SolidLine, Qt::RoundCap));
-                painter.drawText(pMiddle+20*V, str);
+                    str +=
+                        " | I = " + QString::number(e_attr->m_importance) +
+                        " | SR = " + QString::number(e_attr->m_survivalRate);
             }
+            painter.setPen(QPen(Qt::magenta, 3, Qt::SolidLine, Qt::RoundCap));
+            painter.drawText(pMiddle+20*V, str);
         }
     }
 
@@ -339,6 +404,14 @@ Edge* MainWindow::edgeAt(const QPoint& pos){
             QPointF pEnd(egui->m_x+egui->m_width/2, egui->m_y+egui->m_height/2);
 
             // check if pos lies between pStart and pEnd
+            double length = sqrt(pow(pStart.x()-pEnd.x(), 2) + pow(pStart.y()-pEnd.y(), 2));
+            double length2 = sqrt(pow(pStart.x()-pos.x(), 2) + pow(pStart.y()-pos.y(), 2))
+                     + sqrt(pow(pos.x()-pEnd.x(), 2) + pow(pos.y()-pEnd.y(), 2));
+
+            double diff = qAbs(length-length2);
+            if(diff<0.5){
+                return e;
+            }
         }
 
     }
@@ -385,5 +458,51 @@ void MainWindow::saveGraph(){
         else{
             QMessageBox::critical(this, "Error !", "Could not save file to : "+fileName);
         }
+    }
+}
+
+
+void MainWindow::algo1(){
+    m_algorithm.algoForteConnexity(*m_graph);
+    update();
+}
+
+void MainWindow::algo2(){
+    m_algorithm.setGraph(m_graph);
+    m_algorithm.findKminConnexity();
+    update();
+}
+
+void MainWindow::algo3(){
+    m_algorithm.setGraph(m_graph);
+    m_algorithm.findKEdgeminConnexity();
+    update();
+}
+
+void MainWindow::algo4(){
+    QAction *action = qobject_cast<QAction *>(sender());
+    QVariant variant = action->data();
+    GNode *gnode = (GNode*) variant.value<void *>();
+    Node* node = gnode->m_node;
+    m_algorithm.setGraph(m_graph);
+    m_algorithm.processedThreeOfNodeByNode(node);
+    update();
+}
+
+void MainWindow::startSimulation(){
+    m_simulation.setGraph(m_graph);
+}
+
+void MainWindow::stopSimulation(){
+    m_simulation.setGraph(nullptr);
+}
+
+void MainWindow::nextStepSimulation(){
+    if(m_simulation.getGraph()!=nullptr){
+        m_simulation.nextTurn();
+        update();
+    }
+    else{
+        statusBar()->showMessage("You must start the simulation.", 3000);
     }
 }

@@ -15,9 +15,12 @@
 
 #include "gnode.h"
 #include "nodeguiattr.h"
-#include "graphhelper.h"
 #include "editnodedialog.h"
+#include "editedgedialog.h"
+
+#include "../../algorithm/include/algorithm.h"
 #include "../../entities/graph/include/Graph.h"
+#include "../../simulation/include/Simulation.h"
 
 namespace Ui {
 class MainWindow;
@@ -55,15 +58,28 @@ class MainWindow : public QMainWindow
         GNode* gnodeAt(const QPoint& pos);
         Edge* edgeAt(const QPoint& pos);
 
+        Algorithm m_algorithm;
+        Simulation m_simulation;
+
         void initMenuBar();
         void initContextMenu();
         void initGraph();
         void initVar();
 
     private slots:
+        void algo1();
+        void algo2();
+        void algo3();
+        void algo4();
+
+        void startSimulation();
+        void stopSimulation();
+        void nextStepSimulation();
+
         void addNode();
         void removeNode();
         void editNode();
+        void removeEdge();
         void editEdge();
         void openGraph();
         void saveGraph();
