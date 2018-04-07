@@ -5,29 +5,23 @@
 #include "../../entities/data/include/NodeAttr.h"
 #include "../../entities/data/include/EdgeAttr.h"
 
-
 class Simulation {
-private:
+    private:
+        Graph* m_graph;
+        int m_turn;
 
-    Graph* m_graph;
+    public:
+        Simulation();
+        Simulation(Graph* graph);
 
-    int m_turn;
+        void nextTurn();
+        void updateDataNode(data& d) const;
 
-public:
-    Simulation ();
-    Simulation(Graph* graph);
+        Graph* getGraph() const;
+        int getTurn() const;
 
-    virtual ~Simulation ();
-
-    ///getter setter init
-    Graph* getGraph() const {return m_graph;}
-    vois setGraph(Graph* val){m_graph = val;}
-
-    int getTurn() const {return m_turn;}
-    void setTurn(int val){m_turn = val;}
-
-
+        vois setGraph(Graph* graph);
+        void setTurn(int turn);
 };
-
 
 #endif
