@@ -160,7 +160,14 @@ void MainWindow::editEdge(){
     QVariant variant = action->data();
     Edge* edge = (Edge*) variant.value<void *>();
 
-    // edit edge
+    EditEdgeDialog dialog(edge);
+    if(dialog.exec() == QDialog::Accepted){
+        EdgeAttr* attr = (EdgeAttr*) edge->getData();
+        edge->setWeight(dialog.getEdgeWeight());
+        attr->m_importance = dialog.getEdgeImportance();
+        attr->m_survivalRate = dialog.getEdgeSurvivalRate();
+        update();
+    }
 }
 
 void MainWindow::paintEvent(QPaintEvent *event){
@@ -199,7 +206,8 @@ void MainWindow::paintEvent(QPaintEvent *event){
             // data
             EdgeAttr* e_attr = (EdgeAttr*) e->getData();
             if(e_attr!=nullptr){
-                QString str = "I = " + QString::number(e_attr->m_importance)
+                QString str = "W = " + QString::number(e->getWeight())
+                        + " | I = " + QString::number(e_attr->m_importance)
                         + " | SR = " + QString::number(e_attr->m_survivalRate);
                 painter.setPen(QPen(Qt::magenta, 3, Qt::SolidLine, Qt::RoundCap));
                 painter.drawText(pMiddle+20*V, str);
@@ -342,15 +350,15 @@ Edge* MainWindow::edgeAt(const QPoint& pos){
             QPointF pEnd(egui->m_x+egui->m_width/2, egui->m_y+egui->m_height/2);
 
             // check if pos lies between pStart and pEnd
-//            double length = (pStart-pEnd).manhattanLength();
-//            double length2 = (pStart-pos).manhattanLength() + (pEnd-pos).manhattanLength();
-//            double diff = qAbs(length-length2);
+            double length = sqrt(pow(pStart.x()-pEnd.x(), 2) + pow(pStart.y()-pEnd.y(), 2));
+            double length2 = sqrt(pow(pStart.x()-pos.x(), 2) + pow(pStart.y()-pos.y(), 2))
+                     + sqrt(pow(pos.x()-pEnd.x(), 2) + pow(pos.y()-pEnd.y(), 2));
 
-//            std::cout << length << " : " << length2 << std::endl;
+            double diff = qAbs(length-length2);
 
-//            if(diff<2){
-//                return e;
-//            }
+            if(diff<2){
+                return e;
+            }
         }
 
     }

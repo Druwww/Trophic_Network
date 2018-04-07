@@ -17,6 +17,7 @@
 #include "nodeguiattr.h"
 #include "graphhelper.h"
 #include "editnodedialog.h"
+#include "editedgedialog.h"
 #include "../../entities/graph/include/Graph.h"
 
 namespace Ui {
