@@ -232,14 +232,14 @@ bool Algorithm::updateEdgeActive(Edge* l){
     return true;
 }
 
-int Algorithm::updateEdgesActive(){
+int Algorithm::updateEdgesActive(Graph& graph){
 
     int nb_changement = 0;
 
     clearAllMarck();
 
-    for(int i = 0; i < m_graph->size(); i++){
-        data d = m_graph->get(i);
+    for(int i = 0; i < graph.size(); i++){
+        data d =graph.get(i);
 
         for(auto & l : d.second.first){
             if(updateEdgeActive(l)){
@@ -296,7 +296,7 @@ bool Algorithm::goKmin(int offset, int k, std::vector<int> vecIndex, std::vector
 
 bool Algorithm::testCombinaisonKmin(std::vector<int> vectest){
     killNodeAttrsByIndex(vectest);
-    updateEdgesActive();
+    updateEdgesActive(*m_graph);
     bool resul = !testStrongConnexeGraph();
     ReviveNodeAttrsByIndex(vectest);
 
@@ -504,7 +504,7 @@ void Algorithm::algoForteConnexity(Graph& graphData){
         graphData.get(i).first->setGroup(0);
     }
 
-    updateEdgesActive();
+    updateEdgesActive(graphData);
 
     ////////////////////Changer le constructeur
     Graph graph1(graphData);
@@ -665,7 +665,7 @@ bool Algorithm::goKminConnexity(int offset, int k, std::vector<int> vecIndex, st
 
 bool Algorithm::testCombinaisonKminConnexity(std::vector<int> vectest){
     killNodeAttrsByIndex(vectest);
-    updateEdgesActive();
+    updateEdgesActive(*m_graph);
     //////////////////Changer constr
     Graph graphTest(*m_graph);
 
@@ -673,7 +673,7 @@ bool Algorithm::testCombinaisonKminConnexity(std::vector<int> vectest){
 
     bool resul = testIdenticForteConnexity(*m_graph, graphTest);
     ReviveNodeAttrsByIndex(vectest);
-    updateEdgesActive();
+    updateEdgesActive(*m_graph);
 
     return resul;
 }

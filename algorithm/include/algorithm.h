@@ -77,7 +77,7 @@ struct Algorithm{
         ***/
 
         //Methode who will active/desactivate all edge in function of the sommet kill or not
-        int updateEdgesActive();
+        int updateEdgesActive(Graph& graph);
 
         //Methode who will activate/desactive the edge passe in parameter
         bool updateEdgeActive(Edge* l);
