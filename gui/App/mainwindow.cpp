@@ -500,6 +500,7 @@ void MainWindow::stopSimulation(){
 void MainWindow::nextStepSimulation(){
     if(m_simulation.getGraph()!=nullptr){
         m_simulation.nextTurn();
+        update();
     }
     else{
         statusBar()->showMessage("You must start the simulation.", 3000);
