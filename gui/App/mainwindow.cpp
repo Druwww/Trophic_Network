@@ -222,13 +222,14 @@ void MainWindow::paintEvent(QPaintEvent *event){
 
             // data
             EdgeAttr* e_attr = (EdgeAttr*) e->getData();
+            QString str = "W = " + QString::number(e->getWeight());
             if(e_attr!=nullptr){
-                QString str = "W = " + QString::number(e->getWeight())
-                        + " | I = " + QString::number(e_attr->m_importance)
-                        + " | SR = " + QString::number(e_attr->m_survivalRate);
-                painter.setPen(QPen(Qt::magenta, 3, Qt::SolidLine, Qt::RoundCap));
-                painter.drawText(pMiddle+20*V, str);
+                    str +=
+                        " | I = " + QString::number(e_attr->m_importance) +
+                        " | SR = " + QString::number(e_attr->m_survivalRate);
             }
+            painter.setPen(QPen(Qt::magenta, 3, Qt::SolidLine, Qt::RoundCap));
+            painter.drawText(pMiddle+20*V, str);
         }
     }
 
