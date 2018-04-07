@@ -14,17 +14,16 @@ QMAKE_CXXFLAGS += -std=c++11
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    graphhelper.cpp \
     ../../entities/graph/src/Edge.cpp \
     ../../entities/graph/src/Graph.cpp \
     ../../entities/graph/src/Node.cpp \
     ../../utils/src/utils.cpp \
     editnodedialog.cpp \
-    editedgedialog.cpp
+    editedgedialog.cpp \
+    ../../algorithm/src/algorithm.cpp
 
 HEADERS  += mainwindow.h \
     gnode.h \
-    graphhelper.h \
     nodeguiattr.h \
     ../../entities/data/include/EdgeAttr.h \
     ../../entities/data/include/NodeAttr.h \
@@ -33,7 +32,8 @@ HEADERS  += mainwindow.h \
     ../../entities/graph/include/Node.h \
     ../../utils/include/utils.h \
     editnodedialog.h \
-    editedgedialog.h
+    editedgedialog.h \
+    ../../algorithm/include/algorithm.h
 
 FORMS    += mainwindow.ui
 

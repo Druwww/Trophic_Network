@@ -28,6 +28,7 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::initMenuBar(){
+    // File menu
     QAction* openGraph = new QAction("Open Graph", this);
     openGraph->setShortcuts(QKeySequence::Open);
     connect(openGraph, SIGNAL(triggered(bool)), this, SLOT(openGraph()));
@@ -37,8 +38,23 @@ void MainWindow::initMenuBar(){
     connect(saveGraph, SIGNAL(triggered(bool)), this, SLOT(saveGraph()));
 
     QMenu* fileMenu = menuBar()->addMenu(tr("File"));
-    QList<QAction*> actions({openGraph, saveGraph});
-    fileMenu->addActions(actions);
+    QList<QAction*> fileMenuActions({openGraph, saveGraph});
+    fileMenu->addActions(fileMenuActions);
+
+
+    // Algorithm menu
+    QAction* algo1 = new QAction("Forte Connexite", this);
+    connect(algo1, SIGNAL(triggered(bool)), this, SLOT(algo1()));
+
+    QAction* algo2 = new QAction("K Min Sommet Connexite", this);
+    connect(algo2, SIGNAL(triggered(bool)), this, SLOT(algo2()));
+
+    QAction* algo3 = new QAction("K Min Arrete Connexite", this);
+    connect(algo3, SIGNAL(triggered(bool)), this, SLOT(algo3()));
+
+    QMenu* algoMenu = menuBar()->addMenu(tr("Algorithms"));
+    QList<QAction*> algoMenuActions({algo1, algo2, algo3});
+    algoMenu->addActions(algoMenuActions);
 }
 
 void MainWindow::initContextMenu(){
@@ -84,6 +100,11 @@ void MainWindow::showContextMenu(const QPoint& pos){
         editAction->setData(var);
         connect(editAction, SIGNAL(triggered()), this, SLOT(editNode()));
         contextMenu.addAction(editAction);
+
+        QAction* algoAction = new QAction("Influence", this);
+        algoAction->setData(var);
+        connect(algoAction, SIGNAL(triggered()), this, SLOT(algo4()));
+        contextMenu.addAction(algoAction);
     }
 
     contextMenu.exec(mapToGlobal(pos));
@@ -127,6 +148,7 @@ void MainWindow::removeNode(){
     QVariant variant = action->data();
     GNode *gnode = (GNode*) variant.value<void *>();
     Node* node = gnode->m_node;
+
     for(unsigned int i=0 ; i<m_gnodes.size() ; i++){
         if(m_gnodes[i]->m_node->getUid()==node->getUid()){
             delete m_gnodes[i];
@@ -423,4 +445,32 @@ void MainWindow::saveGraph(){
             QMessageBox::critical(this, "Error !", "Could not save file to : "+fileName);
         }
     }
+}
+
+
+void MainWindow::algo1(){
+    m_algorithm.algoForteConnexity(*m_graph);
+    update();
+}
+
+void MainWindow::algo2(){
+    m_algorithm.setGraph(m_graph);
+    m_algorithm.findKminConnexity();
+    update();
+}
+
+void MainWindow::algo3(){
+    m_algorithm.setGraph(m_graph);
+    m_algorithm.findKEdgeminConnexity();
+    update();
+}
+
+void MainWindow::algo4(){
+    QAction *action = qobject_cast<QAction *>(sender());
+    QVariant variant = action->data();
+    GNode *gnode = (GNode*) variant.value<void *>();
+    Node* node = gnode->m_node;
+    m_algorithm.setGraph(m_graph);
+    m_algorithm.processedThreeOfNodeByNode(node);
+    update();
 }
