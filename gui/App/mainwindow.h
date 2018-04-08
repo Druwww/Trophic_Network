@@ -91,6 +91,7 @@ class MainWindow : public QMainWindow
         void editEdge();
         void openGraph();
         void saveGraph();
+        void newGraph();
         void showContextMenu(const QPoint& pos);
 
 };

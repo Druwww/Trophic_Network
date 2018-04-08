@@ -37,8 +37,12 @@ void MainWindow::initMenuBar(){
     saveGraph->setShortcuts(QKeySequence::Save);
     connect(saveGraph, SIGNAL(triggered(bool)), this, SLOT(saveGraph()));
 
+    QAction* newGraph = new QAction("New Graph", this);
+    newGraph->setShortcuts(QKeySequence::New);
+    connect(newGraph, SIGNAL(triggered(bool)), this, SLOT(newGraph()));
+
     QMenu* fileMenu = menuBar()->addMenu(tr("File"));
-    QList<QAction*> fileMenuActions({openGraph, saveGraph});
+    QList<QAction*> fileMenuActions({openGraph, saveGraph, newGraph});
     fileMenu->addActions(fileMenuActions);
 
 
@@ -470,6 +474,16 @@ void MainWindow::saveGraph(){
             QMessageBox::critical(this, "Error !", "Could not save file to : "+fileName);
         }
     }
+}
+
+void MainWindow::newGraph(){
+    delete m_graph;
+    for(unsigned int i=0 ; i<m_gnodes.size() ; i++){
+        delete m_gnodes[i];
+    }
+    m_gnodes.clear();
+    initGraph();
+    update();
 }
 
 void MainWindow::resetGroups(){
