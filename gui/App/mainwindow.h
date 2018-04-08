@@ -11,9 +11,9 @@
 #include <QMessageBox>
 #include <QInputDialog>
 
-#include <QChart>
-#include <QtCharts/QChartView>
-#include <QtCharts/QLineSeries>
+//#include <QChart>
+//#include <QtCharts/QChartView>
+//#include <QtCharts/QLineSeries>
 
 #include <fstream>
 
@@ -26,7 +26,7 @@
 #include "../../entities/graph/include/Graph.h"
 #include "../../simulation/include/Simulation.h"
 
-QT_CHARTS_USE_NAMESPACE
+//QT_CHARTS_USE_NAMESPACE
 
 namespace Ui {
 class MainWindow;
