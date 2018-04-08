@@ -19,20 +19,23 @@ void Simulation::nextTurn(){
 }
 
 void Simulation::updateDataNode(data& d) const{
-    int a=0, b=0;
+    int a=10000, b=0;
 
     NodeAttr* attr = (NodeAttr*) d.first->getData();
     if(attr==nullptr){
         return;
     }
 
-    attr->m_quantity = attr->m_quantity + attr->m_birthRate*attr->m_quantity;
+    attr->m_quantity += attr->m_birthRate*attr->m_quantity;
 
     for(auto& l : d.second.second){
         EdgeAttr* e_attr = (EdgeAttr*) l->getData();
         NodeAttr* n_attr = (NodeAttr*) l->getEndNode()->getData();
         if(e_attr!=nullptr && n_attr!=nullptr){
-            a += n_attr->m_quantity * e_attr->m_survivalRate;
+
+            if(n_attr->m_quantity * e_attr->m_survivalRate < a){
+                a = n_attr->m_quantity * e_attr->m_survivalRate;
+            }
         }
     }
 
@@ -44,7 +47,10 @@ void Simulation::updateDataNode(data& d) const{
         }
     }
 
-    attr->m_quantity += (a-b);
+    attr->m_quantity -= b;
+    if(attr->m_quantity > a){
+        attr->m_quantity -= (attr->m_quantity - a);
+    }
 
     if(attr->m_quantity<0){
         attr->m_quantity = 0;
