@@ -15,9 +15,7 @@ struct GNode : public QWidget{
     Node* m_node;
     NodeAttr* m_attr;
     NodeGuiAttr* m_gui;
-
     QPixmap* m_image;
-    QList<QColor> m_colors;
 
     GNode(Node* node, NodeGuiAttr* gui, QWidget* parent=0) : QWidget(parent){
         setMouseTracking(true);
@@ -28,11 +26,6 @@ struct GNode : public QWidget{
         m_attr->m_gui = m_gui;
 
         m_image = new QPixmap;
-        m_colors = {
-            Qt::darkGray, Qt::red, Qt::blue, Qt::magenta,
-            Qt::yellow, Qt::darkRed, Qt::darkGreen, Qt::darkBlue,
-            Qt::darkCyan, Qt::darkMagenta, Qt::darkYellow
-        };
 
         updateImage();
         updatePos();
@@ -47,6 +40,7 @@ struct GNode : public QWidget{
         QString str = "Q = "+QString::number(m_attr->m_quantity)
                 + " | BR = "+QString::number(m_attr->m_birthRate);
 
+        enableUnderline(painter, false);
         painter.setOpacity(m_attr->m_quantity==0?0.2:1);
         painter.setPen(QPen(Qt::blue, 3, Qt::SolidLine, Qt::RoundCap));
         painter.drawText(m_gui->m_x, m_gui->m_y-margin, str);
@@ -54,9 +48,10 @@ struct GNode : public QWidget{
 
         int group = m_node->getGroup();
         if(group>0){
-            QColor color = group<m_colors.size()?m_colors[group]:Qt::black;
-            painter.setPen(QPen(color, 2, Qt::SolidLine, Qt::RoundCap));
-            painter.drawRect(m_gui->m_x, m_gui->m_y, m_gui->m_width, m_gui->m_height);
+            QString str = QString::number(group);
+            enableUnderline(painter, true);
+            painter.setPen(QPen(Qt::black, 2, Qt::SolidLine, Qt::RoundCap));
+            painter.drawText(m_gui->m_x+m_gui->m_width+margin, m_gui->m_y+m_gui->m_height+margin, str);
         }
         else if(m_node->isProcessed()){
             painter.setPen(QPen(Qt::blue, 2, Qt::DotLine, Qt::RoundCap));
@@ -72,6 +67,12 @@ struct GNode : public QWidget{
 
     void updatePos(){
         move(m_gui->m_x, m_gui->m_y);
+    }
+
+    void enableUnderline(QPainter& painter, const bool& enabled){
+        QFont f = font();
+        f.setUnderline(enabled);
+        painter.setFont(f);
     }
 };
 

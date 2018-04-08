@@ -472,19 +472,27 @@ void MainWindow::saveGraph(){
     }
 }
 
+void MainWindow::resetGroups(){
+    for(int i=0 ; i<m_graph->size() ; i++){
+        m_graph->get(i).first->setGroup(0);
+    }
+}
 
 void MainWindow::algo1(){
+    resetGroups();
     m_algorithm.algoForteConnexity(*m_graph);
     update();
 }
 
 void MainWindow::algo2(){
+    resetGroups();
     m_algorithm.setGraph(m_graph);
     m_algorithm.findKminConnexity();
     update();
 }
 
 void MainWindow::algo3(){
+    resetGroups();
     m_algorithm.setGraph(m_graph);
     m_algorithm.findKEdgeminConnexity();
     update();
@@ -495,6 +503,7 @@ void MainWindow::algo4(){
     QVariant variant = action->data();
     GNode *gnode = (GNode*) variant.value<void *>();
     Node* node = gnode->m_node;
+    resetGroups();
     m_algorithm.setGraph(m_graph);
     m_algorithm.processedThreeOfNodeByNode(node);
     update();

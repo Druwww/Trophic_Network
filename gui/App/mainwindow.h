@@ -71,6 +71,7 @@ class MainWindow : public QMainWindow
         void initContextMenu();
         void initGraph();
         void initVar();
+        void resetGroups();
 
     private slots:
         void algo1();
