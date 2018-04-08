@@ -71,6 +71,7 @@ class MainWindow : public QMainWindow
         void initContextMenu();
         void initGraph();
         void initVar();
+        void resetGroups();
 
     private slots:
         void algo1();
@@ -90,6 +91,7 @@ class MainWindow : public QMainWindow
         void editEdge();
         void openGraph();
         void saveGraph();
+        void newGraph();
         void showContextMenu(const QPoint& pos);
 
 };
