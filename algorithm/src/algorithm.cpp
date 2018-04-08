@@ -42,7 +42,6 @@ void onCopyEdgeData(void* data, void** copy){
     *copy = (attr==nullptr?nullptr:new EdgeAttr(*attr));
 }
 
-
 Algorithm::Algorithm(){
     m_graph = nullptr;
 }
