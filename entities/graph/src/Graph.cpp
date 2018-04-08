@@ -1,36 +1,21 @@
 #include "../include/Graph.h"
 
-Graph::Graph(){
-    m_destroyNodeData = nullptr;
-    m_destroyEdgeData = nullptr;
-    m_serializeNodeData = nullptr;
-    m_serializeEdgeData = nullptr;
-    m_deserializeNodeData = nullptr;
-    m_deserializeEdgeData = nullptr;
-    m_copyNodeData = nullptr;
-    m_copyEdgeData = nullptr;
-}
+Graph::Graph(){}
 
 Graph::Graph(const Graph& graph){
-    m_destroyNodeData = graph.m_destroyNodeData;
-    m_destroyEdgeData = graph.m_destroyEdgeData;
-    m_serializeNodeData = graph.m_serializeNodeData;
-    m_serializeEdgeData = graph.m_serializeEdgeData;
-    m_deserializeNodeData = graph.m_deserializeNodeData;
-    m_deserializeEdgeData = graph.m_deserializeEdgeData;
-    m_copyNodeData = graph.m_copyNodeData;
-    m_copyEdgeData = graph.m_copyEdgeData;
+    m_nodeItf = graph.m_nodeItf;
+    m_edgeItf = graph.m_edgeItf;
 
     m_data.resize(graph.m_data.size());
     for(unsigned int i=0 ; i<m_data.size() ; i++){
-        Node* node = new Node(*graph.m_data[i].first, m_copyNodeData);
+        Node* node = new Node(*graph.m_data[i].first, m_nodeItf.m_copyData);
         m_data[i].first = node;
     }
 
     for(unsigned int i=0 ; i<m_data.size() ; i++){
         IO io = graph.m_data[i].second;
         for(unsigned int j=0 ; j<io.first.size() ; j++){
-            Edge* edge = new Edge(*io.first[j], m_copyEdgeData);
+            Edge* edge = new Edge(*io.first[j], m_edgeItf.m_copyData);
             int startNodeIndex = getIndexByUid(edge->getStartNode()->getUid());
             edge->setStartNode(m_data[startNodeIndex].first);
             edge->setEndNode(m_data[i].first);
@@ -41,18 +26,19 @@ Graph::Graph(const Graph& graph){
 }
 
 Graph::~Graph(){
-    assert(m_destroyNodeData!=nullptr && m_destroyEdgeData!=nullptr);
+    assert(m_nodeItf.m_destroyData!=nullptr
+        && m_edgeItf.m_destroyData!=nullptr);
 
     for(unsigned int i=0 ; i<m_data.size() ; i++){
         if(m_data[i].first->getData()!=nullptr){
-            (*m_destroyNodeData)(m_data[i].first->getData());
+            (*m_nodeItf.m_destroyData)(m_data[i].first->getData());
         }
         delete m_data[i].first;
 
         std::vector<Edge*> in = m_data[i].second.first;
         for(unsigned int j=0 ; j<in.size() ; j++){
             if(in[j]->getData()!=nullptr){
-                (*m_destroyEdgeData)(in[j]->getData());
+                (*m_edgeItf.m_destroyData)(in[j]->getData());
             }
             delete in[j];
         }
@@ -132,7 +118,8 @@ bool Graph::removeNode(Node* node){
 }
 
 bool Graph::removeNode(const std::string& uid){
-    assert(m_destroyNodeData!=nullptr && m_destroyEdgeData!=nullptr);
+    assert(m_nodeItf.m_destroyData!=nullptr
+        && m_edgeItf.m_destroyData!=nullptr);
 
     int index = getIndexByUid(uid);
     if(index==-1){
@@ -151,16 +138,16 @@ bool Graph::removeNode(const std::string& uid){
     }
 
     for(unsigned int i=0 ; i<io.first.size() ; i++){
-        (*m_destroyEdgeData)(io.first[i]->getData());
+        (*m_edgeItf.m_destroyData)(io.first[i]->getData());
         delete io.first[i];
     }
 
     for(unsigned int i=0 ; i<io.second.size() ; i++){
-        (*m_destroyEdgeData)(io.second[i]->getData());
+        (*m_edgeItf.m_destroyData)(io.second[i]->getData());
         delete io.second[i];
     }
 
-    (*m_destroyNodeData)(node->getData());
+    (*m_nodeItf.m_destroyData)(node->getData());
     delete node;
 
     return true;
@@ -241,36 +228,12 @@ IO Graph::getConnections(Node* node) const{
     return getConnections(node->getUid());
 }
 
-void Graph::setOnDestroyNodeData(void (*destroyNodeData)(void*)){
-    m_destroyNodeData = destroyNodeData;
+DataInterface* Graph::getNodeInterface(){
+    return &m_nodeItf;
 }
 
-void Graph::setOnDestroyEdgeData(void (*destroyEdgeData)(void*)){
-    m_destroyEdgeData = destroyEdgeData;
-}
-
-void Graph::setOnSerializeNodeData(void (*serializeNodeData)(std::ostream&, void*)){
-    m_serializeNodeData = serializeNodeData;
-}
-
-void Graph::setOnSerializeEdgeData(void (*serializeEdgeData)(std::ostream&, void*)){
-    m_serializeEdgeData = serializeEdgeData;
-}
-
-void Graph::setOnDeserializeNodeData(void (*deserializeNodeData)(std::istream&, void**)){
-    m_deserializeNodeData = deserializeNodeData;
-}
-
-void Graph::setOnDeserializeEdgeData(void (*deserializeEdgeData)(std::istream&, void**)){
-    m_deserializeEdgeData = deserializeEdgeData;
-}
-
-void Graph::setOnCopyNodeData(void (*copyNodeData)(void*, void**)){
-    m_copyNodeData = copyNodeData;
-}
-
-void Graph::setOnCopyEdgeData(void (*copyEdgeData)(void*, void**)){
-    m_copyEdgeData = copyEdgeData;
+DataInterface* Graph::getEdgeInterface(){
+    return &m_edgeItf;
 }
 
 void Graph::print() const{
@@ -289,7 +252,8 @@ void Graph::print() const{
 }
 
 void Graph::write(std::ostream& os) const{
-    assert(m_serializeNodeData!=nullptr && m_serializeEdgeData!=nullptr);
+    assert(m_nodeItf.m_serializeData!=nullptr
+        && m_edgeItf.m_serializeData!=nullptr);
 
     os << m_data.size() << std::endl;
     for(auto const& p : m_data){
@@ -299,7 +263,7 @@ void Graph::write(std::ostream& os) const{
         os << " " << (data!=nullptr);
         if(data!=nullptr){
             os << " ";
-            (*m_serializeNodeData)(os, data);
+            (*m_nodeItf.m_serializeData)(os, data);
         }
         os << std::endl;
     }
@@ -315,7 +279,7 @@ void Graph::write(std::ostream& os) const{
             os << " " << (data!=nullptr);
             if(data!=nullptr){
                 os << " ";
-                (*m_serializeEdgeData)(os, data);
+                (*m_edgeItf.m_serializeData)(os, data);
             }
             os << std::endl;
         }
@@ -323,7 +287,8 @@ void Graph::write(std::ostream& os) const{
 }
 
 void Graph::read(std::istream& is){
-    assert(m_deserializeNodeData!=nullptr && m_deserializeEdgeData!=nullptr);
+    assert(m_nodeItf.m_deserializeData!=nullptr
+        && m_edgeItf.m_deserializeData!=nullptr);
 
     std::string line, uid, uid2;
     getline(is, line);
@@ -340,7 +305,7 @@ void Graph::read(std::istream& is){
         ss >> hasData;
         if(hasData){
             void *d;
-            (*m_deserializeNodeData)(ss, &d);
+            (*m_nodeItf.m_deserializeData)(ss, &d);
             node->setData(d);
         }
 
@@ -365,7 +330,7 @@ void Graph::read(std::istream& is){
             ss >> hasData;
             if(hasData){
                 void* d;
-                (*m_deserializeEdgeData)(ss, &d);
+                (*m_edgeItf.m_deserializeData)(ss, &d);
                 edge->setData(d);
             }
 

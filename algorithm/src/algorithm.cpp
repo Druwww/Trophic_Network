@@ -34,7 +34,7 @@ void onDeserializeEdge(std::istream& is, void** data){
 
 void onCopyNodeData(void* data, void** copy){
     NodeAttr* attr = (NodeAttr*) data;
-    *copy = new NodeAttr(*attr);
+    *copy = (attr==nullptr?nullptr:new NodeAttr(*attr));
 }
 
 void onCopyEdgeData(void* data, void** copy){

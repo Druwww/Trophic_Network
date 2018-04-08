@@ -133,14 +133,18 @@ void MainWindow::showContextMenu(const QPoint& pos){
 
 void MainWindow::initGraph(){
     m_graph = new Graph();
-    m_graph->setOnDestroyNodeData(onDeleteNode);
-    m_graph->setOnDestroyEdgeData(onDeleteEdge);
-    m_graph->setOnSerializeNodeData(onSerializeNode);
-    m_graph->setOnSerializeEdgeData(onSerializeEdge);
-    m_graph->setOnDeserializeNodeData(onDeserializeNode);
-    m_graph->setOnDeserializeEdgeData(onDeserializeEdge);
-    m_graph->setOnCopyNodeData(onCopyNodeData);
-    m_graph->setOnCopyEdgeData(onCopyEdgeData);
+    DataInterface *nodeItf = m_graph->getNodeInterface();
+    DataInterface *edgeItf = m_graph->getEdgeInterface();
+
+    nodeItf->m_copyData = onCopyNodeData;
+    nodeItf->m_destroyData = onDeleteNode;
+    nodeItf->m_serializeData = onSerializeNode;
+    nodeItf->m_deserializeData = onDeserializeNode;
+
+    edgeItf->m_copyData = onCopyEdgeData;
+    edgeItf->m_destroyData = onDeleteEdge;
+    edgeItf->m_serializeData = onSerializeEdge;
+    edgeItf->m_deserializeData = onDeserializeEdge;
 }
 
 void MainWindow::initVar(){
