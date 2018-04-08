@@ -1,7 +1,5 @@
 # Trophic Network
 
-## This project is in the cadre of ECE Paris by Omar AFLAK and Quentin MULLIEZ, Ing2 TD 05
-
 ## Download & Compile
 
 ```
