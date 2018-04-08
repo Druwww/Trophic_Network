@@ -531,7 +531,7 @@ void MainWindow::startSimulation(){
 void MainWindow::stopSimulation(){
     m_simulation.setGraph(nullptr);
     m_simulation.setTurn(0);
-    statusBar()->clearMessage();
+    statusBar()->showMessage("Simulation stopped.", 3000);
 }
 
 void MainWindow::nextStepSimulation(){
@@ -547,37 +547,37 @@ void MainWindow::nextStepSimulation(){
 }
 
 void MainWindow::chartSimulation(){
-    bool ok = false;
-    int epochs = QInputDialog::getInt(this, "Fast forward simulation", "Epochs :", 10, 5, 1000, 1, &ok);
-    if(ok){
-        Graph cp(*m_graph);
-        m_simulation.setGraph(&cp);
-        m_simulation.setTurn(0);
+//    bool ok = false;
+//    int epochs = QInputDialog::getInt(this, "Fast forward simulation", "Epochs :", 10, 5, 1000, 1, &ok);
+//    if(ok){
+//        Graph cp(*m_graph);
+//        m_simulation.setGraph(&cp);
+//        m_simulation.setTurn(0);
 
-        int y = 0;
-        QLineSeries *series = new QLineSeries();
+//        int y = 0;
+//        QLineSeries *series = new QLineSeries();
 
-        while(m_simulation.getTurn()<epochs){
-            m_simulation.nextTurn();
-            int q = 0;
-            for(unsigned int i=0 ; i<cp.size() ; i++){
-                NodeAttr* attr = (NodeAttr*) cp.get(i).first->getData();
-                q += attr->m_quantity;
-            }
+//        while(m_simulation.getTurn()<epochs){
+//            m_simulation.nextTurn();
+//            int q = 0;
+//            for(unsigned int i=0 ; i<cp.size() ; i++){
+//                NodeAttr* attr = (NodeAttr*) cp.get(i).first->getData();
+//                q += attr->m_quantity;
+//            }
 
-            series->append(y++, q);
-        }
+//            series->append(y++, q);
+//        }
 
-        QChart* chart = new QChart();
-        chart->legend()->hide();
-        chart->addSeries(series);
-        chart->createDefaultAxes();
-        chart->setTitle("Evolution Population");
+//        QChart* chart = new QChart();
+//        chart->legend()->hide();
+//        chart->addSeries(series);
+//        chart->createDefaultAxes();
+//        chart->setTitle("Evolution Population");
 
 
-        QChartView* chartView = new QChartView(chart);
-        chartView->setRenderHint(QPainter::Antialiasing);
-        chartView->resize(700,600);
-        chartView->show();
-    }
+//        QChartView* chartView = new QChartView(chart);
+//        chartView->setRenderHint(QPainter::Antialiasing);
+//        chartView->resize(700,600);
+//        chartView->show();
+//    }
 }
