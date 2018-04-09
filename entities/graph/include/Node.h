@@ -23,7 +23,7 @@
 class Node{
     private:
         std::string m_uid; /*!< Unique Identification : sa référence unique si vous preferez*/
-        bool m_processed; /*!< Marquage ou non du commet*/
+        bool m_processed; /*!< Marquage ou non du sommet*/
         int m_group; /*!< Numero de groupe de forte connexite*/
         void* m_data; /*!< pointeur vers la data du sommet*/
 
