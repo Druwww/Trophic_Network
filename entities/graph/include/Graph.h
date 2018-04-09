@@ -274,6 +274,7 @@ class Graph{
      *  \param le flux ou il faut ecrire
      */
         void write(std::ostream& os) const;
+
         /*!
      *  \brief >> Graph
      *
