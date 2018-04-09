@@ -14,6 +14,9 @@
 #include "../../entities/graph/include/Edge.h"
 #include "../../entities/data/include/EdgeAttr.h"
 
+/**
+ * @brief Popup qui permet de modifier les attributs d'un Edge
+ */
 class EditEdgeDialog : public QDialog
 {
     private:
@@ -36,8 +39,22 @@ class EditEdgeDialog : public QDialog
     public:
         EditEdgeDialog(Edge* edge);
 
+        /**
+         * @brief Retourne la valeur contenue dans le champ "weight"
+         * @return le poids
+         */
         double getEdgeWeight() const;
+
+        /**
+         * @brief Retourne la valeur contenue dans le champ "importance"
+         * @return l'importance
+         */
         double getEdgeImportance() const;
+
+        /**
+         * @brief Retourne la valeur contenue dans le champs "survival rate"
+         * @return le survival rate
+         */
         double getEdgeSurvivalRate() const;
 };
 

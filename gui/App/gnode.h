@@ -11,6 +11,9 @@
 #include "../../entities/data/include/NodeAttr.h"
 #include "nodeguiattr.h"
 
+/**
+ * @brief Version graphique d'un Node
+ */
 struct GNode : public QWidget{
     Node* m_node;
     NodeAttr* m_attr;
@@ -35,6 +38,10 @@ struct GNode : public QWidget{
         delete m_image;
     }
 
+    /**
+     * @brief Dessine l'objet et ses paramètres à l'écran
+     * @param painter
+     */
     void painEvent(QPainter& painter){
         int margin = 6;
         QString str = "Q = "+QString::number(m_attr->m_quantity)
@@ -59,16 +66,27 @@ struct GNode : public QWidget{
         }
     }
 
+    /**
+     * @brief Met à jour l'image du sommet
+     */
     void updateImage(){
         m_image->load(QString::fromStdString(m_gui->m_imageFilepath));
         *m_image = m_image->scaled(m_gui->m_width, m_gui->m_height, Qt::KeepAspectRatio, Qt::SmoothTransformation);
         resize(m_gui->m_width, m_gui->m_height);
     }
 
+    /**
+     * @brief Met à jour la position du sommet
+     */
     void updatePos(){
         move(m_gui->m_x, m_gui->m_y);
     }
 
+    /**
+     * @brief Active l'option de soulignage de texte
+     * @param painter
+     * @param enabled
+     */
     void enableUnderline(QPainter& painter, const bool& enabled){
         QFont f = font();
         f.setUnderline(enabled);
