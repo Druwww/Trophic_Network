@@ -4,6 +4,9 @@
 #include "../../graph/include/Node.h"
 #include "../../../gui/App/nodeguiattr.h"
 
+/**
+ * @brief Attribut d'un Node
+ */
 struct NodeAttr {
     NodeGuiAttr* m_gui;
     int m_quantity;
@@ -21,6 +24,10 @@ struct NodeAttr {
         m_gui = new NodeGuiAttr(*attr.m_gui);
     }
 
+    /**
+     * @brief Ecrit la struct dans un flux de sortie
+     * @param Le flux sortant
+     */
     void write(std::ostream& os) const{
         os << m_quantity << " ";
         os << m_birthRate << " ";
@@ -31,6 +38,10 @@ struct NodeAttr {
         }
     }
 
+    /**
+     * @brief Lis la struct depuis un flux d'entrée
+     * @param Le flux entrant
+     */
     void read(std::istream& is){
         std::string word;
         bool hasGui;

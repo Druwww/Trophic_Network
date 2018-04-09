@@ -131,7 +131,7 @@ class MainWindow : public QMainWindow
         void initContextMenu();
 
         /**
-         * @brief Initialise le Graph
+         * @brief Initialise le Graph et ses listeners
          */
         void initGraph();
 

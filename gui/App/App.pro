@@ -35,7 +35,8 @@ HEADERS  += mainwindow.h \
     editnodedialog.h \
     editedgedialog.h \
     ../../algorithm/include/algorithm.h \
-    ../../simulation/include/Simulation.h
+    ../../simulation/include/Simulation.h \
+    ../../entities/data/include/DataInterface.h
 
 FORMS    += mainwindow.ui
 

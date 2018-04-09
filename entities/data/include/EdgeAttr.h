@@ -4,6 +4,9 @@
 #include "../../graph/include/Edge.h"
 #include <string>
 
+/**
+ * @brief Attributs d'un Edge
+ */
 struct EdgeAttr {
     float m_survivalRate;
     float m_importance;
@@ -18,11 +21,19 @@ struct EdgeAttr {
         m_importance = attr.m_importance;
     }
 
+    /**
+     * @brief Ecrit la struct dans un flux de sortie
+     * @param Le flux sortant
+     */
     void write(std::ostream& os) const{
         os << m_survivalRate << " ";
         os << m_importance;
     }
 
+    /**
+     * @brief Lis la struct depuis un flux d'entrée
+     * @param Le flux entrant
+     */
     void read(std::istream& is){
         std::string word;
         is >> word;

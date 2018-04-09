@@ -1,6 +1,9 @@
 #ifndef DATAINTERFACE
 #define DATAINTERFACE
 
+/**
+ * @brief Listeners qui permettent la gestion des données dans Node et Edge
+ */
 struct DataInterface {
     void (*m_destroyData)(void*);
     void (*m_copyData)(void*, void**);
