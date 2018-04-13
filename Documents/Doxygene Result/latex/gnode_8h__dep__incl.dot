@@ -1,0 +1,17 @@
+digraph "C:/Users/ququq/Desktop/Repository Local Projet/Trophic_Network/gui/App/gnode.h"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node15 [label="C:/Users/ququq/Desktop\l/Repository Local Projet\l/Trophic_Network/gui/App\l/gnode.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node15 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node16 [label="C:/Users/ququq/Desktop\l/Repository Local Projet\l/Trophic_Network/gui/App\l/editnodedialog.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$editnodedialog_8h.html"];
+  Node16 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node17 [label="C:/Users/ququq/Desktop\l/Repository Local Projet\l/Trophic_Network/gui/App\l/editnodedialog.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$editnodedialog_8cpp.html"];
+  Node16 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node18 [label="C:/Users/ququq/Desktop\l/Repository Local Projet\l/Trophic_Network/gui/App\l/mainwindow.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$mainwindow_8h.html"];
+  Node18 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node19 [label="C:/Users/ququq/Desktop\l/Repository Local Projet\l/Trophic_Network/gui/App\l/main.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8cpp.html"];
+  Node18 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node20 [label="C:/Users/ququq/Desktop\l/Repository Local Projet\l/Trophic_Network/gui/App\l/mainwindow.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$mainwindow_8cpp.html"];
+  Node15 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}

@@ -1,0 +1,11 @@
+digraph "C:/Users/ququq/Desktop/Repository Local Projet/Trophic_Network/algorithm/include" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_c9a6350904661503d4a5976040e42bdb {
+    graph [ bgcolor="#ddddee", pencolor="black", label="algorithm" fontname="Helvetica", fontsize="10", URL="dir_c9a6350904661503d4a5976040e42bdb.html"]
+  dir_efa4a7d0717feec2236c656968459068 [shape=box, label="include", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_efa4a7d0717feec2236c656968459068.html"];
+  }
+  dir_5f80013d9f8a3f0528e3199f2c210c49 [shape=box label="entities" fillcolor="white" style="filled" color="red" URL="dir_5f80013d9f8a3f0528e3199f2c210c49.html"];
+  dir_efa4a7d0717feec2236c656968459068->dir_5f80013d9f8a3f0528e3199f2c210c49 [headlabel="3", labeldistance=1.5 headhref="dir_000003_000004.html"];
+}
