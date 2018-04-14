@@ -1,7 +1,7 @@
-Bonjour cher correcteur.
+﻿Bonjour cher correcteur.
 
 Voici le guide d’utilisation du code afin de pouvoir le compiler, lancer l’exécuteur et utiliser l’application.
-Le reste du livrable se trouvent dans le dossier Documents
+Le reste du livrable se trouvent dans le dossier Documents (PP, Draw.io, Doxygene...)
 
 
 ### Compilation + Exécuter
