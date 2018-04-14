@@ -1,0 +1,349 @@
+\hypertarget{class_edge}{}\section{Edge Class Reference}
+\label{class_edge}\index{Edge@{Edge}}
+
+
+{\ttfamily \#include $<$Edge.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_edge_a3106b11d60125009dbf7a738ce540fdf}{Edge}} ()
+\begin{DoxyCompactList}\small\item\em Constructeur. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_edge_a12b460c6c0a255c44d564b033b056b02}{Edge}} (const \mbox{\hyperlink{class_edge}{Edge}} \&edge, void($\ast$copy\+Edge\+Data)(void $\ast$, void $\ast$$\ast$))
+\begin{DoxyCompactList}\small\item\em Constructeur par copie. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_edge_abf97244f7446b4192dfa1e87a156920d}{get\+Uid}} () const
+\begin{DoxyCompactList}\small\item\em Getter U\+ID. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{class_edge_a873322923fa6340e17edb39b923f7d61}{get\+Weight}} () const
+\begin{DoxyCompactList}\small\item\em Getter Weight. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_edge_a29524dddcadb4eae07997fa8fb6fd76f}{is\+Active}} () const
+\begin{DoxyCompactList}\small\item\em Getter Active. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_edge_a91b5c22287996d54ae90b1393d11e98c}{is\+Processed}} () const
+\begin{DoxyCompactList}\small\item\em Getter processed. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} $\ast$ \mbox{\hyperlink{class_edge_aa61208f51345a3c6e8bb794925e15993}{get\+Start\+Node}} () const
+\begin{DoxyCompactList}\small\item\em Getter Start \mbox{\hyperlink{class_node}{Node}}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} $\ast$ \mbox{\hyperlink{class_edge_a13748046f79d5550cfd712f71726290a}{get\+End\+Node}} () const
+\begin{DoxyCompactList}\small\item\em Getter End \mbox{\hyperlink{class_node}{Node}}. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{class_edge_a4697368244aec892f29b53be0480fadc}{get\+Data}} () const
+\begin{DoxyCompactList}\small\item\em Getter data edge. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_edge_a40842cb5908a28634da71ec1cabea963}{set\+Uid}} (const std\+::string \&uid)
+\begin{DoxyCompactList}\small\item\em Setter uid. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_edge_af784390543c16f8ce3b5297f3adfcc10}{set\+Weight}} (const float \&weight)
+\begin{DoxyCompactList}\small\item\em Setter Weight. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_edge_ad4b8227dc914a82c495812080e80b6dd}{set\+Active}} (const bool \&active)
+\begin{DoxyCompactList}\small\item\em Setter active. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_edge_a33bc7cc18ba5f4bea6ba562722d70192}{set\+Processed}} (const bool \&processed)
+\begin{DoxyCompactList}\small\item\em Setter processed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_edge_a4a63f185bbe9f712381da62cdc3e33cc}{set\+Start\+Node}} (\mbox{\hyperlink{class_node}{Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Setter Start \mbox{\hyperlink{class_node}{Node}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_edge_a5d73c839006c47140491c76dcca2739e}{set\+End\+Node}} (\mbox{\hyperlink{class_node}{Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Setter End \mbox{\hyperlink{class_node}{Node}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_edge_a303fc7842a64e2ed4d583ea7cc273a51}{set\+Data}} (void $\ast$\mbox{\hyperlink{_graph_8h_a98cbe1f79429fc62806b32b6e8871d9e}{data}})
+\begin{DoxyCompactList}\small\item\em Setter Data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_edge_a51f56adcdff2231bf0d351c732278f74}{write}} (std\+::ostream \&os) const
+\begin{DoxyCompactList}\small\item\em $<$$<$ \mbox{\hyperlink{class_edge}{Edge}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_edge_ab8dc776b635233160f040b8d3544f473}{read}} (std\+::istream \&is)
+\begin{DoxyCompactList}\small\item\em \begin{quote}
+\begin{quote}
+\mbox{\hyperlink{class_edge}{Edge}}\end{quote}
+\end{quote}
+\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 18 of file Edge.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_edge_a3106b11d60125009dbf7a738ce540fdf}\label{class_edge_a3106b11d60125009dbf7a738ce540fdf}} 
+\index{Edge@{Edge}!Edge@{Edge}}
+\index{Edge@{Edge}!Edge@{Edge}}
+\subsubsection{\texorpdfstring{Edge()}{Edge()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Edge\+::\+Edge (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructeur. 
+
+Constructeur de la classe \mbox{\hyperlink{class_edge}{Edge}} par defaut \mbox{\Hypertarget{class_edge_a12b460c6c0a255c44d564b033b056b02}\label{class_edge_a12b460c6c0a255c44d564b033b056b02}} 
+\index{Edge@{Edge}!Edge@{Edge}}
+\index{Edge@{Edge}!Edge@{Edge}}
+\subsubsection{\texorpdfstring{Edge()}{Edge()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Edge\+::\+Edge (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_edge}{Edge}} \&}]{edge,  }\item[{void($\ast$)(void $\ast$, void $\ast$$\ast$)}]{copy\+Edge\+Data }\end{DoxyParamCaption})}
+
+
+
+Constructeur par copie. 
+
+Constructeur de la classe \mbox{\hyperlink{class_edge}{Edge}} par copie 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_edge_a4697368244aec892f29b53be0480fadc}\label{class_edge_a4697368244aec892f29b53be0480fadc}} 
+\index{Edge@{Edge}!get\+Data@{get\+Data}}
+\index{get\+Data@{get\+Data}!Edge@{Edge}}
+\subsubsection{\texorpdfstring{get\+Data()}{getData()}}
+{\footnotesize\ttfamily void$\ast$ Edge\+::get\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter data edge. 
+
+Retourne la data de la liasion
+
+\begin{DoxyReturn}{Returns}
+la data 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_a13748046f79d5550cfd712f71726290a}\label{class_edge_a13748046f79d5550cfd712f71726290a}} 
+\index{Edge@{Edge}!get\+End\+Node@{get\+End\+Node}}
+\index{get\+End\+Node@{get\+End\+Node}!Edge@{Edge}}
+\subsubsection{\texorpdfstring{get\+End\+Node()}{getEndNode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_node}{Node}}$\ast$ Edge\+::get\+End\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter End \mbox{\hyperlink{class_node}{Node}}. 
+
+Retourne le pointeur du sommet d arrivee de la liasion
+
+\begin{DoxyReturn}{Returns}
+le pointeur du sommet 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_aa61208f51345a3c6e8bb794925e15993}\label{class_edge_aa61208f51345a3c6e8bb794925e15993}} 
+\index{Edge@{Edge}!get\+Start\+Node@{get\+Start\+Node}}
+\index{get\+Start\+Node@{get\+Start\+Node}!Edge@{Edge}}
+\subsubsection{\texorpdfstring{get\+Start\+Node()}{getStartNode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_node}{Node}}$\ast$ Edge\+::get\+Start\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter Start \mbox{\hyperlink{class_node}{Node}}. 
+
+Retourne le pointeur du sommet de depart de la liasion
+
+\begin{DoxyReturn}{Returns}
+le pointeur du sommet 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_abf97244f7446b4192dfa1e87a156920d}\label{class_edge_abf97244f7446b4192dfa1e87a156920d}} 
+\index{Edge@{Edge}!get\+Uid@{get\+Uid}}
+\index{get\+Uid@{get\+Uid}!Edge@{Edge}}
+\subsubsection{\texorpdfstring{get\+Uid()}{getUid()}}
+{\footnotesize\ttfamily std\+::string Edge\+::get\+Uid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter U\+ID. 
+
+Retourne l uid de la liasion
+
+\begin{DoxyReturn}{Returns}
+l uid de la liasion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_a873322923fa6340e17edb39b923f7d61}\label{class_edge_a873322923fa6340e17edb39b923f7d61}} 
+\index{Edge@{Edge}!get\+Weight@{get\+Weight}}
+\index{get\+Weight@{get\+Weight}!Edge@{Edge}}
+\subsubsection{\texorpdfstring{get\+Weight()}{getWeight()}}
+{\footnotesize\ttfamily float Edge\+::get\+Weight (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter Weight. 
+
+Retourne le poids de la liasion
+
+\begin{DoxyReturn}{Returns}
+le poids de la liasion 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_a29524dddcadb4eae07997fa8fb6fd76f}\label{class_edge_a29524dddcadb4eae07997fa8fb6fd76f}} 
+\index{Edge@{Edge}!is\+Active@{is\+Active}}
+\index{is\+Active@{is\+Active}!Edge@{Edge}}
+\subsubsection{\texorpdfstring{is\+Active()}{isActive()}}
+{\footnotesize\ttfamily bool Edge\+::is\+Active (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter Active. 
+
+Retourne si la liasion est active ou non
+
+\begin{DoxyReturn}{Returns}
+true si elle est active 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_a91b5c22287996d54ae90b1393d11e98c}\label{class_edge_a91b5c22287996d54ae90b1393d11e98c}} 
+\index{Edge@{Edge}!is\+Processed@{is\+Processed}}
+\index{is\+Processed@{is\+Processed}!Edge@{Edge}}
+\subsubsection{\texorpdfstring{is\+Processed()}{isProcessed()}}
+{\footnotesize\ttfamily bool Edge\+::is\+Processed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter processed. 
+
+Retourne si la liasion est marque
+
+\begin{DoxyReturn}{Returns}
+true si elle est marque 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_edge_ab8dc776b635233160f040b8d3544f473}\label{class_edge_ab8dc776b635233160f040b8d3544f473}} 
+\index{Edge@{Edge}!read@{read}}
+\index{read@{read}!Edge@{Edge}}
+\subsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily void Edge\+::read (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{is }\end{DoxyParamCaption})}
+
+
+
+\begin{quote}
+\begin{quote}
+\mbox{\hyperlink{class_edge}{Edge}}\end{quote}
+\end{quote}
+
+
+Methode qui permet de lire puis enregistrer le contenu de la liaison depuis un flux entrant en paramettre
+
+
+\begin{DoxyParams}{Parameters}
+{\em le} & flux ou il faut lire \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_edge_ad4b8227dc914a82c495812080e80b6dd}\label{class_edge_ad4b8227dc914a82c495812080e80b6dd}} 
+\index{Edge@{Edge}!set\+Active@{set\+Active}}
+\index{set\+Active@{set\+Active}!Edge@{Edge}}
+\subsubsection{\texorpdfstring{set\+Active()}{setActive()}}
+{\footnotesize\ttfamily void Edge\+::set\+Active (\begin{DoxyParamCaption}\item[{const bool \&}]{active }\end{DoxyParamCaption})}
+
+
+
+Setter active. 
+
+Remplce la valeur stocker par celle en pramattre
+
+
+\begin{DoxyParams}{Parameters}
+{\em la} & valeur a poser \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_edge_a303fc7842a64e2ed4d583ea7cc273a51}\label{class_edge_a303fc7842a64e2ed4d583ea7cc273a51}} 
+\index{Edge@{Edge}!set\+Data@{set\+Data}}
+\index{set\+Data@{set\+Data}!Edge@{Edge}}
+\subsubsection{\texorpdfstring{set\+Data()}{setData()}}
+{\footnotesize\ttfamily void Edge\+::set\+Data (\begin{DoxyParamCaption}\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Setter Data. 
+
+Remplce la valeur stocker par celle en pramattre
+
+
+\begin{DoxyParams}{Parameters}
+{\em la} & valeur a poser \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_edge_a5d73c839006c47140491c76dcca2739e}\label{class_edge_a5d73c839006c47140491c76dcca2739e}} 
+\index{Edge@{Edge}!set\+End\+Node@{set\+End\+Node}}
+\index{set\+End\+Node@{set\+End\+Node}!Edge@{Edge}}
+\subsubsection{\texorpdfstring{set\+End\+Node()}{setEndNode()}}
+{\footnotesize\ttfamily void Edge\+::set\+End\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Setter End \mbox{\hyperlink{class_node}{Node}}. 
+
+Remplce la valeur stocker par celle en pramattre
+
+
+\begin{DoxyParams}{Parameters}
+{\em la} & valeur a poser \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_edge_a33bc7cc18ba5f4bea6ba562722d70192}\label{class_edge_a33bc7cc18ba5f4bea6ba562722d70192}} 
+\index{Edge@{Edge}!set\+Processed@{set\+Processed}}
+\index{set\+Processed@{set\+Processed}!Edge@{Edge}}
+\subsubsection{\texorpdfstring{set\+Processed()}{setProcessed()}}
+{\footnotesize\ttfamily void Edge\+::set\+Processed (\begin{DoxyParamCaption}\item[{const bool \&}]{processed }\end{DoxyParamCaption})}
+
+
+
+Setter processed. 
+
+Remplce la valeur stocker par celle en pramattre
+
+
+\begin{DoxyParams}{Parameters}
+{\em la} & valeur a poser \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_edge_a4a63f185bbe9f712381da62cdc3e33cc}\label{class_edge_a4a63f185bbe9f712381da62cdc3e33cc}} 
+\index{Edge@{Edge}!set\+Start\+Node@{set\+Start\+Node}}
+\index{set\+Start\+Node@{set\+Start\+Node}!Edge@{Edge}}
+\subsubsection{\texorpdfstring{set\+Start\+Node()}{setStartNode()}}
+{\footnotesize\ttfamily void Edge\+::set\+Start\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Setter Start \mbox{\hyperlink{class_node}{Node}}. 
+
+Remplce la valeur stocker par celle en pramattre
+
+
+\begin{DoxyParams}{Parameters}
+{\em la} & valeur a poser \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_edge_a40842cb5908a28634da71ec1cabea963}\label{class_edge_a40842cb5908a28634da71ec1cabea963}} 
+\index{Edge@{Edge}!set\+Uid@{set\+Uid}}
+\index{set\+Uid@{set\+Uid}!Edge@{Edge}}
+\subsubsection{\texorpdfstring{set\+Uid()}{setUid()}}
+{\footnotesize\ttfamily void Edge\+::set\+Uid (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{uid }\end{DoxyParamCaption})}
+
+
+
+Setter uid. 
+
+Remplce la valeur stocker par celle en pramattre
+
+
+\begin{DoxyParams}{Parameters}
+{\em la} & valeur a poser \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_edge_af784390543c16f8ce3b5297f3adfcc10}\label{class_edge_af784390543c16f8ce3b5297f3adfcc10}} 
+\index{Edge@{Edge}!set\+Weight@{set\+Weight}}
+\index{set\+Weight@{set\+Weight}!Edge@{Edge}}
+\subsubsection{\texorpdfstring{set\+Weight()}{setWeight()}}
+{\footnotesize\ttfamily void Edge\+::set\+Weight (\begin{DoxyParamCaption}\item[{const float \&}]{weight }\end{DoxyParamCaption})}
+
+
+
+Setter Weight. 
+
+Remplce la valeur stocker par celle en pramattre
+
+
+\begin{DoxyParams}{Parameters}
+{\em la} & valeur a poser \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_edge_a51f56adcdff2231bf0d351c732278f74}\label{class_edge_a51f56adcdff2231bf0d351c732278f74}} 
+\index{Edge@{Edge}!write@{write}}
+\index{write@{write}!Edge@{Edge}}
+\subsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily void Edge\+::write (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption}) const}
+
+
+
+$<$$<$ \mbox{\hyperlink{class_edge}{Edge}} 
+
+Methode qui permet d ecrire le contenu de la liaison dans un flux sortant en paramettre
+
+
+\begin{DoxyParams}{Parameters}
+{\em le} & flux ou il faut ecrire \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/ququq/\+Desktop/\+Repository Local Projet/\+Trophic\+\_\+\+Network/entities/graph/include/\mbox{\hyperlink{_edge_8h}{Edge.\+h}}\end{DoxyCompactItemize}

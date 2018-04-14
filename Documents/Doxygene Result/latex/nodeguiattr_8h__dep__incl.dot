@@ -1,0 +1,29 @@
+digraph "C:/Users/ququq/Desktop/Repository Local Projet/Trophic_Network/gui/App/nodeguiattr.h"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node2 [label="C:/Users/ququq/Desktop\l/Repository Local Projet\l/Trophic_Network/gui/App\l/nodeguiattr.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="C:/Users/ququq/Desktop\l/Repository Local Projet\l/Trophic_Network/entities\l/data/include/NodeAttr.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_node_attr_8h.html"];
+  Node3 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="C:/Users/ququq/Desktop\l/Repository Local Projet\l/Trophic_Network/algorithm\l/include/algorithm.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$algorithm_8h.html"];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="C:/Users/ququq/Desktop\l/Repository Local Projet\l/Trophic_Network/gui/App\l/mainwindow.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$mainwindow_8h.html"];
+  Node5 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="C:/Users/ququq/Desktop\l/Repository Local Projet\l/Trophic_Network/gui/App\l/main.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8cpp.html"];
+  Node5 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="C:/Users/ququq/Desktop\l/Repository Local Projet\l/Trophic_Network/gui/App\l/mainwindow.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$mainwindow_8cpp.html"];
+  Node3 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="C:/Users/ququq/Desktop\l/Repository Local Projet\l/Trophic_Network/gui/App\l/gnode.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$gnode_8h.html"];
+  Node8 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="C:/Users/ququq/Desktop\l/Repository Local Projet\l/Trophic_Network/gui/App\l/editnodedialog.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$editnodedialog_8h.html"];
+  Node9 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="C:/Users/ququq/Desktop\l/Repository Local Projet\l/Trophic_Network/gui/App\l/editnodedialog.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$editnodedialog_8cpp.html"];
+  Node9 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node8 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node3 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node11 [label="C:/Users/ququq/Desktop\l/Repository Local Projet\l/Trophic_Network/simulation\l/include/Simulation.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_simulation_8h.html",tooltip="Header Graph. "];
+  Node11 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+  Node2 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid"];
+}

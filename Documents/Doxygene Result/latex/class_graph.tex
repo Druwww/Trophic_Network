@@ -1,0 +1,476 @@
+\hypertarget{class_graph}{}\section{Graph Class Reference}
+\label{class_graph}\index{Graph@{Graph}}
+
+
+La classe graph comprend tout la data du graph.  
+
+
+
+
+{\ttfamily \#include $<$Graph.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}{Graph}} ()
+\begin{DoxyCompactList}\small\item\em Constructeur. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_graph_af67de98565b93f81f3766649b567e662}{Graph}} (const \mbox{\hyperlink{class_graph}{Graph}} \&graph)
+\begin{DoxyCompactList}\small\item\em Constructeur par cpy. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_graph_a902c5b3eacb66d60752525ab23297a95}{$\sim$\+Graph}} ()
+\begin{DoxyCompactList}\small\item\em Destructeur. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_graph_a6539d03f6d3f42042196f0f79455bdd8}{size}} () const
+\begin{DoxyCompactList}\small\item\em Size() \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_graph_8h_a98cbe1f79429fc62806b32b6e8871d9e}{data}} \mbox{\hyperlink{class_graph_a78762961b8cf256a828c80cb7ec26021}{get}} (int i) const
+\begin{DoxyCompactList}\small\item\em get \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_graph_a4edd61cf5268a3d467dafa9867376546}{get\+Order}} () const
+\begin{DoxyCompactList}\small\item\em get\+Order \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_graph_a45c6a79b3251a56674cbabf980f8cea7}{has\+Node}} (\mbox{\hyperlink{class_node}{Node}} $\ast$node) const
+\begin{DoxyCompactList}\small\item\em has\+Node \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_graph_af392b6a490dee43fb2448b2d969353b0}{are\+Connected}} (\mbox{\hyperlink{class_node}{Node}} $\ast$node1, \mbox{\hyperlink{class_node}{Node}} $\ast$node2) const
+\begin{DoxyCompactList}\small\item\em are\+Connected \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_graph_a2d8d8d9edb8a496d5c252132cdbbbc08}{get\+Index\+By\+Uid}} (const std\+::string \&uid) const
+\begin{DoxyCompactList}\small\item\em get\+Index\+By\+Uid \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node}{Node}} $\ast$ \mbox{\hyperlink{class_graph_a6f882885bf6f2c1b492985263a45d2b1}{get\+Node\+By\+Uid}} (const std\+::string \&uid) const
+\begin{DoxyCompactList}\small\item\em get\+Node\+By\+Uid \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_graph_8h_a383232190011cffd7d1fb05d72e89928}{IO}} \mbox{\hyperlink{class_graph_a163656854e289f8dbdf037683d581dec}{get\+Connections}} (const std\+::string \&uid) const
+\begin{DoxyCompactList}\small\item\em get\+Connections(\+U\+I\+D) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_graph_8h_a383232190011cffd7d1fb05d72e89928}{IO}} \mbox{\hyperlink{class_graph_ac925af39108ceec409a3083bc784604e}{get\+Connections}} (\mbox{\hyperlink{class_node}{Node}} $\ast$node) const
+\begin{DoxyCompactList}\small\item\em get\+Connections(\+Node$\ast$) \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_data_interface}{Data\+Interface}} $\ast$ \mbox{\hyperlink{class_graph_a9bda05ab33875f275e6a0e44862febf4}{get\+Node\+Interface}} ()
+\begin{DoxyCompactList}\small\item\em get\+Node\+Interface \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_data_interface}{Data\+Interface}} $\ast$ \mbox{\hyperlink{class_graph_acd9d49e6e5767accd435a6446879e49b}{get\+Edge\+Interface}} ()
+\begin{DoxyCompactList}\small\item\em get\+Edge\+Interface \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graph_a6f487be56c6a426443caa718e33c5399}{connect}} (const std\+::string \&uid1, const std\+::string \&uid2, void $\ast$\mbox{\hyperlink{_graph_8h_a98cbe1f79429fc62806b32b6e8871d9e}{data}}=nullptr)
+\begin{DoxyCompactList}\small\item\em connect(\+U\+I\+D) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graph_afedc0da07ed8ca06cf07f202dd83cec4}{connect}} (\mbox{\hyperlink{class_node}{Node}} $\ast$node1, \mbox{\hyperlink{class_node}{Node}} $\ast$node2, void $\ast$\mbox{\hyperlink{_graph_8h_a98cbe1f79429fc62806b32b6e8871d9e}{data}}=nullptr)
+\begin{DoxyCompactList}\small\item\em connect(\+Node$\ast$) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_graph_a8236fc82b90fdea9b07d4cd0ae189925}{add\+Node}} (\mbox{\hyperlink{class_node}{Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em add\+Node \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_graph_a32b254ea9535f8f4ad831d129db525e8}{remove\+Node}} (\mbox{\hyperlink{class_node}{Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_graph_a32b254ea9535f8f4ad831d129db525e8}{remove\+Node(\+Node$\ast$)}} \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_graph_a1c30c580ccc957167dc64ca1a9e19248}{remove\+Node}} (const std\+::string \&uid)
+\begin{DoxyCompactList}\small\item\em remove\+Node(\+U\+I\+D) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_graph_a97b5c94aeef2c0bea6a3f424b0fc01b8}{remove\+Edge}} (\mbox{\hyperlink{class_edge}{Edge}} $\ast$edge)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{class_graph_a97b5c94aeef2c0bea6a3f424b0fc01b8}{remove\+Edge(\+Edge$\ast$)}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graph_aeeede3cb48be5d8cac08ea05ce54bd52}{print}} () const
+\begin{DoxyCompactList}\small\item\em print \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graph_aada8884f6aea111f9b36d8dfb3e5c0a9}{write}} (std\+::ostream \&os) const
+\begin{DoxyCompactList}\small\item\em $<$$<$ \mbox{\hyperlink{class_graph}{Graph}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_graph_a79b39cf3963c03095bb74017a23c145e}{read}} (std\+::istream \&is)
+\begin{DoxyCompactList}\small\item\em \begin{quote}
+\begin{quote}
+\mbox{\hyperlink{class_graph}{Graph}}\end{quote}
+\end{quote}
+\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+La classe graph comprend tout la data du graph. 
+
+Definition at line 47 of file Graph.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}\label{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}} 
+\index{Graph@{Graph}!Graph@{Graph}}
+\index{Graph@{Graph}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{Graph()}{Graph()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Graph\+::\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructeur. 
+
+Constructeur de la classe \mbox{\hyperlink{class_graph}{Graph}} par defaut \mbox{\Hypertarget{class_graph_af67de98565b93f81f3766649b567e662}\label{class_graph_af67de98565b93f81f3766649b567e662}} 
+\index{Graph@{Graph}!Graph@{Graph}}
+\index{Graph@{Graph}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{Graph()}{Graph()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Graph\+::\+Graph (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_graph}{Graph}} \&}]{graph }\end{DoxyParamCaption})}
+
+
+
+Constructeur par cpy. 
+
+Constructeur par copie de \mbox{\hyperlink{class_graph}{Graph}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & \+: reference du graph a copier \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_a902c5b3eacb66d60752525ab23297a95}\label{class_graph_a902c5b3eacb66d60752525ab23297a95}} 
+\index{Graph@{Graph}!````~Graph@{$\sim$\+Graph}}
+\index{````~Graph@{$\sim$\+Graph}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{$\sim$\+Graph()}{~Graph()}}
+{\footnotesize\ttfamily Graph\+::$\sim$\+Graph (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destructeur. 
+
+Destructeur de la classe \mbox{\hyperlink{class_graph}{Graph}} 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_graph_a8236fc82b90fdea9b07d4cd0ae189925}\label{class_graph_a8236fc82b90fdea9b07d4cd0ae189925}} 
+\index{Graph@{Graph}!add\+Node@{add\+Node}}
+\index{add\+Node@{add\+Node}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{add\+Node()}{addNode()}}
+{\footnotesize\ttfamily int Graph\+::add\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+add\+Node 
+
+Methode qui permet d ajouter un sommet au graphe dont on passe le pointeur du sommet creer
+
+
+\begin{DoxyParams}{Parameters}
+{\em pointeur} & du sommet a ajouter\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+le numero de l index du sommet juste avant lui 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_af392b6a490dee43fb2448b2d969353b0}\label{class_graph_af392b6a490dee43fb2448b2d969353b0}} 
+\index{Graph@{Graph}!are\+Connected@{are\+Connected}}
+\index{are\+Connected@{are\+Connected}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{are\+Connected()}{areConnected()}}
+{\footnotesize\ttfamily bool Graph\+::are\+Connected (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{node1,  }\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{node2 }\end{DoxyParamCaption}) const}
+
+
+
+are\+Connected 
+
+Methode qui permet de dire si deux noeud sont relier par une arrete
+
+
+\begin{DoxyParams}{Parameters}
+{\em Les} & pointeurs des deux noeud a tester \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si il y a une arrete entre les deux sommet, false sinon 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a6f487be56c6a426443caa718e33c5399}\label{class_graph_a6f487be56c6a426443caa718e33c5399}} 
+\index{Graph@{Graph}!connect@{connect}}
+\index{connect@{connect}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{connect()}{connect()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Graph\+::connect (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{uid1,  }\item[{const std\+::string \&}]{uid2,  }\item[{void $\ast$}]{data = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+connect(\+U\+I\+D) 
+
+Permet de creer une arrete entre deux sommet dont leur U\+ID est passe en paramettre, avec possiblement avec la data de la laision
+
+
+\begin{DoxyParams}{Parameters}
+{\em uid} & des sommet a lier, pointeur de la data a remplir \+: par defaut rien \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_afedc0da07ed8ca06cf07f202dd83cec4}\label{class_graph_afedc0da07ed8ca06cf07f202dd83cec4}} 
+\index{Graph@{Graph}!connect@{connect}}
+\index{connect@{connect}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{connect()}{connect()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Graph\+::connect (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{node1,  }\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{node2,  }\item[{void $\ast$}]{data = {\ttfamily nullptr} }\end{DoxyParamCaption})}
+
+
+
+connect(\+Node$\ast$) 
+
+Permet de creer une arrete entre deux sommet dont leur pointeurs est passe en paramettre, avec possiblement avec la data de la laision
+
+
+\begin{DoxyParams}{Parameters}
+{\em pointeurs} & des sommet a lier, pointeur de la data a remplir \+: par defaut rien \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_a78762961b8cf256a828c80cb7ec26021}\label{class_graph_a78762961b8cf256a828c80cb7ec26021}} 
+\index{Graph@{Graph}!get@{get}}
+\index{get@{get}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{get()}{get()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_graph_8h_a98cbe1f79429fc62806b32b6e8871d9e}{data}} Graph\+::get (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption}) const}
+
+
+
+get 
+
+Methode qui permet de retourner la data d un sommet dont son index est passe en paramettre
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & \+: index qu on veut récuperer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+data \+: la data 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a163656854e289f8dbdf037683d581dec}\label{class_graph_a163656854e289f8dbdf037683d581dec}} 
+\index{Graph@{Graph}!get\+Connections@{get\+Connections}}
+\index{get\+Connections@{get\+Connections}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{get\+Connections()}{getConnections()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_graph_8h_a383232190011cffd7d1fb05d72e89928}{IO}} Graph\+::get\+Connections (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{uid }\end{DoxyParamCaption}) const}
+
+
+
+get\+Connections(\+U\+I\+D) 
+
+Methode qui permet de retourner le IO d un sommet dont son U\+ID est passe en paramettre
+
+
+\begin{DoxyParams}{Parameters}
+{\em uid} & ud sommet qu on souhaite recuperer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+le IO du sommet passe 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_ac925af39108ceec409a3083bc784604e}\label{class_graph_ac925af39108ceec409a3083bc784604e}} 
+\index{Graph@{Graph}!get\+Connections@{get\+Connections}}
+\index{get\+Connections@{get\+Connections}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{get\+Connections()}{getConnections()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_graph_8h_a383232190011cffd7d1fb05d72e89928}{IO}} Graph\+::get\+Connections (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{node }\end{DoxyParamCaption}) const}
+
+
+
+get\+Connections(\+Node$\ast$) 
+
+Methode qui permet de retourner le IO d un sommet dont son pointeur est passe en paramettre
+
+
+\begin{DoxyParams}{Parameters}
+{\em pointeur} & du sommet a recuperer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+le IO du sommet passe 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_acd9d49e6e5767accd435a6446879e49b}\label{class_graph_acd9d49e6e5767accd435a6446879e49b}} 
+\index{Graph@{Graph}!get\+Edge\+Interface@{get\+Edge\+Interface}}
+\index{get\+Edge\+Interface@{get\+Edge\+Interface}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{get\+Edge\+Interface()}{getEdgeInterface()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_data_interface}{Data\+Interface}}$\ast$ Graph\+::get\+Edge\+Interface (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Edge\+Interface 
+
+Methode qui permet de retourner l interface des arretes du graphe
+
+\begin{DoxyReturn}{Returns}
+l interface 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a2d8d8d9edb8a496d5c252132cdbbbc08}\label{class_graph_a2d8d8d9edb8a496d5c252132cdbbbc08}} 
+\index{Graph@{Graph}!get\+Index\+By\+Uid@{get\+Index\+By\+Uid}}
+\index{get\+Index\+By\+Uid@{get\+Index\+By\+Uid}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{get\+Index\+By\+Uid()}{getIndexByUid()}}
+{\footnotesize\ttfamily int Graph\+::get\+Index\+By\+Uid (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{uid }\end{DoxyParamCaption}) const}
+
+
+
+get\+Index\+By\+Uid 
+
+Methode qui permet de donner l index dans la data du sommet dont on a passer l U\+ID
+
+
+\begin{DoxyParams}{Parameters}
+{\em l\textquotesingle{}\+U\+ID} & du sommet dont on veut recuperer l index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int\+: l index du sommet 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a6f882885bf6f2c1b492985263a45d2b1}\label{class_graph_a6f882885bf6f2c1b492985263a45d2b1}} 
+\index{Graph@{Graph}!get\+Node\+By\+Uid@{get\+Node\+By\+Uid}}
+\index{get\+Node\+By\+Uid@{get\+Node\+By\+Uid}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{get\+Node\+By\+Uid()}{getNodeByUid()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_node}{Node}}$\ast$ Graph\+::get\+Node\+By\+Uid (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{uid }\end{DoxyParamCaption}) const}
+
+
+
+get\+Node\+By\+Uid 
+
+Methode qui permet d\textquotesingle{}obtenir le pointeur du sommet dont on passe l uid
+
+
+\begin{DoxyParams}{Parameters}
+{\em uid} & du sommet a recuperer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+le pointeur du sommet qu on souhaite recuperer 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a9bda05ab33875f275e6a0e44862febf4}\label{class_graph_a9bda05ab33875f275e6a0e44862febf4}} 
+\index{Graph@{Graph}!get\+Node\+Interface@{get\+Node\+Interface}}
+\index{get\+Node\+Interface@{get\+Node\+Interface}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{get\+Node\+Interface()}{getNodeInterface()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_data_interface}{Data\+Interface}}$\ast$ Graph\+::get\+Node\+Interface (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+get\+Node\+Interface 
+
+Methode qui permet de retourner l interface des sommet du graphe
+
+\begin{DoxyReturn}{Returns}
+l interface 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a4edd61cf5268a3d467dafa9867376546}\label{class_graph_a4edd61cf5268a3d467dafa9867376546}} 
+\index{Graph@{Graph}!get\+Order@{get\+Order}}
+\index{get\+Order@{get\+Order}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{get\+Order()}{getOrder()}}
+{\footnotesize\ttfamily int Graph\+::get\+Order (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Order 
+
+Meme methode que Size qui aurait du etre enleve \mbox{\Hypertarget{class_graph_a45c6a79b3251a56674cbabf980f8cea7}\label{class_graph_a45c6a79b3251a56674cbabf980f8cea7}} 
+\index{Graph@{Graph}!has\+Node@{has\+Node}}
+\index{has\+Node@{has\+Node}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{has\+Node()}{hasNode()}}
+{\footnotesize\ttfamily bool Graph\+::has\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{node }\end{DoxyParamCaption}) const}
+
+
+
+has\+Node 
+
+Methode qui permet d\textquotesingle{}ajouter un morceau a liste de lecturee dire si un noeud est present dans la data
+
+
+\begin{DoxyParams}{Parameters}
+{\em str\+Song} & \+: le pointeur du noeud a tester \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si le noeud est deja present dans la data, false sinon 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_aeeede3cb48be5d8cac08ea05ce54bd52}\label{class_graph_aeeede3cb48be5d8cac08ea05ce54bd52}} 
+\index{Graph@{Graph}!print@{print}}
+\index{print@{print}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily void Graph\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+print 
+
+Methode qui permet d afficher dans la console tout le contenu du graphe \mbox{\Hypertarget{class_graph_a79b39cf3963c03095bb74017a23c145e}\label{class_graph_a79b39cf3963c03095bb74017a23c145e}} 
+\index{Graph@{Graph}!read@{read}}
+\index{read@{read}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily void Graph\+::read (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{is }\end{DoxyParamCaption})}
+
+
+
+\begin{quote}
+\begin{quote}
+\mbox{\hyperlink{class_graph}{Graph}}\end{quote}
+\end{quote}
+
+
+Methode qui permet de lire puis enregistrer le contenu du graphe depuis un flux entrant en paramettre
+
+
+\begin{DoxyParams}{Parameters}
+{\em le} & flux ou il faut lire \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_graph_a97b5c94aeef2c0bea6a3f424b0fc01b8}\label{class_graph_a97b5c94aeef2c0bea6a3f424b0fc01b8}} 
+\index{Graph@{Graph}!remove\+Edge@{remove\+Edge}}
+\index{remove\+Edge@{remove\+Edge}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{remove\+Edge()}{removeEdge()}}
+{\footnotesize\ttfamily bool Graph\+::remove\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_edge}{Edge}} $\ast$}]{edge }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{class_graph_a97b5c94aeef2c0bea6a3f424b0fc01b8}{remove\+Edge(\+Edge$\ast$)}} 
+
+Methode qui permet de retirer une arrete de la data grace a son pointeur
+
+
+\begin{DoxyParams}{Parameters}
+{\em le} & pointeur de l arrete a supprimer\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true \+: si il y a bien une suppression, false sinon si le sommet n existe pas 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a32b254ea9535f8f4ad831d129db525e8}\label{class_graph_a32b254ea9535f8f4ad831d129db525e8}} 
+\index{Graph@{Graph}!remove\+Node@{remove\+Node}}
+\index{remove\+Node@{remove\+Node}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{remove\+Node()}{removeNode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Graph\+::remove\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{class_graph_a32b254ea9535f8f4ad831d129db525e8}{remove\+Node(\+Node$\ast$)}} 
+
+Methode qui permet de retirer un sommet de la data grace a son pointeur
+
+
+\begin{DoxyParams}{Parameters}
+{\em le} & pointeur du sommet a supprimer\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true \+: si il y a bien une suppression, false sinon si le sommet n existe pas 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a1c30c580ccc957167dc64ca1a9e19248}\label{class_graph_a1c30c580ccc957167dc64ca1a9e19248}} 
+\index{Graph@{Graph}!remove\+Node@{remove\+Node}}
+\index{remove\+Node@{remove\+Node}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{remove\+Node()}{removeNode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Graph\+::remove\+Node (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{uid }\end{DoxyParamCaption})}
+
+
+
+remove\+Node(\+U\+I\+D) 
+
+Methode qui permet de retirer un sommet de la data grace a son uid
+
+
+\begin{DoxyParams}{Parameters}
+{\em l\textquotesingle{}uid} & du sommet a supprimer\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true \+: si il y a bien une suppression, false sinon si le sommet n existe pas 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_a6539d03f6d3f42042196f0f79455bdd8}\label{class_graph_a6539d03f6d3f42042196f0f79455bdd8}} 
+\index{Graph@{Graph}!size@{size}}
+\index{size@{size}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily int Graph\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Size() 
+
+Retourne le nombre de sommet dans le graphe
+
+\begin{DoxyReturn}{Returns}
+int \+: le nombre de sommet dans le graph 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_graph_aada8884f6aea111f9b36d8dfb3e5c0a9}\label{class_graph_aada8884f6aea111f9b36d8dfb3e5c0a9}} 
+\index{Graph@{Graph}!write@{write}}
+\index{write@{write}!Graph@{Graph}}
+\subsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily void Graph\+::write (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption}) const}
+
+
+
+$<$$<$ \mbox{\hyperlink{class_graph}{Graph}} 
+
+Methode qui permet d ecrire le contenu du graphe dans un flux sortant en paramettre
+
+
+\begin{DoxyParams}{Parameters}
+{\em le} & flux ou il faut ecrire \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/ququq/\+Desktop/\+Repository Local Projet/\+Trophic\+\_\+\+Network/entities/graph/include/\mbox{\hyperlink{_graph_8h}{Graph.\+h}}\end{DoxyCompactItemize}

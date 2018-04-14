@@ -1,0 +1,165 @@
+\hypertarget{struct_g_node}{}\section{G\+Node Struct Reference}
+\label{struct_g_node}\index{G\+Node@{G\+Node}}
+
+
+{\ttfamily \#include $<$gnode.\+h$>$}
+
+
+
+Inheritance diagram for G\+Node\+:
+% FIG 0
+
+
+Collaboration diagram for G\+Node\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_g_node_a2344be00333e7e3c1e481320dab0ab6c}{G\+Node}} (\mbox{\hyperlink{class_node}{Node}} $\ast$node, \mbox{\hyperlink{struct_node_gui_attr}{Node\+Gui\+Attr}} $\ast$gui, Q\+Widget $\ast$parent=0)
+\item 
+virtual \mbox{\hyperlink{struct_g_node_a126f44e9c70024d22e3766e9188858e0}{$\sim$\+G\+Node}} ()
+\item 
+void \mbox{\hyperlink{struct_g_node_a380b1efbcfae97d1746ce7f30f983742}{pain\+Event}} (Q\+Painter \&painter)
+\item 
+void \mbox{\hyperlink{struct_g_node_a131f3025a4d61433e58b5d7dbe702820}{update\+Image}} ()
+\item 
+void \mbox{\hyperlink{struct_g_node_a3c38a45a7b98a63d3f240d8e62032fb8}{update\+Pos}} ()
+\item 
+void \mbox{\hyperlink{struct_g_node_a1828c2a21037df0a85be72c1c65266dd}{enable\+Underline}} (Q\+Painter \&painter, const bool \&enabled)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_node}{Node}} $\ast$ \mbox{\hyperlink{struct_g_node_a1f5acd0ae89f506fdbd8674b0cda648c}{m\+\_\+node}}
+\item 
+\mbox{\hyperlink{struct_node_attr}{Node\+Attr}} $\ast$ \mbox{\hyperlink{struct_g_node_a9af79b0be58beeca8e76eef4d1798555}{m\+\_\+attr}}
+\item 
+\mbox{\hyperlink{struct_node_gui_attr}{Node\+Gui\+Attr}} $\ast$ \mbox{\hyperlink{struct_g_node_a3883c1648b5f4b39872eac62d0d9f74d}{m\+\_\+gui}}
+\item 
+Q\+Pixmap $\ast$ \mbox{\hyperlink{struct_g_node_a77e0c9572f6f27150ed75b3a55120d08}{m\+\_\+image}}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 14 of file gnode.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{struct_g_node_a2344be00333e7e3c1e481320dab0ab6c}\label{struct_g_node_a2344be00333e7e3c1e481320dab0ab6c}} 
+\index{G\+Node@{G\+Node}!G\+Node@{G\+Node}}
+\index{G\+Node@{G\+Node}!G\+Node@{G\+Node}}
+\subsubsection{\texorpdfstring{G\+Node()}{GNode()}}
+{\footnotesize\ttfamily G\+Node\+::\+G\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{struct_node_gui_attr}{Node\+Gui\+Attr}} $\ast$}]{gui,  }\item[{Q\+Widget $\ast$}]{parent = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 20 of file gnode.\+h.
+
+Here is the call graph for this function\+:
+% FIG 2
+\mbox{\Hypertarget{struct_g_node_a126f44e9c70024d22e3766e9188858e0}\label{struct_g_node_a126f44e9c70024d22e3766e9188858e0}} 
+\index{G\+Node@{G\+Node}!````~G\+Node@{$\sim$\+G\+Node}}
+\index{````~G\+Node@{$\sim$\+G\+Node}!G\+Node@{G\+Node}}
+\subsubsection{\texorpdfstring{$\sim$\+G\+Node()}{~GNode()}}
+{\footnotesize\ttfamily virtual G\+Node\+::$\sim$\+G\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line 34 of file gnode.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{struct_g_node_a1828c2a21037df0a85be72c1c65266dd}\label{struct_g_node_a1828c2a21037df0a85be72c1c65266dd}} 
+\index{G\+Node@{G\+Node}!enable\+Underline@{enable\+Underline}}
+\index{enable\+Underline@{enable\+Underline}!G\+Node@{G\+Node}}
+\subsubsection{\texorpdfstring{enable\+Underline()}{enableUnderline()}}
+{\footnotesize\ttfamily void G\+Node\+::enable\+Underline (\begin{DoxyParamCaption}\item[{Q\+Painter \&}]{painter,  }\item[{const bool \&}]{enabled }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 72 of file gnode.\+h.
+
+\mbox{\Hypertarget{struct_g_node_a380b1efbcfae97d1746ce7f30f983742}\label{struct_g_node_a380b1efbcfae97d1746ce7f30f983742}} 
+\index{G\+Node@{G\+Node}!pain\+Event@{pain\+Event}}
+\index{pain\+Event@{pain\+Event}!G\+Node@{G\+Node}}
+\subsubsection{\texorpdfstring{pain\+Event()}{painEvent()}}
+{\footnotesize\ttfamily void G\+Node\+::pain\+Event (\begin{DoxyParamCaption}\item[{Q\+Painter \&}]{painter }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 38 of file gnode.\+h.
+
+Here is the call graph for this function\+:
+% FIG 3
+\mbox{\Hypertarget{struct_g_node_a131f3025a4d61433e58b5d7dbe702820}\label{struct_g_node_a131f3025a4d61433e58b5d7dbe702820}} 
+\index{G\+Node@{G\+Node}!update\+Image@{update\+Image}}
+\index{update\+Image@{update\+Image}!G\+Node@{G\+Node}}
+\subsubsection{\texorpdfstring{update\+Image()}{updateImage()}}
+{\footnotesize\ttfamily void G\+Node\+::update\+Image (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 62 of file gnode.\+h.
+
+\mbox{\Hypertarget{struct_g_node_a3c38a45a7b98a63d3f240d8e62032fb8}\label{struct_g_node_a3c38a45a7b98a63d3f240d8e62032fb8}} 
+\index{G\+Node@{G\+Node}!update\+Pos@{update\+Pos}}
+\index{update\+Pos@{update\+Pos}!G\+Node@{G\+Node}}
+\subsubsection{\texorpdfstring{update\+Pos()}{updatePos()}}
+{\footnotesize\ttfamily void G\+Node\+::update\+Pos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 68 of file gnode.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_g_node_a9af79b0be58beeca8e76eef4d1798555}\label{struct_g_node_a9af79b0be58beeca8e76eef4d1798555}} 
+\index{G\+Node@{G\+Node}!m\+\_\+attr@{m\+\_\+attr}}
+\index{m\+\_\+attr@{m\+\_\+attr}!G\+Node@{G\+Node}}
+\subsubsection{\texorpdfstring{m\+\_\+attr}{m\_attr}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_node_attr}{Node\+Attr}}$\ast$ G\+Node\+::m\+\_\+attr}
+
+
+
+Definition at line 16 of file gnode.\+h.
+
+\mbox{\Hypertarget{struct_g_node_a3883c1648b5f4b39872eac62d0d9f74d}\label{struct_g_node_a3883c1648b5f4b39872eac62d0d9f74d}} 
+\index{G\+Node@{G\+Node}!m\+\_\+gui@{m\+\_\+gui}}
+\index{m\+\_\+gui@{m\+\_\+gui}!G\+Node@{G\+Node}}
+\subsubsection{\texorpdfstring{m\+\_\+gui}{m\_gui}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_node_gui_attr}{Node\+Gui\+Attr}}$\ast$ G\+Node\+::m\+\_\+gui}
+
+
+
+Definition at line 17 of file gnode.\+h.
+
+\mbox{\Hypertarget{struct_g_node_a77e0c9572f6f27150ed75b3a55120d08}\label{struct_g_node_a77e0c9572f6f27150ed75b3a55120d08}} 
+\index{G\+Node@{G\+Node}!m\+\_\+image@{m\+\_\+image}}
+\index{m\+\_\+image@{m\+\_\+image}!G\+Node@{G\+Node}}
+\subsubsection{\texorpdfstring{m\+\_\+image}{m\_image}}
+{\footnotesize\ttfamily Q\+Pixmap$\ast$ G\+Node\+::m\+\_\+image}
+
+
+
+Definition at line 18 of file gnode.\+h.
+
+\mbox{\Hypertarget{struct_g_node_a1f5acd0ae89f506fdbd8674b0cda648c}\label{struct_g_node_a1f5acd0ae89f506fdbd8674b0cda648c}} 
+\index{G\+Node@{G\+Node}!m\+\_\+node@{m\+\_\+node}}
+\index{m\+\_\+node@{m\+\_\+node}!G\+Node@{G\+Node}}
+\subsubsection{\texorpdfstring{m\+\_\+node}{m\_node}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_node}{Node}}$\ast$ G\+Node\+::m\+\_\+node}
+
+
+
+Definition at line 15 of file gnode.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/ququq/\+Desktop/\+Repository Local Projet/\+Trophic\+\_\+\+Network/gui/\+App/\mbox{\hyperlink{gnode_8h}{gnode.\+h}}\end{DoxyCompactItemize}

@@ -42,6 +42,5 @@ gui/build-App-Desktop-Release/
 gui/build-App-Desktop_Qt_5_9_1_MinGW_32bit-Debug/
 gui/build-App-Desktop_Qt_5_9_1_MinGW_32bit-Release/
 
-Documents/
 test/
 test.bckp

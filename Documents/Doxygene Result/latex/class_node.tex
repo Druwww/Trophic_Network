@@ -1,0 +1,239 @@
+\hypertarget{class_node}{}\section{Node Class Reference}
+\label{class_node}\index{Node@{Node}}
+
+
+La class node permet de stocker toute la data d un sommet.  
+
+
+
+
+{\ttfamily \#include $<$Node.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_node_ad7a34779cad45d997bfd6d3d8043c75f}{Node}} ()
+\begin{DoxyCompactList}\small\item\em Constructeur. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node_a639cdb8009e80b20bfdb0575c765c713}{Node}} (const std\+::string \&uid)
+\begin{DoxyCompactList}\small\item\em Constructeur par copie. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_node_a2d318229a996fe2654bf53428a4ff283}{Node}} (const \mbox{\hyperlink{class_node}{Node}} \&node, void($\ast$copy\+Node\+Data\+Listener)(void $\ast$, void $\ast$$\ast$))
+\begin{DoxyCompactList}\small\item\em Constructeur par copie avec data node. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_node_a53a0fb412c1047a27e07e7e4c5749bee}{get\+Uid}} () const
+\begin{DoxyCompactList}\small\item\em Getter U\+ID. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_node_a1fa00bc88d4a66614ee06c913dbda27f}{is\+Processed}} () const
+\begin{DoxyCompactList}\small\item\em Getter processed. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_node_a459e4ba8eb31ccc165d00110a6e4d9ae}{get\+Group}} () const
+\begin{DoxyCompactList}\small\item\em Getter Group. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{class_node_a56fd0bc1abfad73e9ac9561a0f20c23d}{get\+Data}} () const
+\begin{DoxyCompactList}\small\item\em Getter Data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_a711384cef3ba7e7927bdad163ef66c26}{set\+Processed}} (const bool \&processed)
+\begin{DoxyCompactList}\small\item\em Setter processed. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_aa276d0e58d6b8e1a5c90634a1dcc10dd}{set\+Group}} (const int \&group)
+\begin{DoxyCompactList}\small\item\em Setter Group. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_a07d96eb3ce03cacd2b5a2af10365bc37}{set\+Data}} (void $\ast$\mbox{\hyperlink{_graph_8h_a98cbe1f79429fc62806b32b6e8871d9e}{data}})
+\begin{DoxyCompactList}\small\item\em Setter Data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_a01967a39cb1b94b4132715443bf31b69}{write}} (std\+::ostream \&os) const
+\begin{DoxyCompactList}\small\item\em $<$$<$ \mbox{\hyperlink{class_node}{Node}} \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_node_ac59311eb42715f4a1f04a225618cace8}{read}} (std\+::istream \&is)
+\begin{DoxyCompactList}\small\item\em \begin{quote}
+\begin{quote}
+\mbox{\hyperlink{class_node}{Node}}\end{quote}
+\end{quote}
+\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+La class node permet de stocker toute la data d un sommet. 
+
+Definition at line 23 of file Node.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_node_ad7a34779cad45d997bfd6d3d8043c75f}\label{class_node_ad7a34779cad45d997bfd6d3d8043c75f}} 
+\index{Node@{Node}!Node@{Node}}
+\index{Node@{Node}!Node@{Node}}
+\subsubsection{\texorpdfstring{Node()}{Node()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Node\+::\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructeur. 
+
+Constructeur de la classe \mbox{\hyperlink{class_node}{Node}} par defaut \mbox{\Hypertarget{class_node_a639cdb8009e80b20bfdb0575c765c713}\label{class_node_a639cdb8009e80b20bfdb0575c765c713}} 
+\index{Node@{Node}!Node@{Node}}
+\index{Node@{Node}!Node@{Node}}
+\subsubsection{\texorpdfstring{Node()}{Node()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Node\+::\+Node (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{uid }\end{DoxyParamCaption})}
+
+
+
+Constructeur par copie. 
+
+Constructeur de la classe \mbox{\hyperlink{class_node}{Node}} par copie \mbox{\Hypertarget{class_node_a2d318229a996fe2654bf53428a4ff283}\label{class_node_a2d318229a996fe2654bf53428a4ff283}} 
+\index{Node@{Node}!Node@{Node}}
+\index{Node@{Node}!Node@{Node}}
+\subsubsection{\texorpdfstring{Node()}{Node()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Node\+::\+Node (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_node}{Node}} \&}]{node,  }\item[{void($\ast$)(void $\ast$, void $\ast$$\ast$)}]{copy\+Node\+Data\+Listener }\end{DoxyParamCaption})}
+
+
+
+Constructeur par copie avec data node. 
+
+Constructeur de la classe \mbox{\hyperlink{class_node}{Node}} par defaut 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{class_node_a56fd0bc1abfad73e9ac9561a0f20c23d}\label{class_node_a56fd0bc1abfad73e9ac9561a0f20c23d}} 
+\index{Node@{Node}!get\+Data@{get\+Data}}
+\index{get\+Data@{get\+Data}!Node@{Node}}
+\subsubsection{\texorpdfstring{get\+Data()}{getData()}}
+{\footnotesize\ttfamily void$\ast$ Node\+::get\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter Data. 
+
+Retourne la data du sommet
+
+\begin{DoxyReturn}{Returns}
+la data du sommet 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node_a459e4ba8eb31ccc165d00110a6e4d9ae}\label{class_node_a459e4ba8eb31ccc165d00110a6e4d9ae}} 
+\index{Node@{Node}!get\+Group@{get\+Group}}
+\index{get\+Group@{get\+Group}!Node@{Node}}
+\subsubsection{\texorpdfstring{get\+Group()}{getGroup()}}
+{\footnotesize\ttfamily int Node\+::get\+Group (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter Group. 
+
+Retourne l uid du sommet0
+
+\begin{DoxyReturn}{Returns}
+l uid du sommet 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node_a53a0fb412c1047a27e07e7e4c5749bee}\label{class_node_a53a0fb412c1047a27e07e7e4c5749bee}} 
+\index{Node@{Node}!get\+Uid@{get\+Uid}}
+\index{get\+Uid@{get\+Uid}!Node@{Node}}
+\subsubsection{\texorpdfstring{get\+Uid()}{getUid()}}
+{\footnotesize\ttfamily std\+::string Node\+::get\+Uid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter U\+ID. 
+
+Retourne l uid du sommet
+
+\begin{DoxyReturn}{Returns}
+l uid du sommet 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node_a1fa00bc88d4a66614ee06c913dbda27f}\label{class_node_a1fa00bc88d4a66614ee06c913dbda27f}} 
+\index{Node@{Node}!is\+Processed@{is\+Processed}}
+\index{is\+Processed@{is\+Processed}!Node@{Node}}
+\subsubsection{\texorpdfstring{is\+Processed()}{isProcessed()}}
+{\footnotesize\ttfamily bool Node\+::is\+Processed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Getter processed. 
+
+Retourne si le sommet est marque
+
+\begin{DoxyReturn}{Returns}
+true si il est marque, false sinon 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_node_ac59311eb42715f4a1f04a225618cace8}\label{class_node_ac59311eb42715f4a1f04a225618cace8}} 
+\index{Node@{Node}!read@{read}}
+\index{read@{read}!Node@{Node}}
+\subsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily void Node\+::read (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{is }\end{DoxyParamCaption})}
+
+
+
+\begin{quote}
+\begin{quote}
+\mbox{\hyperlink{class_node}{Node}}\end{quote}
+\end{quote}
+
+
+Methode qui permet de lire puis enregistrer le contenu du node depuis un flux entrant en paramettre
+
+
+\begin{DoxyParams}{Parameters}
+{\em le} & flux ou il faut lire \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_node_a07d96eb3ce03cacd2b5a2af10365bc37}\label{class_node_a07d96eb3ce03cacd2b5a2af10365bc37}} 
+\index{Node@{Node}!set\+Data@{set\+Data}}
+\index{set\+Data@{set\+Data}!Node@{Node}}
+\subsubsection{\texorpdfstring{set\+Data()}{setData()}}
+{\footnotesize\ttfamily void Node\+::set\+Data (\begin{DoxyParamCaption}\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Setter Data. 
+
+Remplce la valeur stocker par celle en pramattre
+
+
+\begin{DoxyParams}{Parameters}
+{\em la} & valeur a poser \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_node_aa276d0e58d6b8e1a5c90634a1dcc10dd}\label{class_node_aa276d0e58d6b8e1a5c90634a1dcc10dd}} 
+\index{Node@{Node}!set\+Group@{set\+Group}}
+\index{set\+Group@{set\+Group}!Node@{Node}}
+\subsubsection{\texorpdfstring{set\+Group()}{setGroup()}}
+{\footnotesize\ttfamily void Node\+::set\+Group (\begin{DoxyParamCaption}\item[{const int \&}]{group }\end{DoxyParamCaption})}
+
+
+
+Setter Group. 
+
+Remplce la valeur stocker par celle en pramattre
+
+
+\begin{DoxyParams}{Parameters}
+{\em la} & valeur a poser \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_node_a711384cef3ba7e7927bdad163ef66c26}\label{class_node_a711384cef3ba7e7927bdad163ef66c26}} 
+\index{Node@{Node}!set\+Processed@{set\+Processed}}
+\index{set\+Processed@{set\+Processed}!Node@{Node}}
+\subsubsection{\texorpdfstring{set\+Processed()}{setProcessed()}}
+{\footnotesize\ttfamily void Node\+::set\+Processed (\begin{DoxyParamCaption}\item[{const bool \&}]{processed }\end{DoxyParamCaption})}
+
+
+
+Setter processed. 
+
+Remplce la valeur stocker par celle en pramattre
+
+
+\begin{DoxyParams}{Parameters}
+{\em la} & valeur a poser \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_node_a01967a39cb1b94b4132715443bf31b69}\label{class_node_a01967a39cb1b94b4132715443bf31b69}} 
+\index{Node@{Node}!write@{write}}
+\index{write@{write}!Node@{Node}}
+\subsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily void Node\+::write (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption}) const}
+
+
+
+$<$$<$ \mbox{\hyperlink{class_node}{Node}} 
+
+Methode qui permet d ecrire le contenu du node dans un flux sortant en paramettre
+
+
+\begin{DoxyParams}{Parameters}
+{\em le} & flux ou il faut ecrire \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/ququq/\+Desktop/\+Repository Local Projet/\+Trophic\+\_\+\+Network/entities/graph/include/\mbox{\hyperlink{_node_8h}{Node.\+h}}\end{DoxyCompactItemize}
