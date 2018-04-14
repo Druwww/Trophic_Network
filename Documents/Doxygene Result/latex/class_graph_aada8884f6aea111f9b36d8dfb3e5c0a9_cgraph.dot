@@ -1,0 +1,11 @@
+digraph "Graph::write"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node60 [label="Graph::write",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node60 -> Node61 [color="midnightblue",fontsize="10",style="solid"];
+  Node61 [label="Node::getData",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_node.html#abdb083d1af1b62ee3f90f9996518f5cb",tooltip="Getter Data. "];
+  Node60 -> Node62 [color="midnightblue",fontsize="10",style="solid"];
+  Node62 [label="Node::write",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_node.html#a01967a39cb1b94b4132715443bf31b69",tooltip="<< Node "];
+}

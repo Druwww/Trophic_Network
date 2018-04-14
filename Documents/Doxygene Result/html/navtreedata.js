@@ -23,7 +23,8 @@ for the JavaScript code in this file
 */
 var NAVTREE =
 [
-  [ "My Project", "index.html", [
+  [ "Trophy Network", "index.html", [
+    [ "Trophic Network", "md__c_1__users_ququq__desktop__repository__local__projet__trophic__network__r_e_a_d_m_e.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ]
     ] ],
@@ -50,7 +51,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_data_interface_8h.html"
+"_data_interface_8h.html",
+"struct_node_gui_attr.html#a97f0593ab84f42b7bd691d6715ccf20f"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

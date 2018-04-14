@@ -3,7 +3,7 @@ var class_node =
     [ "Node", "class_node.html#ad7a34779cad45d997bfd6d3d8043c75f", null ],
     [ "Node", "class_node.html#a639cdb8009e80b20bfdb0575c765c713", null ],
     [ "Node", "class_node.html#a2d318229a996fe2654bf53428a4ff283", null ],
-    [ "getData", "class_node.html#a56fd0bc1abfad73e9ac9561a0f20c23d", null ],
+    [ "getData", "class_node.html#abdb083d1af1b62ee3f90f9996518f5cb", null ],
     [ "getGroup", "class_node.html#a459e4ba8eb31ccc165d00110a6e4d9ae", null ],
     [ "getUid", "class_node.html#a53a0fb412c1047a27e07e7e4c5749bee", null ],
     [ "isProcessed", "class_node.html#a1fa00bc88d4a66614ee06c913dbda27f", null ],

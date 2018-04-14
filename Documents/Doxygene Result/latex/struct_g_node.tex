@@ -2,6 +2,11 @@
 \label{struct_g_node}\index{G\+Node@{G\+Node}}
 
 
+Version graphique d\textquotesingle{}un \mbox{\hyperlink{class_node}{Node}}.  
+
+
+
+
 {\ttfamily \#include $<$gnode.\+h$>$}
 
 
@@ -20,13 +25,13 @@ Collaboration diagram for G\+Node\+:
 virtual \mbox{\hyperlink{struct_g_node_a126f44e9c70024d22e3766e9188858e0}{$\sim$\+G\+Node}} ()
 \item 
 void \mbox{\hyperlink{struct_g_node_a380b1efbcfae97d1746ce7f30f983742}{pain\+Event}} (Q\+Painter \&painter)
-\item 
+\begin{DoxyCompactList}\small\item\em Dessine l\textquotesingle{}objet et ses paramètres à l\textquotesingle{}écran. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{struct_g_node_a131f3025a4d61433e58b5d7dbe702820}{update\+Image}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Met à jour l\textquotesingle{}image du sommet. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{struct_g_node_a3c38a45a7b98a63d3f240d8e62032fb8}{update\+Pos}} ()
-\item 
+\begin{DoxyCompactList}\small\item\em Met à jour la position du sommet. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{struct_g_node_a1828c2a21037df0a85be72c1c65266dd}{enable\+Underline}} (Q\+Painter \&painter, const bool \&enabled)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Active l\textquotesingle{}option de soulignage de texte. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
@@ -41,11 +46,7 @@ Q\+Pixmap $\ast$ \mbox{\hyperlink{struct_g_node_a77e0c9572f6f27150ed75b3a55120d0
 
 
 \subsection{Detailed Description}
-
-
-Definition at line 14 of file gnode.\+h.
-
-
+Version graphique d\textquotesingle{}un \mbox{\hyperlink{class_node}{Node}}. 
 
 \subsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{struct_g_node_a2344be00333e7e3c1e481320dab0ab6c}\label{struct_g_node_a2344be00333e7e3c1e481320dab0ab6c}} 
@@ -54,10 +55,6 @@ Definition at line 14 of file gnode.\+h.
 \subsubsection{\texorpdfstring{G\+Node()}{GNode()}}
 {\footnotesize\ttfamily G\+Node\+::\+G\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} $\ast$}]{node,  }\item[{\mbox{\hyperlink{struct_node_gui_attr}{Node\+Gui\+Attr}} $\ast$}]{gui,  }\item[{Q\+Widget $\ast$}]{parent = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-
-
-Definition at line 20 of file gnode.\+h.
-
 Here is the call graph for this function\+:
 % FIG 2
 \mbox{\Hypertarget{struct_g_node_a126f44e9c70024d22e3766e9188858e0}\label{struct_g_node_a126f44e9c70024d22e3766e9188858e0}} 
@@ -65,10 +62,6 @@ Here is the call graph for this function\+:
 \index{````~G\+Node@{$\sim$\+G\+Node}!G\+Node@{G\+Node}}
 \subsubsection{\texorpdfstring{$\sim$\+G\+Node()}{~GNode()}}
 {\footnotesize\ttfamily virtual G\+Node\+::$\sim$\+G\+Node (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
-
-
-
-Definition at line 34 of file gnode.\+h.
 
 
 
@@ -81,8 +74,15 @@ Definition at line 34 of file gnode.\+h.
 
 
 
-Definition at line 72 of file gnode.\+h.
+Active l\textquotesingle{}option de soulignage de texte. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em painter} & \\
+\hline
+{\em enabled} & \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{struct_g_node_a380b1efbcfae97d1746ce7f30f983742}\label{struct_g_node_a380b1efbcfae97d1746ce7f30f983742}} 
 \index{G\+Node@{G\+Node}!pain\+Event@{pain\+Event}}
 \index{pain\+Event@{pain\+Event}!G\+Node@{G\+Node}}
@@ -91,8 +91,13 @@ Definition at line 72 of file gnode.\+h.
 
 
 
-Definition at line 38 of file gnode.\+h.
+Dessine l\textquotesingle{}objet et ses paramètres à l\textquotesingle{}écran. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em painter} & \\
+\hline
+\end{DoxyParams}
 Here is the call graph for this function\+:
 % FIG 3
 \mbox{\Hypertarget{struct_g_node_a131f3025a4d61433e58b5d7dbe702820}\label{struct_g_node_a131f3025a4d61433e58b5d7dbe702820}} 
@@ -103,7 +108,7 @@ Here is the call graph for this function\+:
 
 
 
-Definition at line 62 of file gnode.\+h.
+Met à jour l\textquotesingle{}image du sommet. 
 
 \mbox{\Hypertarget{struct_g_node_a3c38a45a7b98a63d3f240d8e62032fb8}\label{struct_g_node_a3c38a45a7b98a63d3f240d8e62032fb8}} 
 \index{G\+Node@{G\+Node}!update\+Pos@{update\+Pos}}
@@ -113,7 +118,7 @@ Definition at line 62 of file gnode.\+h.
 
 
 
-Definition at line 68 of file gnode.\+h.
+Met à jour la position du sommet. 
 
 
 
@@ -124,19 +129,11 @@ Definition at line 68 of file gnode.\+h.
 \subsubsection{\texorpdfstring{m\+\_\+attr}{m\_attr}}
 {\footnotesize\ttfamily \mbox{\hyperlink{struct_node_attr}{Node\+Attr}}$\ast$ G\+Node\+::m\+\_\+attr}
 
-
-
-Definition at line 16 of file gnode.\+h.
-
 \mbox{\Hypertarget{struct_g_node_a3883c1648b5f4b39872eac62d0d9f74d}\label{struct_g_node_a3883c1648b5f4b39872eac62d0d9f74d}} 
 \index{G\+Node@{G\+Node}!m\+\_\+gui@{m\+\_\+gui}}
 \index{m\+\_\+gui@{m\+\_\+gui}!G\+Node@{G\+Node}}
 \subsubsection{\texorpdfstring{m\+\_\+gui}{m\_gui}}
 {\footnotesize\ttfamily \mbox{\hyperlink{struct_node_gui_attr}{Node\+Gui\+Attr}}$\ast$ G\+Node\+::m\+\_\+gui}
-
-
-
-Definition at line 17 of file gnode.\+h.
 
 \mbox{\Hypertarget{struct_g_node_a77e0c9572f6f27150ed75b3a55120d08}\label{struct_g_node_a77e0c9572f6f27150ed75b3a55120d08}} 
 \index{G\+Node@{G\+Node}!m\+\_\+image@{m\+\_\+image}}
@@ -144,19 +141,11 @@ Definition at line 17 of file gnode.\+h.
 \subsubsection{\texorpdfstring{m\+\_\+image}{m\_image}}
 {\footnotesize\ttfamily Q\+Pixmap$\ast$ G\+Node\+::m\+\_\+image}
 
-
-
-Definition at line 18 of file gnode.\+h.
-
 \mbox{\Hypertarget{struct_g_node_a1f5acd0ae89f506fdbd8674b0cda648c}\label{struct_g_node_a1f5acd0ae89f506fdbd8674b0cda648c}} 
 \index{G\+Node@{G\+Node}!m\+\_\+node@{m\+\_\+node}}
 \index{m\+\_\+node@{m\+\_\+node}!G\+Node@{G\+Node}}
 \subsubsection{\texorpdfstring{m\+\_\+node}{m\_node}}
 {\footnotesize\ttfamily \mbox{\hyperlink{class_node}{Node}}$\ast$ G\+Node\+::m\+\_\+node}
-
-
-
-Definition at line 15 of file gnode.\+h.
 
 
 

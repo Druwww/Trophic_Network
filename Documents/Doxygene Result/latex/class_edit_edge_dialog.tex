@@ -2,6 +2,11 @@
 \label{class_edit_edge_dialog}\index{Edit\+Edge\+Dialog@{Edit\+Edge\+Dialog}}
 
 
+Popup qui permet de modifier les attributs d\textquotesingle{}un \mbox{\hyperlink{class_edge}{Edge}}.  
+
+
+
+
 {\ttfamily \#include $<$editedgedialog.\+h$>$}
 
 
@@ -18,19 +23,15 @@ Collaboration diagram for Edit\+Edge\+Dialog\+:
 \mbox{\hyperlink{class_edit_edge_dialog_a2c74f6de2329989a559918ebd60b31b0}{Edit\+Edge\+Dialog}} (\mbox{\hyperlink{class_edge}{Edge}} $\ast$edge)
 \item 
 double \mbox{\hyperlink{class_edit_edge_dialog_a0342c98517f14a49fd2f40d01e400154}{get\+Edge\+Weight}} () const
-\item 
+\begin{DoxyCompactList}\small\item\em Retourne la valeur contenue dans le champ \char`\"{}weight\char`\"{}. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{class_edit_edge_dialog_a0a22d131d347363511e010557581f60b}{get\+Edge\+Importance}} () const
-\item 
+\begin{DoxyCompactList}\small\item\em Retourne la valeur contenue dans le champ \char`\"{}importance\char`\"{}. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{class_edit_edge_dialog_a211adaab8e8221e69cbc8e3e3f19f83a}{get\+Edge\+Survival\+Rate}} () const
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Retourne la valeur contenue dans le champs \char`\"{}survival rate\char`\"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-
-
-Definition at line 17 of file editedgedialog.\+h.
-
-
+Popup qui permet de modifier les attributs d\textquotesingle{}un \mbox{\hyperlink{class_edge}{Edge}}. 
 
 \subsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_edit_edge_dialog_a2c74f6de2329989a559918ebd60b31b0}\label{class_edit_edge_dialog_a2c74f6de2329989a559918ebd60b31b0}} 
@@ -38,10 +39,6 @@ Definition at line 17 of file editedgedialog.\+h.
 \index{Edit\+Edge\+Dialog@{Edit\+Edge\+Dialog}!Edit\+Edge\+Dialog@{Edit\+Edge\+Dialog}}
 \subsubsection{\texorpdfstring{Edit\+Edge\+Dialog()}{EditEdgeDialog()}}
 {\footnotesize\ttfamily Edit\+Edge\+Dialog\+::\+Edit\+Edge\+Dialog (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_edge}{Edge}} $\ast$}]{edge }\end{DoxyParamCaption})}
-
-
-
-Definition at line 3 of file editedgedialog.\+cpp.
 
 
 
@@ -54,8 +51,11 @@ Definition at line 3 of file editedgedialog.\+cpp.
 
 
 
-Definition at line 55 of file editedgedialog.\+cpp.
+Retourne la valeur contenue dans le champ \char`\"{}importance\char`\"{}. 
 
+\begin{DoxyReturn}{Returns}
+l\textquotesingle{}importance 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_edit_edge_dialog_a211adaab8e8221e69cbc8e3e3f19f83a}\label{class_edit_edge_dialog_a211adaab8e8221e69cbc8e3e3f19f83a}} 
 \index{Edit\+Edge\+Dialog@{Edit\+Edge\+Dialog}!get\+Edge\+Survival\+Rate@{get\+Edge\+Survival\+Rate}}
 \index{get\+Edge\+Survival\+Rate@{get\+Edge\+Survival\+Rate}!Edit\+Edge\+Dialog@{Edit\+Edge\+Dialog}}
@@ -64,8 +64,11 @@ Definition at line 55 of file editedgedialog.\+cpp.
 
 
 
-Definition at line 59 of file editedgedialog.\+cpp.
+Retourne la valeur contenue dans le champs \char`\"{}survival rate\char`\"{}. 
 
+\begin{DoxyReturn}{Returns}
+le survival rate 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_edit_edge_dialog_a0342c98517f14a49fd2f40d01e400154}\label{class_edit_edge_dialog_a0342c98517f14a49fd2f40d01e400154}} 
 \index{Edit\+Edge\+Dialog@{Edit\+Edge\+Dialog}!get\+Edge\+Weight@{get\+Edge\+Weight}}
 \index{get\+Edge\+Weight@{get\+Edge\+Weight}!Edit\+Edge\+Dialog@{Edit\+Edge\+Dialog}}
@@ -74,8 +77,11 @@ Definition at line 59 of file editedgedialog.\+cpp.
 
 
 
-Definition at line 51 of file editedgedialog.\+cpp.
+Retourne la valeur contenue dans le champ \char`\"{}weight\char`\"{}. 
 
+\begin{DoxyReturn}{Returns}
+le poids 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

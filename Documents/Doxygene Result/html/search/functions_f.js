@@ -13,6 +13,6 @@ var searchData=
   ['setweight',['setWeight',['../class_edge.html#af784390543c16f8ce3b5297f3adfcc10',1,'Edge']]],
   ['simulation',['Simulation',['../class_simulation.html#a5b224cc5b36bcc8eb29689aff223de41',1,'Simulation::Simulation()'],['../class_simulation.html#acac8de557d6db1b0c1ea78b8043b5271',1,'Simulation::Simulation(Graph *graph)']]],
   ['size',['size',['../class_graph.html#a6539d03f6d3f42042196f0f79455bdd8',1,'Graph']]],
-  ['string_5fto_5ffloat',['string_to_float',['../utils_8h.html#a944596b18449096185b36224e7320f5d',1,'utils.h']]],
-  ['string_5fto_5fint',['string_to_int',['../utils_8h.html#a85380a8d97c6de79cfabfad863d5f5ff',1,'utils.h']]]
+  ['string_5fto_5ffloat',['string_to_float',['../utils_8h.html#a944596b18449096185b36224e7320f5d',1,'string_to_float(const std::string &amp;str):&#160;utils.cpp'],['../utils_8cpp.html#a944596b18449096185b36224e7320f5d',1,'string_to_float(const std::string &amp;str):&#160;utils.cpp']]],
+  ['string_5fto_5fint',['string_to_int',['../utils_8h.html#a85380a8d97c6de79cfabfad863d5f5ff',1,'string_to_int(const std::string &amp;str):&#160;utils.cpp'],['../utils_8cpp.html#a85380a8d97c6de79cfabfad863d5f5ff',1,'string_to_int(const std::string &amp;str):&#160;utils.cpp']]]
 ];

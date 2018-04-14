@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.14"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: EditNodeDialog Class Reference</title>
+<title>Trophy Network: EditNodeDialog Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -29,7 +29,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">Trophy Network
    </div>
   </td>
  </tr>
@@ -93,6 +93,9 @@ $(document).ready(function(){initNavTree('class_edit_node_dialog.html','');});
 </div><!--header-->
 <div class="contents">
 
+<p>Popup qui permet de modifier les attributs d'un <a class="el" href="struct_g_node.html" title="Version graphique d&#39;un Node. ">GNode</a>.  
+ <a href="class_edit_node_dialog.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="editnodedialog_8h_source.html">editnodedialog.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for EditNodeDialog:</div>
@@ -112,15 +115,17 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad4521b8c402fe2443755af0b66443de1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edit_node_dialog.html#ad4521b8c402fe2443755af0b66443de1">EditNodeDialog</a> (<a class="el" href="struct_g_node.html">GNode</a> *gnode)</td></tr>
 <tr class="separator:ad4521b8c402fe2443755af0b66443de1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a332d0500932bcb07e9e2b6bb563f2caf"><td class="memItemLeft" align="right" valign="top">QString&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edit_node_dialog.html#a332d0500932bcb07e9e2b6bb563f2caf">getNodeImageFilepath</a> () const</td></tr>
+<tr class="memdesc:a332d0500932bcb07e9e2b6bb563f2caf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne la valeur contenue dans le champs "filepath".  <a href="#a332d0500932bcb07e9e2b6bb563f2caf">More...</a><br /></td></tr>
 <tr class="separator:a332d0500932bcb07e9e2b6bb563f2caf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacda0fe9314fb3165cd56394371a1ee4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edit_node_dialog.html#aacda0fe9314fb3165cd56394371a1ee4">getNodeQuantity</a> () const</td></tr>
+<tr class="memdesc:aacda0fe9314fb3165cd56394371a1ee4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne la valeur contenue dans le champs "quantity".  <a href="#aacda0fe9314fb3165cd56394371a1ee4">More...</a><br /></td></tr>
 <tr class="separator:aacda0fe9314fb3165cd56394371a1ee4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab314148e6b30966638e2be8352098ecd"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_edit_node_dialog.html#ab314148e6b30966638e2be8352098ecd">getNodeBirthRate</a> () const</td></tr>
+<tr class="memdesc:ab314148e6b30966638e2be8352098ecd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retourne la valeur contenue dans le champs "birth rate".  <a href="#ab314148e6b30966638e2be8352098ecd">More...</a><br /></td></tr>
 <tr class="separator:ab314148e6b30966638e2be8352098ecd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="editnodedialog_8h_source.html#l00016">16</a> of file <a class="el" href="editnodedialog_8h_source.html">editnodedialog.h</a>.</p>
+<div class="textblock"><p>Popup qui permet de modifier les attributs d'un <a class="el" href="struct_g_node.html" title="Version graphique d&#39;un Node. ">GNode</a>. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad4521b8c402fe2443755af0b66443de1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad4521b8c402fe2443755af0b66443de1">&#9670;&nbsp;</a></span>EditNodeDialog()</h2>
@@ -137,8 +142,6 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="editnodedialog_8cpp_source.html#l00003">3</a> of file <a class="el" href="editnodedialog_8cpp_source.html">editnodedialog.cpp</a>.</p>
 
 </div>
 </div>
@@ -158,7 +161,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="editnodedialog_8cpp_source.html#l00060">60</a> of file <a class="el" href="editnodedialog_8cpp_source.html">editnodedialog.cpp</a>.</p>
+<p>Retourne la valeur contenue dans le champs "birth rate". </p>
+<dl class="section return"><dt>Returns</dt><dd>le birth rate </dd></dl>
 
 </div>
 </div>
@@ -177,7 +181,8 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="editnodedialog_8cpp_source.html#l00052">52</a> of file <a class="el" href="editnodedialog_8cpp_source.html">editnodedialog.cpp</a>.</p>
+<p>Retourne la valeur contenue dans le champs "filepath". </p>
+<dl class="section return"><dt>Returns</dt><dd>le filepath </dd></dl>
 
 </div>
 </div>
@@ -196,13 +201,14 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="editnodedialog_8cpp_source.html#l00056">56</a> of file <a class="el" href="editnodedialog_8cpp_source.html">editnodedialog.cpp</a>.</p>
+<p>Retourne la valeur contenue dans le champs "quantity". </p>
+<dl class="section return"><dt>Returns</dt><dd>la quantity </dd></dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>C:/Users/ququq/Desktop/Repository Local Projet/Trophic_Network/gui/App/<a class="el" href="editnodedialog_8h_source.html">editnodedialog.h</a></li>
-<li>C:/Users/ququq/Desktop/Repository Local Projet/Trophic_Network/gui/App/<a class="el" href="editnodedialog_8cpp_source.html">editnodedialog.cpp</a></li>
+<li>C:/Users/ququq/Desktop/Repository Local Projet/Trophic_Network/gui/App/<a class="el" href="editnodedialog_8cpp.html">editnodedialog.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

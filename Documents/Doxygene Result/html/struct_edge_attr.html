@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.14"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>My Project: EdgeAttr Struct Reference</title>
+<title>Trophy Network: EdgeAttr Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -29,7 +29,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">My Project
+   <div id="projectname">Trophy Network
    </div>
   </td>
  </tr>
@@ -94,6 +94,9 @@ $(document).ready(function(){initNavTree('struct_edge_attr.html','');});
 </div><!--header-->
 <div class="contents">
 
+<p>Attributs d'un <a class="el" href="class_edge.html">Edge</a>.  
+ <a href="struct_edge_attr.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_edge_attr_8h_source.html">EdgeAttr.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -103,8 +106,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0252b91de5679426054a8cd478ebfd1e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_edge_attr.html#a0252b91de5679426054a8cd478ebfd1e">EdgeAttr</a> (const <a class="el" href="struct_edge_attr.html">EdgeAttr</a> &amp;attr)</td></tr>
 <tr class="separator:a0252b91de5679426054a8cd478ebfd1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae06ea6b6bfd925ea64ce85ca1169411a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_edge_attr.html#ae06ea6b6bfd925ea64ce85ca1169411a">write</a> (std::ostream &amp;os) const</td></tr>
+<tr class="memdesc:ae06ea6b6bfd925ea64ce85ca1169411a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Ecrit la struct dans un flux de sortie.  <a href="#ae06ea6b6bfd925ea64ce85ca1169411a">More...</a><br /></td></tr>
 <tr class="separator:ae06ea6b6bfd925ea64ce85ca1169411a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a337958a03dbbc39c139ee507d73555be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_edge_attr.html#a337958a03dbbc39c139ee507d73555be">read</a> (std::istream &amp;is)</td></tr>
+<tr class="memdesc:a337958a03dbbc39c139ee507d73555be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lis la struct depuis un flux d'entrée.  <a href="#a337958a03dbbc39c139ee507d73555be">More...</a><br /></td></tr>
 <tr class="separator:a337958a03dbbc39c139ee507d73555be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
@@ -115,8 +120,7 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a56b31d6b4731ac893c4081e0eab931d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_edge_attr_8h_source.html#l00007">7</a> of file <a class="el" href="_edge_attr_8h_source.html">EdgeAttr.h</a>.</p>
+<div class="textblock"><p>Attributs d'un <a class="el" href="class_edge.html">Edge</a>. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a6f055eafff1a137f3fe97e49508c65f5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6f055eafff1a137f3fe97e49508c65f5">&#9670;&nbsp;</a></span>EdgeAttr() <span class="overload">[1/2]</span></h2>
@@ -152,8 +156,6 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_edge_attr_8h_source.html#l00011">11</a> of file <a class="el" href="_edge_attr_8h_source.html">EdgeAttr.h</a>.</p>
-
 </div>
 </div>
 <a id="a0252b91de5679426054a8cd478ebfd1e"></a>
@@ -179,8 +181,6 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_edge_attr_8h_source.html#l00016">16</a> of file <a class="el" href="_edge_attr_8h_source.html">EdgeAttr.h</a>.</p>
 
 </div>
 </div>
@@ -209,7 +209,13 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_edge_attr_8h_source.html#l00026">26</a> of file <a class="el" href="_edge_attr_8h_source.html">EdgeAttr.h</a>.</p>
+<p>Lis la struct depuis un flux d'entrée. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Le</td><td>flux entrant </td></tr>
+  </table>
+  </dd>
+</dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -243,7 +249,13 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_edge_attr_8h_source.html#l00021">21</a> of file <a class="el" href="_edge_attr_8h_source.html">EdgeAttr.h</a>.</p>
+<p>Ecrit la struct dans un flux de sortie. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Le</td><td>flux sortant </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -260,8 +272,6 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="_edge_attr_8h_source.html#l00009">9</a> of file <a class="el" href="_edge_attr_8h_source.html">EdgeAttr.h</a>.</p>
-
 </div>
 </div>
 <a id="ab59fbd7d336f72ac48294c8c7bb9e4ef"></a>
@@ -275,8 +285,6 @@ Here is the call graph for this function:</div>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="_edge_attr_8h_source.html#l00008">8</a> of file <a class="el" href="_edge_attr_8h_source.html">EdgeAttr.h</a>.</p>
 
 </div>
 </div>

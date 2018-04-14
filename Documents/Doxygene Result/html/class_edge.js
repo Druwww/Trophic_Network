@@ -2,9 +2,9 @@ var class_edge =
 [
     [ "Edge", "class_edge.html#a3106b11d60125009dbf7a738ce540fdf", null ],
     [ "Edge", "class_edge.html#a12b460c6c0a255c44d564b033b056b02", null ],
-    [ "getData", "class_edge.html#a4697368244aec892f29b53be0480fadc", null ],
-    [ "getEndNode", "class_edge.html#a13748046f79d5550cfd712f71726290a", null ],
-    [ "getStartNode", "class_edge.html#aa61208f51345a3c6e8bb794925e15993", null ],
+    [ "getData", "class_edge.html#abc0da055c4f1d3061973ef94bbcd27f2", null ],
+    [ "getEndNode", "class_edge.html#a03fa518cc47429dd74eb081ae004318b", null ],
+    [ "getStartNode", "class_edge.html#aa83e468b6d797b013ab60fc43e6af8a6", null ],
     [ "getUid", "class_edge.html#abf97244f7446b4192dfa1e87a156920d", null ],
     [ "getWeight", "class_edge.html#a873322923fa6340e17edb39b923f7d61", null ],
     [ "isActive", "class_edge.html#a29524dddcadb4eae07997fa8fb6fd76f", null ],

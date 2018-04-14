@@ -2,6 +2,11 @@
 \label{struct_node_gui_attr}\index{Node\+Gui\+Attr@{Node\+Gui\+Attr}}
 
 
+Struct qui contient les attributs graphique d\textquotesingle{}un sommet.  
+
+
+
+
 {\ttfamily \#include $<$nodeguiattr.\+h$>$}
 
 \subsection*{Public Member Functions}
@@ -12,30 +17,26 @@
 \mbox{\hyperlink{struct_node_gui_attr_abc15288865839636ce85c9e2a5c6dd68}{Node\+Gui\+Attr}} (const \mbox{\hyperlink{struct_node_gui_attr}{Node\+Gui\+Attr}} \&attr)
 \item 
 void \mbox{\hyperlink{struct_node_gui_attr_aabc33d777e16fd3640cf224edd4e0f9f}{write}} (std\+::ostream \&os) const
-\item 
+\begin{DoxyCompactList}\small\item\em Ecrit l\textquotesingle{}objet dans un flux. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{struct_node_gui_attr_a7ce8e0863f88a40e242bc3ba71c37663}{read}} (std\+::istream \&is)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Lis l\textquotesingle{}objet à partir d\textquotesingle{}un flux. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
 std\+::string \mbox{\hyperlink{struct_node_gui_attr_ae8361faefecd978e2a749e0e838af86b}{m\+\_\+image\+Filepath}}
-\item 
+\begin{DoxyCompactList}\small\item\em Chemin vers l\textquotesingle{}image affichée pour le sommet. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{struct_node_gui_attr_ad9b18df17570cefcd755bcee9d7d3cdb}{m\+\_\+width}}
-\item 
+\begin{DoxyCompactList}\small\item\em Longueur de l\textquotesingle{}image affichée. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{struct_node_gui_attr_aad75cafcb74b64f13842efc6b3c755d1}{m\+\_\+height}}
-\item 
+\begin{DoxyCompactList}\small\item\em Largeur de l\textquotesingle{}image affichée. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{struct_node_gui_attr_a1e4e5581cf2ed1f47398a14a65d4598f}{m\+\_\+x}}
-\item 
+\begin{DoxyCompactList}\small\item\em Abscisse du sommet sur la fenêtre. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{struct_node_gui_attr_aa0e7b15590cc2a32cb82799770298975}{m\+\_\+y}}
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Ordonnée du sommet sur la fenêtre. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-
-
-Definition at line 6 of file nodeguiattr.\+h.
-
-
+Struct qui contient les attributs graphique d\textquotesingle{}un sommet. 
 
 \subsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{struct_node_gui_attr_a97f0593ab84f42b7bd691d6715ccf20f}\label{struct_node_gui_attr_a97f0593ab84f42b7bd691d6715ccf20f}} 
@@ -44,19 +45,11 @@ Definition at line 6 of file nodeguiattr.\+h.
 \subsubsection{\texorpdfstring{Node\+Gui\+Attr()}{NodeGuiAttr()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
 {\footnotesize\ttfamily Node\+Gui\+Attr\+::\+Node\+Gui\+Attr (\begin{DoxyParamCaption}\item[{std\+::string}]{image\+Filepath = {\ttfamily \char`\"{}\char`\"{}},  }\item[{int}]{width = {\ttfamily 100},  }\item[{int}]{height = {\ttfamily 100} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-
-
-Definition at line 13 of file nodeguiattr.\+h.
-
 \mbox{\Hypertarget{struct_node_gui_attr_abc15288865839636ce85c9e2a5c6dd68}\label{struct_node_gui_attr_abc15288865839636ce85c9e2a5c6dd68}} 
 \index{Node\+Gui\+Attr@{Node\+Gui\+Attr}!Node\+Gui\+Attr@{Node\+Gui\+Attr}}
 \index{Node\+Gui\+Attr@{Node\+Gui\+Attr}!Node\+Gui\+Attr@{Node\+Gui\+Attr}}
 \subsubsection{\texorpdfstring{Node\+Gui\+Attr()}{NodeGuiAttr()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
 {\footnotesize\ttfamily Node\+Gui\+Attr\+::\+Node\+Gui\+Attr (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{struct_node_gui_attr}{Node\+Gui\+Attr}} \&}]{attr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-
-Definition at line 21 of file nodeguiattr.\+h.
 
 
 
@@ -69,8 +62,13 @@ Definition at line 21 of file nodeguiattr.\+h.
 
 
 
-Definition at line 35 of file nodeguiattr.\+h.
+Lis l\textquotesingle{}objet à partir d\textquotesingle{}un flux. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em Le} & flux d\textquotesingle{}entrée \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{struct_node_gui_attr_aabc33d777e16fd3640cf224edd4e0f9f}\label{struct_node_gui_attr_aabc33d777e16fd3640cf224edd4e0f9f}} 
 \index{Node\+Gui\+Attr@{Node\+Gui\+Attr}!write@{write}}
 \index{write@{write}!Node\+Gui\+Attr@{Node\+Gui\+Attr}}
@@ -79,8 +77,13 @@ Definition at line 35 of file nodeguiattr.\+h.
 
 
 
-Definition at line 29 of file nodeguiattr.\+h.
+Ecrit l\textquotesingle{}objet dans un flux. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em Le} & flux de sortie \\
+\hline
+\end{DoxyParams}
 
 
 \subsection{Member Data Documentation}
@@ -92,7 +95,7 @@ Definition at line 29 of file nodeguiattr.\+h.
 
 
 
-Definition at line 9 of file nodeguiattr.\+h.
+Largeur de l\textquotesingle{}image affichée. 
 
 \mbox{\Hypertarget{struct_node_gui_attr_ae8361faefecd978e2a749e0e838af86b}\label{struct_node_gui_attr_ae8361faefecd978e2a749e0e838af86b}} 
 \index{Node\+Gui\+Attr@{Node\+Gui\+Attr}!m\+\_\+image\+Filepath@{m\+\_\+image\+Filepath}}
@@ -102,7 +105,7 @@ Definition at line 9 of file nodeguiattr.\+h.
 
 
 
-Definition at line 7 of file nodeguiattr.\+h.
+Chemin vers l\textquotesingle{}image affichée pour le sommet. 
 
 \mbox{\Hypertarget{struct_node_gui_attr_ad9b18df17570cefcd755bcee9d7d3cdb}\label{struct_node_gui_attr_ad9b18df17570cefcd755bcee9d7d3cdb}} 
 \index{Node\+Gui\+Attr@{Node\+Gui\+Attr}!m\+\_\+width@{m\+\_\+width}}
@@ -112,7 +115,7 @@ Definition at line 7 of file nodeguiattr.\+h.
 
 
 
-Definition at line 8 of file nodeguiattr.\+h.
+Longueur de l\textquotesingle{}image affichée. 
 
 \mbox{\Hypertarget{struct_node_gui_attr_a1e4e5581cf2ed1f47398a14a65d4598f}\label{struct_node_gui_attr_a1e4e5581cf2ed1f47398a14a65d4598f}} 
 \index{Node\+Gui\+Attr@{Node\+Gui\+Attr}!m\+\_\+x@{m\+\_\+x}}
@@ -122,7 +125,7 @@ Definition at line 8 of file nodeguiattr.\+h.
 
 
 
-Definition at line 10 of file nodeguiattr.\+h.
+Abscisse du sommet sur la fenêtre. 
 
 \mbox{\Hypertarget{struct_node_gui_attr_aa0e7b15590cc2a32cb82799770298975}\label{struct_node_gui_attr_aa0e7b15590cc2a32cb82799770298975}} 
 \index{Node\+Gui\+Attr@{Node\+Gui\+Attr}!m\+\_\+y@{m\+\_\+y}}
@@ -132,7 +135,7 @@ Definition at line 10 of file nodeguiattr.\+h.
 
 
 
-Definition at line 11 of file nodeguiattr.\+h.
+Ordonnée du sommet sur la fenêtre. 
 
 
 

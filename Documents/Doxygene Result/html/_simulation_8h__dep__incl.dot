@@ -9,4 +9,6 @@ digraph "C:/Users/ququq/Desktop/Repository Local Projet/Trophic_Network/simulati
   Node19 [label="C:/Users/ququq/Desktop\l/Repository Local Projet\l/Trophic_Network/gui/App\l/main.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8cpp.html"];
   Node18 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node20 [label="C:/Users/ququq/Desktop\l/Repository Local Projet\l/Trophic_Network/gui/App\l/mainwindow.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$mainwindow_8cpp.html"];
+  Node17 -> Node21 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node21 [label="C:/Users/ququq/Desktop\l/Repository Local Projet\l/Trophic_Network/simulation\l/src/Simulation.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$_simulation_8cpp.html"];
 }

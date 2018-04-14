@@ -1,0 +1,9 @@
+digraph "onSerializeEdge"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node11 [label="onSerializeEdge",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node11 -> Node12 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="EdgeAttr::write",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$struct_edge_attr.html#ae06ea6b6bfd925ea64ce85ca1169411a",tooltip="Ecrit la struct dans un flux de sortie. "];
+}

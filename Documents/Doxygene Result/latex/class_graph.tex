@@ -30,15 +30,15 @@ bool \mbox{\hyperlink{class_graph_af392b6a490dee43fb2448b2d969353b0}{are\+Connec
 \begin{DoxyCompactList}\small\item\em are\+Connected \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{class_graph_a2d8d8d9edb8a496d5c252132cdbbbc08}{get\+Index\+By\+Uid}} (const std\+::string \&uid) const
 \begin{DoxyCompactList}\small\item\em get\+Index\+By\+Uid \end{DoxyCompactList}\item 
-\mbox{\hyperlink{class_node}{Node}} $\ast$ \mbox{\hyperlink{class_graph_a6f882885bf6f2c1b492985263a45d2b1}{get\+Node\+By\+Uid}} (const std\+::string \&uid) const
+\mbox{\hyperlink{class_node}{Node}} $\ast$ \mbox{\hyperlink{class_graph_aa9fa7bf3cf75a4239504607a442aebba}{get\+Node\+By\+Uid}} (const std\+::string \&uid) const
 \begin{DoxyCompactList}\small\item\em get\+Node\+By\+Uid \end{DoxyCompactList}\item 
 \mbox{\hyperlink{_graph_8h_a383232190011cffd7d1fb05d72e89928}{IO}} \mbox{\hyperlink{class_graph_a163656854e289f8dbdf037683d581dec}{get\+Connections}} (const std\+::string \&uid) const
 \begin{DoxyCompactList}\small\item\em get\+Connections(\+U\+I\+D) \end{DoxyCompactList}\item 
 \mbox{\hyperlink{_graph_8h_a383232190011cffd7d1fb05d72e89928}{IO}} \mbox{\hyperlink{class_graph_ac925af39108ceec409a3083bc784604e}{get\+Connections}} (\mbox{\hyperlink{class_node}{Node}} $\ast$node) const
 \begin{DoxyCompactList}\small\item\em get\+Connections(\+Node$\ast$) \end{DoxyCompactList}\item 
-\mbox{\hyperlink{struct_data_interface}{Data\+Interface}} $\ast$ \mbox{\hyperlink{class_graph_a9bda05ab33875f275e6a0e44862febf4}{get\+Node\+Interface}} ()
+\mbox{\hyperlink{struct_data_interface}{Data\+Interface}} $\ast$ \mbox{\hyperlink{class_graph_a69e269c872eb3f1cf9d1c941d3e30861}{get\+Node\+Interface}} ()
 \begin{DoxyCompactList}\small\item\em get\+Node\+Interface \end{DoxyCompactList}\item 
-\mbox{\hyperlink{struct_data_interface}{Data\+Interface}} $\ast$ \mbox{\hyperlink{class_graph_acd9d49e6e5767accd435a6446879e49b}{get\+Edge\+Interface}} ()
+\mbox{\hyperlink{struct_data_interface}{Data\+Interface}} $\ast$ \mbox{\hyperlink{class_graph_a1654657d157c6abdb0e1791946059c05}{get\+Edge\+Interface}} ()
 \begin{DoxyCompactList}\small\item\em get\+Edge\+Interface \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_graph_a6f487be56c6a426443caa718e33c5399}{connect}} (const std\+::string \&uid1, const std\+::string \&uid2, void $\ast$\mbox{\hyperlink{_graph_8h_a98cbe1f79429fc62806b32b6e8871d9e}{data}}=nullptr)
 \begin{DoxyCompactList}\small\item\em connect(\+U\+I\+D) \end{DoxyCompactList}\item 
@@ -66,10 +66,6 @@ void \mbox{\hyperlink{class_graph_a79b39cf3963c03095bb74017a23c145e}{read}} (std
 
 \subsection{Detailed Description}
 La classe graph comprend tout la data du graph. 
-
-Definition at line 47 of file Graph.\+h.
-
-
 
 \subsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}\label{class_graph_ae4c72b8ac4d693c49800a4c7e273654f}} 
@@ -99,6 +95,8 @@ Constructeur par copie de \mbox{\hyperlink{class_graph}{Graph}}
 {\em graph} & \+: reference du graph a copier \\
 \hline
 \end{DoxyParams}
+Here is the call graph for this function\+:
+% FIG 0
 \mbox{\Hypertarget{class_graph_a902c5b3eacb66d60752525ab23297a95}\label{class_graph_a902c5b3eacb66d60752525ab23297a95}} 
 \index{Graph@{Graph}!````~Graph@{$\sim$\+Graph}}
 \index{````~Graph@{$\sim$\+Graph}!Graph@{Graph}}
@@ -152,6 +150,8 @@ Methode qui permet de dire si deux noeud sont relier par une arrete
 \begin{DoxyReturn}{Returns}
 true si il y a une arrete entre les deux sommet, false sinon 
 \end{DoxyReturn}
+Here is the call graph for this function\+:
+% FIG 1
 \mbox{\Hypertarget{class_graph_a6f487be56c6a426443caa718e33c5399}\label{class_graph_a6f487be56c6a426443caa718e33c5399}} 
 \index{Graph@{Graph}!connect@{connect}}
 \index{connect@{connect}!Graph@{Graph}}
@@ -169,6 +169,8 @@ Permet de creer une arrete entre deux sommet dont leur U\+ID est passe en parame
 {\em uid} & des sommet a lier, pointeur de la data a remplir \+: par defaut rien \\
 \hline
 \end{DoxyParams}
+Here is the call graph for this function\+:
+% FIG 2
 \mbox{\Hypertarget{class_graph_afedc0da07ed8ca06cf07f202dd83cec4}\label{class_graph_afedc0da07ed8ca06cf07f202dd83cec4}} 
 \index{Graph@{Graph}!connect@{connect}}
 \index{connect@{connect}!Graph@{Graph}}
@@ -186,6 +188,8 @@ Permet de creer une arrete entre deux sommet dont leur pointeurs est passe en pa
 {\em pointeurs} & des sommet a lier, pointeur de la data a remplir \+: par defaut rien \\
 \hline
 \end{DoxyParams}
+Here is the call graph for this function\+:
+% FIG 3
 \mbox{\Hypertarget{class_graph_a78762961b8cf256a828c80cb7ec26021}\label{class_graph_a78762961b8cf256a828c80cb7ec26021}} 
 \index{Graph@{Graph}!get@{get}}
 \index{get@{get}!Graph@{Graph}}
@@ -226,6 +230,8 @@ Methode qui permet de retourner le IO d un sommet dont son U\+ID est passe en pa
 \begin{DoxyReturn}{Returns}
 le IO du sommet passe 
 \end{DoxyReturn}
+Here is the call graph for this function\+:
+% FIG 4
 \mbox{\Hypertarget{class_graph_ac925af39108ceec409a3083bc784604e}\label{class_graph_ac925af39108ceec409a3083bc784604e}} 
 \index{Graph@{Graph}!get\+Connections@{get\+Connections}}
 \index{get\+Connections@{get\+Connections}!Graph@{Graph}}
@@ -246,11 +252,13 @@ Methode qui permet de retourner le IO d un sommet dont son pointeur est passe en
 \begin{DoxyReturn}{Returns}
 le IO du sommet passe 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_graph_acd9d49e6e5767accd435a6446879e49b}\label{class_graph_acd9d49e6e5767accd435a6446879e49b}} 
+Here is the call graph for this function\+:
+% FIG 5
+\mbox{\Hypertarget{class_graph_a1654657d157c6abdb0e1791946059c05}\label{class_graph_a1654657d157c6abdb0e1791946059c05}} 
 \index{Graph@{Graph}!get\+Edge\+Interface@{get\+Edge\+Interface}}
 \index{get\+Edge\+Interface@{get\+Edge\+Interface}!Graph@{Graph}}
 \subsubsection{\texorpdfstring{get\+Edge\+Interface()}{getEdgeInterface()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_data_interface}{Data\+Interface}}$\ast$ Graph\+::get\+Edge\+Interface (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_data_interface}{Data\+Interface}} $\ast$ Graph\+::get\+Edge\+Interface (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -281,11 +289,11 @@ Methode qui permet de donner l index dans la data du sommet dont on a passer l U
 \begin{DoxyReturn}{Returns}
 int\+: l index du sommet 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_graph_a6f882885bf6f2c1b492985263a45d2b1}\label{class_graph_a6f882885bf6f2c1b492985263a45d2b1}} 
+\mbox{\Hypertarget{class_graph_aa9fa7bf3cf75a4239504607a442aebba}\label{class_graph_aa9fa7bf3cf75a4239504607a442aebba}} 
 \index{Graph@{Graph}!get\+Node\+By\+Uid@{get\+Node\+By\+Uid}}
 \index{get\+Node\+By\+Uid@{get\+Node\+By\+Uid}!Graph@{Graph}}
 \subsubsection{\texorpdfstring{get\+Node\+By\+Uid()}{getNodeByUid()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_node}{Node}}$\ast$ Graph\+::get\+Node\+By\+Uid (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{uid }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_node}{Node}} $\ast$ Graph\+::get\+Node\+By\+Uid (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{uid }\end{DoxyParamCaption}) const}
 
 
 
@@ -301,11 +309,13 @@ Methode qui permet d\textquotesingle{}obtenir le pointeur du sommet dont on pass
 \begin{DoxyReturn}{Returns}
 le pointeur du sommet qu on souhaite recuperer 
 \end{DoxyReturn}
-\mbox{\Hypertarget{class_graph_a9bda05ab33875f275e6a0e44862febf4}\label{class_graph_a9bda05ab33875f275e6a0e44862febf4}} 
+Here is the call graph for this function\+:
+% FIG 6
+\mbox{\Hypertarget{class_graph_a69e269c872eb3f1cf9d1c941d3e30861}\label{class_graph_a69e269c872eb3f1cf9d1c941d3e30861}} 
 \index{Graph@{Graph}!get\+Node\+Interface@{get\+Node\+Interface}}
 \index{get\+Node\+Interface@{get\+Node\+Interface}!Graph@{Graph}}
 \subsubsection{\texorpdfstring{get\+Node\+Interface()}{getNodeInterface()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{struct_data_interface}{Data\+Interface}}$\ast$ Graph\+::get\+Node\+Interface (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_data_interface}{Data\+Interface}} $\ast$ Graph\+::get\+Node\+Interface (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
 
@@ -346,6 +356,8 @@ Methode qui permet d\textquotesingle{}ajouter un morceau a liste de lecturee dir
 \begin{DoxyReturn}{Returns}
 true si le noeud est deja present dans la data, false sinon 
 \end{DoxyReturn}
+Here is the call graph for this function\+:
+% FIG 7
 \mbox{\Hypertarget{class_graph_aeeede3cb48be5d8cac08ea05ce54bd52}\label{class_graph_aeeede3cb48be5d8cac08ea05ce54bd52}} 
 \index{Graph@{Graph}!print@{print}}
 \index{print@{print}!Graph@{Graph}}
@@ -377,6 +389,8 @@ Methode qui permet de lire puis enregistrer le contenu du graphe depuis un flux 
 {\em le} & flux ou il faut lire \\
 \hline
 \end{DoxyParams}
+Here is the call graph for this function\+:
+% FIG 8
 \mbox{\Hypertarget{class_graph_a97b5c94aeef2c0bea6a3f424b0fc01b8}\label{class_graph_a97b5c94aeef2c0bea6a3f424b0fc01b8}} 
 \index{Graph@{Graph}!remove\+Edge@{remove\+Edge}}
 \index{remove\+Edge@{remove\+Edge}!Graph@{Graph}}
@@ -397,6 +411,8 @@ Methode qui permet de retirer une arrete de la data grace a son pointeur
 \begin{DoxyReturn}{Returns}
 true \+: si il y a bien une suppression, false sinon si le sommet n existe pas 
 \end{DoxyReturn}
+Here is the call graph for this function\+:
+% FIG 9
 \mbox{\Hypertarget{class_graph_a32b254ea9535f8f4ad831d129db525e8}\label{class_graph_a32b254ea9535f8f4ad831d129db525e8}} 
 \index{Graph@{Graph}!remove\+Node@{remove\+Node}}
 \index{remove\+Node@{remove\+Node}!Graph@{Graph}}
@@ -417,6 +433,8 @@ Methode qui permet de retirer un sommet de la data grace a son pointeur
 \begin{DoxyReturn}{Returns}
 true \+: si il y a bien une suppression, false sinon si le sommet n existe pas 
 \end{DoxyReturn}
+Here is the call graph for this function\+:
+% FIG 10
 \mbox{\Hypertarget{class_graph_a1c30c580ccc957167dc64ca1a9e19248}\label{class_graph_a1c30c580ccc957167dc64ca1a9e19248}} 
 \index{Graph@{Graph}!remove\+Node@{remove\+Node}}
 \index{remove\+Node@{remove\+Node}!Graph@{Graph}}
@@ -437,6 +455,8 @@ Methode qui permet de retirer un sommet de la data grace a son uid
 \begin{DoxyReturn}{Returns}
 true \+: si il y a bien une suppression, false sinon si le sommet n existe pas 
 \end{DoxyReturn}
+Here is the call graph for this function\+:
+% FIG 11
 \mbox{\Hypertarget{class_graph_a6539d03f6d3f42042196f0f79455bdd8}\label{class_graph_a6539d03f6d3f42042196f0f79455bdd8}} 
 \index{Graph@{Graph}!size@{size}}
 \index{size@{size}!Graph@{Graph}}
@@ -469,8 +489,11 @@ Methode qui permet d ecrire le contenu du graphe dans un flux sortant en paramet
 {\em le} & flux ou il faut ecrire \\
 \hline
 \end{DoxyParams}
+Here is the call graph for this function\+:
+% FIG 12
 
 
-The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-C\+:/\+Users/ququq/\+Desktop/\+Repository Local Projet/\+Trophic\+\_\+\+Network/entities/graph/include/\mbox{\hyperlink{_graph_8h}{Graph.\+h}}\end{DoxyCompactItemize}
+C\+:/\+Users/ququq/\+Desktop/\+Repository Local Projet/\+Trophic\+\_\+\+Network/entities/graph/include/\mbox{\hyperlink{_graph_8h}{Graph.\+h}}\item 
+C\+:/\+Users/ququq/\+Desktop/\+Repository Local Projet/\+Trophic\+\_\+\+Network/entities/graph/src/\mbox{\hyperlink{_graph_8cpp}{Graph.\+cpp}}\end{DoxyCompactItemize}

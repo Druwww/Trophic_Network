@@ -2,6 +2,11 @@
 \label{class_edit_node_dialog}\index{Edit\+Node\+Dialog@{Edit\+Node\+Dialog}}
 
 
+Popup qui permet de modifier les attributs d\textquotesingle{}un \mbox{\hyperlink{struct_g_node}{G\+Node}}.  
+
+
+
+
 {\ttfamily \#include $<$editnodedialog.\+h$>$}
 
 
@@ -18,19 +23,15 @@ Collaboration diagram for Edit\+Node\+Dialog\+:
 \mbox{\hyperlink{class_edit_node_dialog_ad4521b8c402fe2443755af0b66443de1}{Edit\+Node\+Dialog}} (\mbox{\hyperlink{struct_g_node}{G\+Node}} $\ast$gnode)
 \item 
 Q\+String \mbox{\hyperlink{class_edit_node_dialog_a332d0500932bcb07e9e2b6bb563f2caf}{get\+Node\+Image\+Filepath}} () const
-\item 
+\begin{DoxyCompactList}\small\item\em Retourne la valeur contenue dans le champs \char`\"{}filepath\char`\"{}. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{class_edit_node_dialog_aacda0fe9314fb3165cd56394371a1ee4}{get\+Node\+Quantity}} () const
-\item 
+\begin{DoxyCompactList}\small\item\em Retourne la valeur contenue dans le champs \char`\"{}quantity\char`\"{}. \end{DoxyCompactList}\item 
 double \mbox{\hyperlink{class_edit_node_dialog_ab314148e6b30966638e2be8352098ecd}{get\+Node\+Birth\+Rate}} () const
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Retourne la valeur contenue dans le champs \char`\"{}birth rate\char`\"{}. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-
-
-Definition at line 16 of file editnodedialog.\+h.
-
-
+Popup qui permet de modifier les attributs d\textquotesingle{}un \mbox{\hyperlink{struct_g_node}{G\+Node}}. 
 
 \subsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_edit_node_dialog_ad4521b8c402fe2443755af0b66443de1}\label{class_edit_node_dialog_ad4521b8c402fe2443755af0b66443de1}} 
@@ -38,10 +39,6 @@ Definition at line 16 of file editnodedialog.\+h.
 \index{Edit\+Node\+Dialog@{Edit\+Node\+Dialog}!Edit\+Node\+Dialog@{Edit\+Node\+Dialog}}
 \subsubsection{\texorpdfstring{Edit\+Node\+Dialog()}{EditNodeDialog()}}
 {\footnotesize\ttfamily Edit\+Node\+Dialog\+::\+Edit\+Node\+Dialog (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_g_node}{G\+Node}} $\ast$}]{gnode }\end{DoxyParamCaption})}
-
-
-
-Definition at line 3 of file editnodedialog.\+cpp.
 
 
 
@@ -54,8 +51,11 @@ Definition at line 3 of file editnodedialog.\+cpp.
 
 
 
-Definition at line 60 of file editnodedialog.\+cpp.
+Retourne la valeur contenue dans le champs \char`\"{}birth rate\char`\"{}. 
 
+\begin{DoxyReturn}{Returns}
+le birth rate 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_edit_node_dialog_a332d0500932bcb07e9e2b6bb563f2caf}\label{class_edit_node_dialog_a332d0500932bcb07e9e2b6bb563f2caf}} 
 \index{Edit\+Node\+Dialog@{Edit\+Node\+Dialog}!get\+Node\+Image\+Filepath@{get\+Node\+Image\+Filepath}}
 \index{get\+Node\+Image\+Filepath@{get\+Node\+Image\+Filepath}!Edit\+Node\+Dialog@{Edit\+Node\+Dialog}}
@@ -64,8 +64,11 @@ Definition at line 60 of file editnodedialog.\+cpp.
 
 
 
-Definition at line 52 of file editnodedialog.\+cpp.
+Retourne la valeur contenue dans le champs \char`\"{}filepath\char`\"{}. 
 
+\begin{DoxyReturn}{Returns}
+le filepath 
+\end{DoxyReturn}
 \mbox{\Hypertarget{class_edit_node_dialog_aacda0fe9314fb3165cd56394371a1ee4}\label{class_edit_node_dialog_aacda0fe9314fb3165cd56394371a1ee4}} 
 \index{Edit\+Node\+Dialog@{Edit\+Node\+Dialog}!get\+Node\+Quantity@{get\+Node\+Quantity}}
 \index{get\+Node\+Quantity@{get\+Node\+Quantity}!Edit\+Node\+Dialog@{Edit\+Node\+Dialog}}
@@ -74,8 +77,11 @@ Definition at line 52 of file editnodedialog.\+cpp.
 
 
 
-Definition at line 56 of file editnodedialog.\+cpp.
+Retourne la valeur contenue dans le champs \char`\"{}quantity\char`\"{}. 
 
+\begin{DoxyReturn}{Returns}
+la quantity 
+\end{DoxyReturn}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

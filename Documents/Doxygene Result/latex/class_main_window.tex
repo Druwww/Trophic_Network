@@ -2,6 +2,11 @@
 \label{class_main_window}\index{Main\+Window@{Main\+Window}}
 
 
+La classe principal qui gère l\textquotesingle{}interface utilisateur.  
+
+
+
+
 {\ttfamily \#include $<$mainwindow.\+h$>$}
 
 
@@ -23,23 +28,19 @@ Collaboration diagram for Main\+Window\+:
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{class_main_window_abf05d580e91f725777cdb6a5eb0bf08c}{paint\+Event}} (Q\+Paint\+Event $\ast$event)
-\item 
+\begin{DoxyCompactList}\small\item\em evenement appelé lorsque l\textquotesingle{}interface est redessiné \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_main_window_a2b5463ae209a03d1680b39c950dac8be}{mouse\+Press\+Event}} (Q\+Mouse\+Event $\ast$event)
-\item 
+\begin{DoxyCompactList}\small\item\em evenement appelé lorsqu\textquotesingle{}un bouton de la souris est pressé \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_main_window_a32bbb036a55856e49c31a5348f937b53}{mouse\+Release\+Event}} (Q\+Mouse\+Event $\ast$event)
-\item 
+\begin{DoxyCompactList}\small\item\em evenement appelé lorsqu\textquotesingle{}un bouton de la souris est relaché \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{class_main_window_a2cf42454562815dd44c716e78d515697}{mouse\+Move\+Event}} (Q\+Mouse\+Event $\ast$event)
-\item 
+\begin{DoxyCompactList}\small\item\em evenement appelé lorsque la souris se déplace sur l\textquotesingle{}écran \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{class_main_window_aa0916a59a9d7ee37159ed0a2e0528960}{event\+Filter}} (Q\+Object $\ast$obj, Q\+Event $\ast$event)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em evenement appelé lorsqu\textquotesingle{}un evenement quelquonque apparait \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-
-
-Definition at line 35 of file mainwindow.\+h.
-
-
+La classe principal qui gère l\textquotesingle{}interface utilisateur. 
 
 \subsection{Constructor \& Destructor Documentation}
 \mbox{\Hypertarget{class_main_window_a8b244be8b7b7db1b08de2a2acb9409db}\label{class_main_window_a8b244be8b7b7db1b08de2a2acb9409db}} 
@@ -48,10 +49,6 @@ Definition at line 35 of file mainwindow.\+h.
 \subsubsection{\texorpdfstring{Main\+Window()}{MainWindow()}}
 {\footnotesize\ttfamily Main\+Window\+::\+Main\+Window (\begin{DoxyParamCaption}\item[{Q\+Widget $\ast$}]{parent = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
 
-
-
-Definition at line 4 of file mainwindow.\+cpp.
-
 Here is the call graph for this function\+:
 % FIG 2
 \mbox{\Hypertarget{class_main_window_ae98d00a93bc118200eeef9f9bba1dba7}\label{class_main_window_ae98d00a93bc118200eeef9f9bba1dba7}} 
@@ -59,10 +56,6 @@ Here is the call graph for this function\+:
 \index{````~Main\+Window@{$\sim$\+Main\+Window}!Main\+Window@{Main\+Window}}
 \subsubsection{\texorpdfstring{$\sim$\+Main\+Window()}{~MainWindow()}}
 {\footnotesize\ttfamily Main\+Window\+::$\sim$\+Main\+Window (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
-
-
-Definition at line 24 of file mainwindow.\+cpp.
 
 
 
@@ -75,7 +68,7 @@ Definition at line 24 of file mainwindow.\+cpp.
 
 
 
-Definition at line 356 of file mainwindow.\+cpp.
+evenement appelé lorsqu\textquotesingle{}un evenement quelquonque apparait 
 
 Here is the call graph for this function\+:
 % FIG 3
@@ -87,7 +80,7 @@ Here is the call graph for this function\+:
 
 
 
-Definition at line 338 of file mainwindow.\+cpp.
+evenement appelé lorsque la souris se déplace sur l\textquotesingle{}écran 
 
 Here is the call graph for this function\+:
 % FIG 4
@@ -99,7 +92,7 @@ Here is the call graph for this function\+:
 
 
 
-Definition at line 312 of file mainwindow.\+cpp.
+evenement appelé lorsqu\textquotesingle{}un bouton de la souris est pressé 
 
 \mbox{\Hypertarget{class_main_window_a32bbb036a55856e49c31a5348f937b53}\label{class_main_window_a32bbb036a55856e49c31a5348f937b53}} 
 \index{Main\+Window@{Main\+Window}!mouse\+Release\+Event@{mouse\+Release\+Event}}
@@ -109,7 +102,7 @@ Definition at line 312 of file mainwindow.\+cpp.
 
 
 
-Definition at line 326 of file mainwindow.\+cpp.
+evenement appelé lorsqu\textquotesingle{}un bouton de la souris est relaché 
 
 \mbox{\Hypertarget{class_main_window_abf05d580e91f725777cdb6a5eb0bf08c}\label{class_main_window_abf05d580e91f725777cdb6a5eb0bf08c}} 
 \index{Main\+Window@{Main\+Window}!paint\+Event@{paint\+Event}}
@@ -119,7 +112,7 @@ Definition at line 326 of file mainwindow.\+cpp.
 
 
 
-Definition at line 240 of file mainwindow.\+cpp.
+evenement appelé lorsque l\textquotesingle{}interface est redessiné 
 
 Here is the call graph for this function\+:
 % FIG 5

@@ -2,7 +2,7 @@ var class_simulation =
 [
     [ "Simulation", "class_simulation.html#a5b224cc5b36bcc8eb29689aff223de41", null ],
     [ "Simulation", "class_simulation.html#acac8de557d6db1b0c1ea78b8043b5271", null ],
-    [ "getGraph", "class_simulation.html#a54d69f514110813e7ede41b6c8c9c707", null ],
+    [ "getGraph", "class_simulation.html#a296949268560dd447dfe3b36d36610b3", null ],
     [ "getTurn", "class_simulation.html#a21dc3e8afd771b9bfa58f88fdce1c998", null ],
     [ "nextTurn", "class_simulation.html#a37a0a4dc49da67e14a09c650412d0a6e", null ],
     [ "setGraph", "class_simulation.html#a72ce1eb4046e69378685ea0c46cc8448", null ],

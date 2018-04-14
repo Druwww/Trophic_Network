@@ -8,7 +8,7 @@ digraph "C:/Users/ququq/Desktop/Repository Local Projet/Trophic_Network/entities
   }
   dir_c3d0b6be5bb4760826199717627d2316 [shape=box label="gui" fillcolor="white" style="filled" color="red" URL="dir_c3d0b6be5bb4760826199717627d2316.html"];
   dir_79d222b315895dbf79da2ed51619eb88 [shape=box label="graph" fillcolor="white" style="filled" color="red" URL="dir_79d222b315895dbf79da2ed51619eb88.html"];
-  dir_c3d0b6be5bb4760826199717627d2316->dir_79d222b315895dbf79da2ed51619eb88 [headlabel="3", labeldistance=1.5 headhref="dir_000009_000007.html"];
-  dir_477b179e4c767e518247f6e4c8c280cb->dir_c3d0b6be5bb4760826199717627d2316 [headlabel="1", labeldistance=1.5 headhref="dir_000006_000009.html"];
-  dir_477b179e4c767e518247f6e4c8c280cb->dir_79d222b315895dbf79da2ed51619eb88 [headlabel="2", labeldistance=1.5 headhref="dir_000006_000007.html"];
+  dir_c3d0b6be5bb4760826199717627d2316->dir_79d222b315895dbf79da2ed51619eb88 [headlabel="3", labeldistance=1.5 headhref="dir_000011_000008.html"];
+  dir_477b179e4c767e518247f6e4c8c280cb->dir_c3d0b6be5bb4760826199717627d2316 [headlabel="1", labeldistance=1.5 headhref="dir_000007_000011.html"];
+  dir_477b179e4c767e518247f6e4c8c280cb->dir_79d222b315895dbf79da2ed51619eb88 [headlabel="2", labeldistance=1.5 headhref="dir_000007_000008.html"];
 }

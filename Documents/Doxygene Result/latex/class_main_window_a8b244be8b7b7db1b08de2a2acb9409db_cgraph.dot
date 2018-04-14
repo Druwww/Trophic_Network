@@ -6,4 +6,23 @@ digraph "MainWindow::MainWindow"
   Node0 [label="MainWindow::MainWindow",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
   Node0 -> Node1 [color="midnightblue",fontsize="10",style="solid"];
   Node1 [label="Graph::read",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_graph.html#a79b39cf3963c03095bb74017a23c145e",tooltip="Graph"];
+  Node1 -> Node2 [color="midnightblue",fontsize="10",style="solid"];
+  Node2 [label="string_to_int",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$utils_8h.html#a85380a8d97c6de79cfabfad863d5f5ff"];
+  Node1 -> Node3 [color="midnightblue",fontsize="10",style="solid"];
+  Node3 [label="Node::read",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_node.html#ac59311eb42715f4a1f04a225618cace8",tooltip="Node"];
+  Node1 -> Node4 [color="midnightblue",fontsize="10",style="solid"];
+  Node4 [label="Node::setData",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_node.html#a07d96eb3ce03cacd2b5a2af10365bc37",tooltip="Setter Data. "];
+  Node1 -> Node5 [color="midnightblue",fontsize="10",style="solid"];
+  Node5 [label="Graph::getNodeByUid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_graph.html#aa9fa7bf3cf75a4239504607a442aebba",tooltip="getNodeByUid "];
+  Node5 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
+  Node6 [label="Graph::getIndexByUid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_graph.html#a2d8d8d9edb8a496d5c252132cdbbbc08",tooltip="getIndexByUid "];
+  Node1 -> Node7 [color="midnightblue",fontsize="10",style="solid"];
+  Node7 [label="Edge::read",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_edge.html#ab8dc776b635233160f040b8d3544f473",tooltip="Edge"];
+  Node1 -> Node8 [color="midnightblue",fontsize="10",style="solid"];
+  Node8 [label="Edge::setData",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_edge.html#a303fc7842a64e2ed4d583ea7cc273a51",tooltip="Setter Data. "];
+  Node1 -> Node9 [color="midnightblue",fontsize="10",style="solid"];
+  Node9 [label="Edge::setStartNode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_edge.html#a4a63f185bbe9f712381da62cdc3e33cc",tooltip="Setter Start Node. "];
+  Node1 -> Node10 [color="midnightblue",fontsize="10",style="solid"];
+  Node10 [label="Edge::setEndNode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_edge.html#a5d73c839006c47140491c76dcca2739e",tooltip="Setter End Node. "];
+  Node1 -> Node6 [color="midnightblue",fontsize="10",style="solid"];
 }

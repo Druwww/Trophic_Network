@@ -2,7 +2,7 @@ var struct_algorithm =
 [
     [ "Algorithm", "struct_algorithm.html#a472bdce2086324f49da7794e27ccaa54", null ],
     [ "Algorithm", "struct_algorithm.html#a5b56b8a7a5f4ebdd05f9e75862eedd3f", null ],
-    [ "~Algorithm", "struct_algorithm.html#a6b8fe18068ca11c37d7efc9f4ae0794d", null ],
+    [ "~Algorithm", "struct_algorithm.html#ae2801c5b6cd6f45b3852d8c94f354cd5", null ],
     [ "algoForteConnexity", "struct_algorithm.html#a7c4b5577dd51f39ebff598c5d01fd9d6", null ],
     [ "BFSConnexity", "struct_algorithm.html#ab6992a48b0de3c2a9cdc638761e9e531", null ],
     [ "checkAllNodeMarck", "struct_algorithm.html#aee02f753076dd71f76d029249c2e1e22", null ],

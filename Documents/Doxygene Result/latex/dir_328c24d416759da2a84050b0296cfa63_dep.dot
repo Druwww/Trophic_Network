@@ -1,0 +1,15 @@
+digraph "C:/Users/ququq/Desktop/Repository Local Projet/Trophic_Network/utils" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_9030cdca5aeddc1fcb3a2c9bcb6872d7 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="Trophic_Network" fontname="Helvetica", fontsize="10", URL="dir_9030cdca5aeddc1fcb3a2c9bcb6872d7.html"]
+  subgraph clusterdir_328c24d416759da2a84050b0296cfa63 {
+    graph [ bgcolor="#eeeeff", pencolor="black", label="" URL="dir_328c24d416759da2a84050b0296cfa63.html"];
+    dir_328c24d416759da2a84050b0296cfa63 [shape=plaintext label="utils"];
+    dir_f92d81bc68f2ce2315f56889a16dd31d [shape=box label="include" color="black" fillcolor="white" style="filled" URL="dir_f92d81bc68f2ce2315f56889a16dd31d.html"];
+    dir_dd2b88b87e7fa8addb04c54b5fbdcb5e [shape=box label="src" color="black" fillcolor="white" style="filled" URL="dir_dd2b88b87e7fa8addb04c54b5fbdcb5e.html"];
+  }
+  }
+  dir_dd2b88b87e7fa8addb04c54b5fbdcb5e->dir_f92d81bc68f2ce2315f56889a16dd31d [headlabel="1", labeldistance=1.5 headhref="dir_000018_000017.html"];
+}

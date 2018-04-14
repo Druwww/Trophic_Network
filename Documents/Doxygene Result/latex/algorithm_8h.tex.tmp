@@ -65,21 +65,29 @@ void \mbox{\hyperlink{algorithm_8h_a11e4893be024d0e87d1c6a007b17866d}{on\+Copy\+
 \subsubsection{\texorpdfstring{on\+Deserialize\+Edge()}{onDeserializeEdge()}}
 {\footnotesize\ttfamily void on\+Deserialize\+Edge (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{is,  }\item[{void $\ast$$\ast$}]{data }\end{DoxyParamCaption})}
 
+Here is the call graph for this function\+:
+% FIG 2
 \mbox{\Hypertarget{algorithm_8h_aa8f6463c78295542c1ab6bd22686bdaf}\label{algorithm_8h_aa8f6463c78295542c1ab6bd22686bdaf}} 
 \index{algorithm.\+h@{algorithm.\+h}!on\+Deserialize\+Node@{on\+Deserialize\+Node}}
 \index{on\+Deserialize\+Node@{on\+Deserialize\+Node}!algorithm.\+h@{algorithm.\+h}}
 \subsubsection{\texorpdfstring{on\+Deserialize\+Node()}{onDeserializeNode()}}
 {\footnotesize\ttfamily void on\+Deserialize\+Node (\begin{DoxyParamCaption}\item[{std\+::istream \&}]{is,  }\item[{void $\ast$$\ast$}]{data }\end{DoxyParamCaption})}
 
+Here is the call graph for this function\+:
+% FIG 3
 \mbox{\Hypertarget{algorithm_8h_a0d252bfd73f750986927001f78b92ba4}\label{algorithm_8h_a0d252bfd73f750986927001f78b92ba4}} 
 \index{algorithm.\+h@{algorithm.\+h}!on\+Serialize\+Edge@{on\+Serialize\+Edge}}
 \index{on\+Serialize\+Edge@{on\+Serialize\+Edge}!algorithm.\+h@{algorithm.\+h}}
 \subsubsection{\texorpdfstring{on\+Serialize\+Edge()}{onSerializeEdge()}}
 {\footnotesize\ttfamily void on\+Serialize\+Edge (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
 
+Here is the call graph for this function\+:
+% FIG 4
 \mbox{\Hypertarget{algorithm_8h_a59745e997f4e03b2ce456b51bcf63c6e}\label{algorithm_8h_a59745e997f4e03b2ce456b51bcf63c6e}} 
 \index{algorithm.\+h@{algorithm.\+h}!on\+Serialize\+Node@{on\+Serialize\+Node}}
 \index{on\+Serialize\+Node@{on\+Serialize\+Node}!algorithm.\+h@{algorithm.\+h}}
 \subsubsection{\texorpdfstring{on\+Serialize\+Node()}{onSerializeNode()}}
 {\footnotesize\ttfamily void on\+Serialize\+Node (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{void $\ast$}]{data }\end{DoxyParamCaption})}
 
+Here is the call graph for this function\+:
+% FIG 5

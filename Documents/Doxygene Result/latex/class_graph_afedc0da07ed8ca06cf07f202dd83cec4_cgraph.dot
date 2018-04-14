@@ -1,0 +1,22 @@
+digraph "Graph::connect"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node14 [label="Graph::connect",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node14 -> Node15 [color="midnightblue",fontsize="10",style="solid"];
+  Node15 [label="Graph::hasNode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_graph.html#a45c6a79b3251a56674cbabf980f8cea7",tooltip="hasNode "];
+  Node15 -> Node16 [color="midnightblue",fontsize="10",style="solid"];
+  Node16 [label="Node::getUid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_node.html#a53a0fb412c1047a27e07e7e4c5749bee",tooltip="Getter UID. "];
+  Node14 -> Node17 [color="midnightblue",fontsize="10",style="solid"];
+  Node17 [label="Graph::getIndexByUid",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_graph.html#a2d8d8d9edb8a496d5c252132cdbbbc08",tooltip="getIndexByUid "];
+  Node14 -> Node16 [color="midnightblue",fontsize="10",style="solid"];
+  Node14 -> Node18 [color="midnightblue",fontsize="10",style="solid"];
+  Node18 [label="Graph::addNode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_graph.html#a8236fc82b90fdea9b07d4cd0ae189925",tooltip="addNode "];
+  Node14 -> Node19 [color="midnightblue",fontsize="10",style="solid"];
+  Node19 [label="Edge::setStartNode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_edge.html#a4a63f185bbe9f712381da62cdc3e33cc",tooltip="Setter Start Node. "];
+  Node14 -> Node20 [color="midnightblue",fontsize="10",style="solid"];
+  Node20 [label="Edge::setEndNode",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_edge.html#a5d73c839006c47140491c76dcca2739e",tooltip="Setter End Node. "];
+  Node14 -> Node21 [color="midnightblue",fontsize="10",style="solid"];
+  Node21 [label="Edge::setData",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_edge.html#a303fc7842a64e2ed4d583ea7cc273a51",tooltip="Setter Data. "];
+}
